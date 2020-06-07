@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    QDir d = QFileInfo("./Armazon").absoluteDir();
-    QString absolute=d.absolutePath();
+    QDir d = QFileInfo("../Armazon").absoluteDir();
+    QString absolute=d.absolutePath() + "/Armazon";
 
     QStringList lista = QDir(absolute).entryList();
     qDebug() << lista;
