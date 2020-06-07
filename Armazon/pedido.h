@@ -17,6 +17,7 @@ struct Pedido
         this->codigoCliente = pCodigoCliente;
         this->articulo = pArticulo;
 
+
     }
 
 };

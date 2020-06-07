@@ -6,6 +6,7 @@ struct Cliente{
     QString codigo;
     QString nombre;
     int prioridad;
+    Cliente * next, * before;
     Cliente(QString pCodigo, QString pNombre, int pPrioridad){
         this->codigo = pCodigo;
         this->nombre = pNombre;
