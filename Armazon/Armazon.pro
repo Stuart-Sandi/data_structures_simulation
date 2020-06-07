@@ -19,13 +19,15 @@ SOURCES += \
     articulo.cpp \
     articuloalmacen.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    pedido.cpp
 
 HEADERS += \
     ArticuloAlmacen.h \
     articulo.h \
     articuloalmacen.h \
-    mainwindow.h
+    mainwindow.h \
+    pedido.h
 
 FORMS += \
     mainwindow.ui
