@@ -11,7 +11,15 @@ struct ArticuloAlmacen{
     QString categoria;
     QString ubicacionBodega;
 
+    ArticuloAlmacen(QString pCodigo, int pCantidad, int pSegundosFabricacion, QString pCatagoria, QString pUbicacionBodega){
 
+        this->codigo = pCodigo;
+        this->cantidad = pCantidad;
+        this->segundosFabricacion = pSegundosFabricacion;
+        this->categoria = pCatagoria;
+        this->ubicacionBodega = pUbicacionBodega;
+
+    }
 
 };
 
