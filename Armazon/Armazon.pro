@@ -23,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     ArticuloAlmacen.h \
+    Cliente.h \
     articulo.h \
     articuloalmacen.h \
     mainwindow.h
