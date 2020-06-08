@@ -15,7 +15,6 @@ int ListaClientes::insertarCliente(Cliente * nuevo){
             this->primerNodo = this->ultimoNodo = nuevo;
         }else{
             this->ultimoNodo->next = nuevo;
-            nuevo->before = this->ultimoNodo;
             this->ultimoNodo = nuevo;
         }
         return 1;

@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     ListaClientes.cpp \
+    Simulacion.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -24,6 +25,7 @@ HEADERS += \
     ArticuloAlmacen.h \
     Cliente.h \
     ListaClientes.h \
+    Simulacion.h \
     articulo.h \
     articuloalmacen.h \
     mainwindow.h \

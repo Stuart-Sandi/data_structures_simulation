@@ -6,8 +6,9 @@ struct Cliente{
     QString codigo;
     QString nombre;
     int prioridad;
-    Cliente * next, * before;
+    Cliente * next;
     Cliente(QString pCodigo, QString pNombre, int pPrioridad){
+        this->next = NULL;
         this->codigo = pCodigo;
         this->nombre = pNombre;
         this->prioridad = pPrioridad;

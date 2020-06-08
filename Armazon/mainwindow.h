@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
+#include <Simulacion.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,6 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    Simulacion * simulacion;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
