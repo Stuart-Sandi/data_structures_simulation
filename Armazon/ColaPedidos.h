@@ -1,11 +1,18 @@
 #ifndef COLAPEDIDOS_H
 #define COLAPEDIDOS_H
+#include <NodoColaPedido.h>
 
+struct ColaPedidos{
+   NodoPedido * frente, *final;
 
-class ColaPedidos
-{
-public:
-    ColaPedidos();
+   ColaPedidos(){
+        this->frente = this->final = NULL;
+   }
+
+   // encabezados de funcion
+   void encolar (Pedido*);
+   NodoPedido * desencolar ();
+   bool estaVacia();
 };
 
 #endif // COLAPEDIDOS_H

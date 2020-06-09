@@ -3,21 +3,22 @@
 
 #include <QString>
 #include "articulo.h"
-#include
+#include <QList>
 
 struct Pedido
 {
 
     QString numeroPedido;
     QString codigoCliente;
-    Articulo * articulo;
+    QList <Articulo> articulos;
     QString archivoFacturador;
 
-    Pedido(QString pNumeroPedido, QString pCodigoCliente, Articulo *pArticulo){
+
+    Pedido(QString pNumeroPedido, QString pCodigoCliente, QList<Articulo> pArticulos){
 
         this->numeroPedido = pNumeroPedido;
         this->codigoCliente = pCodigoCliente;
-        this->articulo = pArticulo;
+        this->articulos = pArticulos;
         this->archivoFacturador = "Pedido:" + this->numeroPedido + "\n" + "Cliente: " + this->codigoCliente +"\n";
 
 
