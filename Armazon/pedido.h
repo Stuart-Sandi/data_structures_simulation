@@ -3,6 +3,7 @@
 
 #include <QString>
 #include "articulo.h"
+#include
 
 struct Pedido
 {

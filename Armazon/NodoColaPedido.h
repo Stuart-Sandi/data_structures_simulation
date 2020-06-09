@@ -1,0 +1,4 @@
+#ifndef NODOCOLAPEDIDO_H
+#define NODOCOLAPEDIDO_H
+
+#endif // NODOCOLAPEDIDO_H
