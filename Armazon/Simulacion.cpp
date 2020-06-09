@@ -106,7 +106,7 @@ int Simulacion::cargarListas(){
          tmpTiempo = words[2].toInt();
          tmpCategoria = words[3];
          tmpUbicacion = words[4];
-         QList<QString> letrasArticulo = {"A", "B", "C", "a", "b", "c"};
+         QList<QString> letrasArticulo = {"A", "B", "C", "a", "b", "c"}; //CATEOGRIAS DE LOS ARTICULOS
 
          //VALIDA SI LOS DATOS DEl TXT ESTAN COMPLETOS Y CORRECTOS
          if (tmpTiempo >0 && tmpCantidad >= 0 && letrasArticulo.contains(words[3])){
