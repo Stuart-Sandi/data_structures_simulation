@@ -106,9 +106,10 @@ int Simulacion::cargarListas(){
          tmpTiempo = words[2].toInt();
          tmpCategoria = words[3];
          tmpUbicacion = words[4];
+         QList<QString> letrasArticulo = {"A", "B", "C", "a", "b", "c"};
 
          //VALIDA SI LOS DATOS DEl TXT ESTAN COMPLETOS Y CORRECTOS
-         if (tmpTiempo >0 && tmpCantidad >= 0 && (words[3] == "A" || words[3] == "B" || words[3] == "C" || words[3] == "a" || words[3] == "b" || words[3] == "c")){
+         if (tmpTiempo >0 && tmpCantidad >= 0 && letrasArticulo.contains(words[3])){
              int validar = 0;
              Articulo * nuevo = new Articulo(tmpCodigo,tmpCantidad,tmpTiempo,tmpCategoria,tmpUbicacion);
 
