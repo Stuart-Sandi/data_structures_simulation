@@ -3,11 +3,12 @@
 int Simulacion::cargarListas(){
 /*
  * ES LA FUNCION ENCARGADA DE CARGAR LAS LISTAS DE CLIENTES Y ARTICULOS ANTES DE INICIAR EL PROGRAMA
- * SI RETORNA UN 1 NO ABRIRA LA SIMULACION DEBIDO A ERROR DE LECTURA O ERROR EN EL ARCHIVO
+ * SI RETORNA UN 1 NO ABRIRA LA SIMULACION DEBIDO A ERRORES EN EL ARCHIVO DE CLIENTES
+ * SI RETORNA UN 2 NO ABRIRA LA SIMULACION DEBIDO A ERRORES EN EL ARCHIVO DE ARTICULOS
  * SI RETORNA UN 0 PERMITIRA INICIAR LA SIMULACION
  */
 
-
+//#######################################################################################################
 {
 /*
  * CARGA LA LISTA DE CLIENTES
@@ -53,6 +54,7 @@ int Simulacion::cargarListas(){
              //VALIDA SI EL CLIENTE YA EXISTE EN MEMORIA
              validar = this->clientes->insertarCliente(nuevo);
              if (validar == 0){
+                 qDebug()<<"ERROR: EL CLIENTE YA EXISTE";
                  return 1;
              }
              qDebug()<<"Se inserto el cliente: "+tmpNombre+"\n";
@@ -64,13 +66,65 @@ int Simulacion::cargarListas(){
     }
 }
 
-
-
-
+//#######################################################################################################
 {
 /*
  * CARGA LA LISTA DE ARTICULOS
  */
+    QString name = "";//GUARDA EL NOMBRE DEL ARCHIVO ARTICULOS
+    QList <QString> words;//GUARDA LAS PALABRAS DE CADA LINEA DE TEXTO
+
+    //OBTIENE LA DIRECCION DE LA CARPETA DE ARTICULOS
+    QDir d = QFileInfo("../Armazon").absoluteDir();
+    QString absolute=d.absolutePath() + "/Armazon/Articulos";
+    QStringList lista = QDir(absolute).entryList();
+
+    name = lista[2];//GUARDA EL NOMBRE DEL TXT CON LOS ARTICULOS
+
+    QFile datoArticulo(d.absolutePath() + "/Armazon/Articulos/" + name);
+    if (!datoArticulo.open(QIODevice::ReadOnly | QIODevice::Text)){
+        qDebug()<<"No se pudo leer";
+        return 2;
+    }
+    QTextStream in(&datoArticulo);
+
+    //VARIABLES TEMPORALES QUE ALMACENAN LOS DATOS DEL ARTICULO DE CADA LINEA
+    QString tmpCodigo = "";
+    int tmpCantidad = 0;
+    int tmpTiempo = 0;
+    QString tmpCategoria = "";
+    QString tmpUbicacion = "";
+
+    while (!in.atEnd()) {
+         QString line = in.readLine();//LEE EL ARCHIVO POR LINEAS
+         words = line.split("\t");//SEPARA LOS DATOS POR TABULADORES
+
+         //ASIGNA LOS DATOS A LAS VARIABLES TMPS QUE SERAN USADAS PARA CREAR EL CLIENTE
+
+         tmpCodigo = words[0];
+         tmpCantidad = words[1].toInt();
+         tmpTiempo = words[2].toInt();
+         tmpCategoria = words[3];
+         tmpUbicacion = words[4];
+
+         //VALIDA SI LOS DATOS DEl TXT ESTAN COMPLETOS Y CORRECTOS
+         if (tmpTiempo >0 && tmpCantidad >= 0 && (words[3] == "A" || words[3] == "B" || words[3] == "C" || words[3] == "a" || words[3] == "b" || words[3] == "c")){
+             int validar = 0;
+             Articulo * nuevo = new Articulo(tmpCodigo,tmpCantidad,tmpTiempo,tmpCategoria,tmpUbicacion);
+
+             //VALIDA SI EL CLIENTE YA EXISTE EN MEMORIA
+             validar = this->articulos->insertarArticulo(nuevo);
+             if (validar == 0){
+                 qDebug()<<"ERROR: EL ARTICULO YA EXISTE";
+                 return 2;
+             }
+             qDebug()<<"Se inserto el cliente: "+tmpCodigo+"\n";
+         }else{
+             qDebug()<<"ERROR AL TRANSFORMAR A ENTERO";
+             return 2;
+         }
+
+    }
 
 }
     return 0; // SI TODO ESTA CORRECTO

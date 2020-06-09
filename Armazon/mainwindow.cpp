@@ -8,8 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     simulacion = new Simulacion();
+
     simulacion->cargarListas();
-    simulacion->clientes->imprimir();
+    //simulacion->clientes->imprimir();//IMPRIME LISTA DE CLIENTES
+    simulacion->articulos->imprimir();//IMPRIME LISTA DE ARTICULOS
 }
 
 MainWindow::~MainWindow()
