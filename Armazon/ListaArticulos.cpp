@@ -6,8 +6,7 @@ int ListaArticulos::insertarArticulo(Articulo * nuevo){
  */
 
     //VALIDA SI EXISTE EL ARTICULO YA EN LISTA
-    int validarE = this->buscarArticulo(nuevo->codigo);
-    if (validarE == 0){
+    if (this->buscarArticulo(nuevo->codigo) == NULL){
 
         //INSERTA AL FINAL DE LA LISTA
         if (this->primerNodo == NULL){
@@ -24,19 +23,6 @@ int ListaArticulos::insertarArticulo(Articulo * nuevo){
     }
 }
 
-int ListaArticulos::buscarArticulo(QString codigo){
-/*
- * PROCEDIMIENTO ENCARGADO DE VERIFICAR LA EXISTENCIA DEL ARTICULO EN LISTA
- */
-    Articulo * tmp = this->primerNodo;
-    while (tmp != NULL) {
-        if (tmp->codigo == codigo){
-            return 1;
-        }
-        tmp = tmp->next;
-    }
-    return 0;
-}
 
 void ListaArticulos::imprimir(){
 /*
@@ -51,4 +37,18 @@ void ListaArticulos::imprimir(){
         qDebug()<<tmp->ubicacion<<endl;
         tmp = tmp->next;
     }
+}
+
+Articulo * ListaArticulos::buscarArticulo(QString codigo){
+/*
+ * PROCEDIMIENTO ENCARGADO DE VERIFICAR LA EXISTENCIA DEL ARTICULO EN LISTA
+ */
+    Articulo * tmp = this->primerNodo;
+    while (tmp != NULL) {
+        if (tmp->codigo == codigo){
+            return tmp;
+        }
+        tmp = tmp->next;
+    }
+    return NULL;
 }

@@ -18,13 +18,13 @@ int Simulacion::cargarListas(){
     QList <QString> words;//GUARDA LAS PALABRAS DE CADA LINEA DE TEXTO
 
     //OBTIENE LA DIRECCION DE LA CARPETA DE CLIENTES
-    QDir d = QFileInfo("../Armazon").absoluteDir();
-    QString absolute=d.absolutePath() + "/Armazon/Clientes";
+
+    QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Clientes";
     QStringList lista = QDir(absolute).entryList();
 
     name = lista[2];//GUARDA EL NOMBRE DEL TXT CON LOS CLIENTES
 
-    QFile datoCliente(d.absolutePath() + "/Armazon/Clientes/" + name);
+    QFile datoCliente(QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Clientes/" + name);
     if (!datoCliente.open(QIODevice::ReadOnly | QIODevice::Text)){
         qDebug()<<"No se pudo leer";
         return 1;
@@ -64,6 +64,7 @@ int Simulacion::cargarListas(){
          }
 
     }
+    datoCliente.close();
 }
 
 //#######################################################################################################
@@ -126,6 +127,7 @@ int Simulacion::cargarListas(){
          }
 
     }
+    datoArticulo.close();
 
 }
     return 0; // SI TODO ESTA CORRECTO

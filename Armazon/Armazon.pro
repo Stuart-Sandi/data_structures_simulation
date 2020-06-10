@@ -20,6 +20,7 @@ SOURCES += \
     ListaArticulos.cpp \
     ListaClientes.cpp \
     Simulacion.cpp \
+    ThreadColaPedidos.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -30,6 +31,7 @@ HEADERS += \
     ListaClientes.h \
     NodoColaPedido.h \
     Simulacion.h \
+    ThreadColaPedidos.h \
     articulo.h \
     mainwindow.h \
     pedido.h

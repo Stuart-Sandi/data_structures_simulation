@@ -10,11 +10,12 @@ struct Pedido
 
     QString numeroPedido;
     QString codigoCliente;
-    QList <Articulo> articulos;
+    QList <Articulo*> articulos;
     QString archivoFacturador;
 
+    Pedido(){}
 
-    Pedido(QString pNumeroPedido, QString pCodigoCliente, QList<Articulo> pArticulos){
+    Pedido(QString pNumeroPedido, QString pCodigoCliente, QList<Articulo*> pArticulos){
 
         this->numeroPedido = pNumeroPedido;
         this->codigoCliente = pCodigoCliente;
