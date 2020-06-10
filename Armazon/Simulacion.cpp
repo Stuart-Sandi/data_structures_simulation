@@ -76,17 +76,18 @@ int Simulacion::cargarListas(){
     QList <QString> words;//GUARDA LAS PALABRAS DE CADA LINEA DE TEXTO
 
     //OBTIENE LA DIRECCION DE LA CARPETA DE ARTICULOS
-    QDir d = QFileInfo("../Armazon").absoluteDir();
-    QString absolute=d.absolutePath() + "/Armazon/Articulos";
+
+    QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Articulos";
     QStringList lista = QDir(absolute).entryList();
 
     name = lista[2];//GUARDA EL NOMBRE DEL TXT CON LOS ARTICULOS
 
-    QFile datoArticulo(d.absolutePath() + "/Armazon/Articulos/" + name);
+    QFile datoArticulo(QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Articulos/" + name);
     if (!datoArticulo.open(QIODevice::ReadOnly | QIODevice::Text)){
         qDebug()<<"No se pudo leer";
         return 2;
     }
+
     QTextStream in(&datoArticulo);
 
     //VARIABLES TEMPORALES QUE ALMACENAN LOS DATOS DEL ARTICULO DE CADA LINEA
