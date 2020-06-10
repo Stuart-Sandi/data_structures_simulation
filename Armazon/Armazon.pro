@@ -21,6 +21,7 @@ SOURCES += \
     ListaClientes.cpp \
     Simulacion.cpp \
     ThreadColaPedidos.cpp \
+    funcionesArchivos.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -33,6 +34,7 @@ HEADERS += \
     Simulacion.h \
     ThreadColaPedidos.h \
     articulo.h \
+    funcionesArchivos.h \
     mainwindow.h \
     pedido.h
 

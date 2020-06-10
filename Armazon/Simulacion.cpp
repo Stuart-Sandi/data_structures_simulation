@@ -19,8 +19,7 @@ int Simulacion::cargarListas(){
 
     //OBTIENE LA DIRECCION DE LA CARPETA DE CLIENTES
 
-    QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Clientes";
-    QStringList lista = QDir(absolute).entryList();
+    QStringList lista = fA->obtenerListaDeArchivos("Clientes");
 
     name = lista[2];//GUARDA EL NOMBRE DEL TXT CON LOS CLIENTES
 
