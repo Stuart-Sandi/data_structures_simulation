@@ -12,6 +12,8 @@ struct funcionesArchivos{
     }
 
     QStringList obtenerListaDeArchivos(QString);
+    void escribirArchivo(QString, QString);
+    void moverArchivo(QString, QString);
 
 };
 

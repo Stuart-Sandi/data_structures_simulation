@@ -18,15 +18,13 @@ void ThreadColaPedidos::run(){
         QString error = "";
 
 
-        //OBTIENE LA DIRECCION DE LA CARPETA DE CLIENTES
-        QDir d = QFileInfo("../Armazon").absoluteDir();
-        QString absolute=d.absolutePath() + "/Armazon/Pedidos";
-        QStringList lista = QDir(absolute).entryList();
+        //OBTIENE LA DIRECCION DE LA CARPETA DE PEDIDOS
+        QStringList lista = fA->obtenerListaDeArchivos("Pedidos");
 
 
         for (int i = 2; i<lista.size(); i++){
             name = lista[i];//GUARDA EL NOMBRE DEL TXT CON LOS CLIENTES
-            QFile datoPedido(d.absolutePath() + "/Armazon/Pedidos/" + name);
+            QFile datoPedido(QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Pedidos/" + name);
             if (!datoPedido.open(QIODevice::ReadOnly | QIODevice::Text)){
                 qDebug()<<"No se pudo leer";
                 return;//validar despues
@@ -56,6 +54,7 @@ void ThreadColaPedidos::run(){
 
             //OBTIENE LOS DATOS DE CADA ARTICULO DEL PEDIDO
             for (int i = 2; i<data.size();i++){
+
                 articulo = data[i].split("\t");
                 codigoProducto = articulo[0];
                 cantidadSolicitada = articulo[1].toInt();
@@ -77,7 +76,17 @@ void ThreadColaPedidos::run(){
 
             }
 
+            if(error != ""){ //SI HAY ERRORES, LOS ESCRIBE EN EL ARCHIVO Y LO MANDA A LA CARPETA ERROR
+                QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Pedidos/";
+                QString absolute2 = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Error/";
+                fA->escribirArchivo(absolute+name, error);
+                fA->moverArchivo(absolute+name, absolute2+name);
+            }
+
         }
+
+        sleep(1);
+        qDebug()<<"Me desperte";
 
     }
 

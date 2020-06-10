@@ -5,6 +5,8 @@
 #include <pedido.h>
 #include <ListaClientes.h>
 #include <ListaArticulos.h>
+#include <funcionesArchivos.h>
+#include <QDateTime>
 
 class ThreadColaPedidos : public QThread
 {
@@ -14,6 +16,7 @@ public:
     QMutex * mutex;
     ListaClientes * clientes;
     ListaArticulos * articulos;
+    funcionesArchivos * fA;
 
     //Variables de errores temporales
     QString errorNumPedido = "\nERROR: El numero de pedido es incorrecto.";

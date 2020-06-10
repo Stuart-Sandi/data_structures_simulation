@@ -20,14 +20,21 @@ int Simulacion::cargarListas(){
     //OBTIENE LA DIRECCION DE LA CARPETA DE CLIENTES
 
     QStringList lista = fA->obtenerListaDeArchivos("Clientes");
+    QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Clientes";
+    fA->escribirArchivo(absolute+"/prueba.txt", "Hola, esto es un archivo de prueba");
+
+    QString absolute2 = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Error/";
+    QFile::rename(absolute+"/prueba.txt", absolute2+"/prueba.txt");
 
     name = lista[2];//GUARDA EL NOMBRE DEL TXT CON LOS CLIENTES
 
     QFile datoCliente(QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Clientes/" + name);
+
     if (!datoCliente.open(QIODevice::ReadOnly | QIODevice::Text)){
         qDebug()<<"No se pudo leer";
         return 1;
     }
+
     QTextStream in(&datoCliente);
     //VARIABLES TEMPORALES QUE ALMACENAN LOS DATOS DEL CLIENTE DE CADA LINEA
     QString tmpCodigo = "";
@@ -76,8 +83,7 @@ int Simulacion::cargarListas(){
 
     //OBTIENE LA DIRECCION DE LA CARPETA DE ARTICULOS
 
-    QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Articulos";
-    QStringList lista = QDir(absolute).entryList();
+    QStringList lista = fA->obtenerListaDeArchivos("Articulos");
 
     name = lista[2];//GUARDA EL NOMBRE DEL TXT CON LOS ARTICULOS
 

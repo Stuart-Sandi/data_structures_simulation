@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QList>
 #include <QMutex>
+#include <QDateTime>
 
 #include <ListaClientes.h>
 #include <ListaArticulos.h>
