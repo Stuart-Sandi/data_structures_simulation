@@ -21,10 +21,6 @@ int Simulacion::cargarListas(){
 
     QStringList lista = fA->obtenerListaDeArchivos("Clientes");
     QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Clientes";
-    fA->escribirArchivo(absolute+"/prueba.txt", "Hola, esto es un archivo de prueba");
-
-    QString absolute2 = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Error/";
-    QFile::rename(absolute+"/prueba.txt", absolute2+"/prueba.txt");
 
     name = lista[2];//GUARDA EL NOMBRE DEL TXT CON LOS CLIENTES
 
