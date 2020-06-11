@@ -1,0 +1,7 @@
+001
+A01	10
+A03	30
+C50	10
+B00	-1
+ERROR: El cliente no se encuentra registrado en ARMAZON.
+ERROR: La cantidad del articulo : B00 es menor o igual a 0. 

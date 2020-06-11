@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Imagenes">
+        <file>amazon.es_.jpg</file>
+    </qresource>
+</RCC>

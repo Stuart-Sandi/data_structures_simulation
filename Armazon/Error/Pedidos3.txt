@@ -1,0 +1,7 @@
+1
+001
+	10
+A03	30
+C50	10
+B00	10
+ERROR: El articulo:  ,no existe en los almacenes de ARMAZON.

@@ -1,0 +1,7 @@
+1
+ABC
+A01	10
+A03	30
+C50	10
+B00	10
+ERROR: El cliente no se encuentra registrado en ARMAZON.

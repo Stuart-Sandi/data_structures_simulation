@@ -1,0 +1,7 @@
+1
+001
+A01	10
+A03	30
+C50	
+B00	10
+ERROR: La cantidad del articulo : C50 es menor o igual a 0. 

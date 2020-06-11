@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QDebug>
+#include <QMessageBox>
+
 #include <Simulacion.h>
 
 QT_BEGIN_NAMESPACE
@@ -17,6 +19,9 @@ public:
     Simulacion * simulacion;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

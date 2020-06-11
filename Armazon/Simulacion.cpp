@@ -116,13 +116,13 @@ int Simulacion::cargarListas(){
              int validar = 0;
              Articulo * nuevo = new Articulo(tmpCodigo,tmpCantidad,tmpTiempo,tmpCategoria,tmpUbicacion);
 
-             //VALIDA SI EL CLIENTE YA EXISTE EN MEMORIA
+             //VALIDA SI EL ARTICULO YA EXISTE EN MEMORIA
              validar = this->articulos->insertarArticulo(nuevo);
              if (validar == 0){
                  qDebug()<<"ERROR: EL ARTICULO YA EXISTE";
                  return 2;
              }
-             qDebug()<<"Se inserto el cliente: "+tmpCodigo+"\n";
+             qDebug()<<"Se inserto el articulo: "+tmpCodigo+"\n";
          }else{
              qDebug()<<"ERROR AL TRANSFORMAR A ENTERO";
              return 2;
@@ -133,4 +133,11 @@ int Simulacion::cargarListas(){
 
 }
     return 0; // SI TODO ESTA CORRECTO
+}
+
+void Simulacion::iniciarSimulacion(){
+/*
+ * ESTA ES LA FUNCION ENCARGADA DE INICIAR TODOS LOS HILOS DE LA SIMULACION
+ */
+    this->tColaPedidos->start();
 }

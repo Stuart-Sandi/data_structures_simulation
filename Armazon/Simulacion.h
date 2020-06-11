@@ -34,6 +34,7 @@ struct Simulacion{
         this->tColaPedidos = new ThreadColaPedidos(this->colaPedidos,this->clientes,this->articulos, &mutex1);
     }
     int cargarListas();
+    void iniciarSimulacion();
 };
 
 #endif // SIMULACION_H

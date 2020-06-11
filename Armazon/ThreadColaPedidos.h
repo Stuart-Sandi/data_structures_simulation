@@ -19,9 +19,12 @@ public:
     funcionesArchivos * fA;
 
     //Variables de errores temporales
+    QString errorNoInformacion = "\nERROR: El archivo txt esta carente de informacion.";
     QString errorNumPedido = "\nERROR: El numero de pedido es incorrecto.";
     QString errorCliente = "\nERROR: El cliente no se encuentra registrado en ARMAZON.";
-    QString errorArticulo = "\nERROR: El articulo no existe en los almacenes de ARMAZON.";
+    QString errorArticulo = "\nERROR: La informacion del articulo esta inclompleta";
+    QString errorArticulo1 = "\nERROR: El articulo: ";
+    QString errorArticulo2 = " ,no existe en los almacenes de ARMAZON.";
     QString errorCantArticulo1 = "\nERROR: La cantidad del articulo : ";
     QString errorCantArticulo2 = " es menor o igual a 0. ";
 
