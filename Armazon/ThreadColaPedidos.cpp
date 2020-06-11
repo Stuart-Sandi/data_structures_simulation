@@ -10,6 +10,8 @@ ThreadColaPedidos::ThreadColaPedidos(ColaPedidos * pColaPedidos,ListaClientes * 
 
 void ThreadColaPedidos::run(){
 
+    QStringList listaCodigosPedidos; //LISTA UTILIZADA PARA ALMACENAR Y VALIDAR QUE NO SE REPITAN LOS NÚMEROS DE PEDIDOS
+
     while (true) {
 
         QString name = "";//GUARDA EL NOMBRE DEl TXT
@@ -34,11 +36,20 @@ void ThreadColaPedidos::run(){
             QString text = in.readAll();//LEE EL ARCHIVO POR LINEAS
             data = text.split("\n");//SEPARA LOS DATOS POR TABULADORES
 
+            QString numPedido;
+
             if (data.size()>2 && data[0] != ""){
-                QString numPedido = data[0];
+
+                numPedido = data[0];
+
                 //VALIDA QUE EL NUMERO DE PEDIDO SEA UN ENTERO
                 if (numPedido.toInt()== 0){
                     error += this->errorNumPedido;
+                }
+
+                //SI ESTÁ REPETIDO AGREGA EL ERROR
+                if(listaCodigosPedidos.contains(numPedido)){
+                    error += this->errorNumPedido2;
                 }
 
                 QString codigoCliente = data[1];
@@ -104,7 +115,9 @@ void ThreadColaPedidos::run(){
                     if (this->mutex->try_lock()){
                         this->colaPedidos->encolar(nuevo);
                         this->mutex->unlock();
+                        listaCodigosPedidos.append(numPedido);
                         qDebug()<<"PEDIDO ENCOLADO"<<endl;
+                        qDebug()<<"LISTA ACTUAL DE CÓDIGOS DE PEDIDO: " << listaCodigosPedidos <<endl;
                         break;
                     }else{
                         qDebug()<<"No obtuvo el recurso"<<endl;

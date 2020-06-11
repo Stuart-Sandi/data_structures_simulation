@@ -21,6 +21,7 @@ public:
     //Variables de errores temporales
     QString errorNoInformacion = "\nERROR: El archivo txt esta carente de informacion.";
     QString errorNumPedido = "\nERROR: El numero de pedido es incorrecto.";
+    QString errorNumPedido2 = "\nERROR: El numero de pedido es se encuentra repetido.";
     QString errorCliente = "\nERROR: El cliente no se encuentra registrado en ARMAZON.";
     QString errorArticulo = "\nERROR: La informacion del articulo esta inclompleta";
     QString errorArticulo1 = "\nERROR: El articulo: ";
