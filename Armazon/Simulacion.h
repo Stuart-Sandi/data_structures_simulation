@@ -19,7 +19,9 @@ struct Simulacion{
 
     ListaClientes * clientes;
     ListaArticulos * articulos;
+    QStringList listaCodigosPedidos;
     ColaPedidos * colaPedidos;
+    ColaPedidos * colaPedidosPrioriodad;
     funcionesArchivos * fA;
     ThreadColaPedidos * tColaPedidos;
 
@@ -29,9 +31,10 @@ struct Simulacion{
         this->clientes = new ListaClientes();
         this->articulos = new ListaArticulos();
         this->colaPedidos = new ColaPedidos();
+        this->colaPedidosPrioriodad = new ColaPedidos();
         this->fA = new funcionesArchivos();
 
-        this->tColaPedidos = new ThreadColaPedidos(this->colaPedidos,this->clientes,this->articulos, &mutex1);
+        this->tColaPedidos = new ThreadColaPedidos(this->colaPedidos,this->colaPedidosPrioriodad, &this->listaCodigosPedidos,this->clientes,this->articulos, &mutex1);
     }
     int cargarListas();
     void iniciarSimulacion();

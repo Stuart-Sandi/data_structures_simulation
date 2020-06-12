@@ -1,16 +1,16 @@
 #include "ThreadColaPedidos.h"
 
-ThreadColaPedidos::ThreadColaPedidos(ColaPedidos * pColaPedidos,ListaClientes * pClientes,ListaArticulos * pArticulos ,QMutex * pMutex)
+ThreadColaPedidos::ThreadColaPedidos(ColaPedidos * pColaPedidos,ColaPedidos * pColaPedidosPrioridad,QStringList * pListaCodigosPedidos,ListaClientes * pClientes,ListaArticulos * pArticulos ,QMutex * pMutex)
 {
     this->colaPedidos = pColaPedidos;
+    this->colaPedidosPrioridad = pColaPedidosPrioridad;
+    this->listaCodigosPedidos = pListaCodigosPedidos;
     this->clientes = pClientes;
     this->articulos = pArticulos;
     this->mutex = pMutex;
 }
 
 void ThreadColaPedidos::run(){
-
-    QStringList listaCodigosPedidos; //LISTA UTILIZADA PARA ALMACENAR Y VALIDAR QUE NO SE REPITAN LOS NÚMEROS DE PEDIDOS
 
     while (true) {
 
@@ -48,7 +48,7 @@ void ThreadColaPedidos::run(){
                 }
 
                 //SI ESTÁ REPETIDO AGREGA EL ERROR
-                if(listaCodigosPedidos.contains(numPedido)){
+                if(this->listaCodigosPedidos->contains(numPedido)){
                     error += this->errorNumPedido2;
                 }
 
@@ -57,8 +57,10 @@ void ThreadColaPedidos::run(){
                 if (this->clientes->buscarCliente(codigoCliente) == NULL){
                     error += this->errorCliente;
                 }
+
                 if (error == ""){
                     nuevo = new Pedido();
+                    nuevo->prioridad = this->clientes->buscarCliente(codigoCliente)->prioridad;
                 }
 
                 QString codigoProducto = "";
@@ -109,16 +111,27 @@ void ThreadColaPedidos::run(){
                 QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Pedidos/";
                 QString absolute2 = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Completados/";
                 fA->moverArchivo(absolute+name, absolute2+name);
-                //nuevo->archivoFacturador = "En cola: " + fecha; //AGREGAR FECHA Y HORA CUANDO SE ENCOLA
+                nuevo->archivoFacturador += "Pedido:" + nuevo->numeroPedido + "\n" + "Cliente: " + nuevo->codigoCliente +"\n";
+                //nuevo->archivoFacturador += "En cola: " + fecha; //AGREGAR FECHA Y HORA CUANDO SE ENCOLA
 
                 //TRATA DE BLOQUEAR EL RECURSO PARA ENCOLAR
                 while (true){
                     if (this->mutex->try_lock()){
-                        this->colaPedidos->encolar(nuevo);
+
+                        if(nuevo->prioridad == 10){
+
+                            this->colaPedidosPrioridad->encolar(nuevo);
+
+                        } else {
+
+                            this->colaPedidos->encolar(nuevo);
+
+                        }
+
                         this->mutex->unlock();
-                        listaCodigosPedidos.append(numPedido);
+                        listaCodigosPedidos->append(numPedido);
                         qDebug()<<"PEDIDO ENCOLADO"<<endl;
-                        qDebug()<<"LISTA ACTUAL DE CÓDIGOS DE PEDIDO: " << listaCodigosPedidos <<endl;
+                        qDebug()<<"LISTA ACTUAL DE CÓDIGOS DE PEDIDO: " << *listaCodigosPedidos <<endl;
                         break;
                     }else{
                         qDebug()<<"No obtuvo el recurso"<<endl;

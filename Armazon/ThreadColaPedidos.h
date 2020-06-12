@@ -13,9 +13,11 @@ class ThreadColaPedidos : public QThread
     Q_OBJECT
 public:
     ColaPedidos * colaPedidos;
+    ColaPedidos * colaPedidosPrioridad;
     QMutex * mutex;
     ListaClientes * clientes;
     ListaArticulos * articulos;
+    QStringList * listaCodigosPedidos;
     funcionesArchivos * fA;
 
     //Variables de errores temporales
@@ -30,7 +32,7 @@ public:
     QString errorCantArticulo2 = " es menor o igual a 0. ";
 
 
-    ThreadColaPedidos(ColaPedidos*,ListaClientes*,ListaArticulos*,QMutex*);
+    ThreadColaPedidos(ColaPedidos*,ColaPedidos*,QStringList *,ListaClientes*,ListaArticulos*,QMutex*);
     void run() override;
 };
 
