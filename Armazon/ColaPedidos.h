@@ -3,7 +3,7 @@
 #include <NodoColaPedido.h>
 
 struct ColaPedidos{
-   NodoPedido * frente, *final;
+   Pedido * frente, *final;
 
    ColaPedidos(){
         this->frente = this->final = NULL;
@@ -11,7 +11,7 @@ struct ColaPedidos{
 
    // encabezados de funcion
    void encolar (Pedido*);
-   NodoPedido * desencolar ();
+   Pedido * desencolar ();
    int cantidadEnCola();
    bool estaVacia();
 };

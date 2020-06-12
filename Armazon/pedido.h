@@ -13,6 +13,7 @@ struct Pedido
     int prioridad;
     QList <Articulo*> articulos;
     QString archivoFacturador = "";
+    Pedido * next = NULL;
     Pedido(){}
 
     Pedido(QString pNumeroPedido, QString pCodigoCliente, QList<Articulo*> pArticulos){

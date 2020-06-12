@@ -32,7 +32,10 @@ void MainWindow::on_iniciar_Button_clicked()
     this->ui->detener_Button->setEnabled(true);
 
     //HACE LOS CONNECTS ENTRE HILOS Y VENTANAS
+
+    //VENTANA COLA DE PEDIDOS
     connect(this->simulacion->tColaPedidos,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaPedidos,SLOT(agregarDatos(QString,QString)));
+    connect(this->simulacion->tBalanceador,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaPedidos,SLOT(agregarDatos2(QString,QString)));
 
     this->simulacion->iniciarSimulacion();//INICIA LA SIMULACION
 }

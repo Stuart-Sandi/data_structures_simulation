@@ -1,17 +1,16 @@
 #include "ColaPedidos.h"
 
 void ColaPedidos::encolar(Pedido * pDato){
-    NodoPedido * nuevo = new NodoPedido(pDato);
     if (this->estaVacia()){
-        this->final = this->frente = nuevo;
+        this->final = this->frente = pDato;
     }else{
-        this->final->next = nuevo;
+        this->final->next = pDato;
         this->final = this->final->next;
     }
 }
 
-NodoPedido * ColaPedidos::desencolar(){
-    NodoPedido * desencolado = frente;
+Pedido * ColaPedidos::desencolar(){
+    Pedido * desencolado = frente;
     if (!this->estaVacia()){
         this->frente = this->frente->next;
         desencolado->next = NULL;
@@ -27,7 +26,7 @@ bool ColaPedidos::estaVacia(){
 }
 
 int ColaPedidos::cantidadEnCola(){
-    NodoPedido * tmp = frente;
+    Pedido * tmp = frente;
     int contador = 0;
     while (tmp != NULL) {
         contador++;

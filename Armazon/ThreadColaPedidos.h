@@ -36,7 +36,9 @@ public:
     void run() override;
 
 signals:
-    void datosCola(QString,QString);
+    void datosCola(QString,QString);//ASIGNA LOS DATOS DE PEDIDOS ATENDIDOS Y CANTIDAD EN COLA
+    void datosCola2(QString, QString);//ASIGNA LOS DATOS DE CANTIDAD EN COLA Y CANTIDAD DESENCOLADOS
+
 };
 
 #endif // THREADCOLAPEDIDOS_H

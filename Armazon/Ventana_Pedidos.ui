@@ -87,7 +87,7 @@ color: rgb(0, 0, 0);</string>
      <string>VOLVER</string>
     </property>
    </widget>
-   <widget class="QLabel" name="encolar_Label_2">
+   <widget class="QLabel" name="desencolar_Labe">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -116,7 +116,7 @@ color: rgb(0, 0, 0);</string>
    <zorder>textBrowser</zorder>
    <zorder>encolar_Label</zorder>
    <zorder>pushButton</zorder>
-   <zorder>encolar_Label_2</zorder>
+   <zorder>desencolar_Labe</zorder>
   </widget>
  </widget>
  <resources>

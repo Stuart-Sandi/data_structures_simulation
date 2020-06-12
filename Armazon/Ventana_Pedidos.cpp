@@ -24,6 +24,11 @@ void Ventana_Pedidos::agregarDatos(QString data,QString cantidad){
     this->ui->encolar_Label->setText("En Cola: "+cantidad);
 }
 
+void Ventana_Pedidos::agregarDatos2(QString cant1,QString cant2){
+    this->ui->encolar_Label->setText("En Cola: "+cant1);
+    this->ui->desencolar_Labe->setText("Desencolado: "+cant2);
+}
+
 void Ventana_Pedidos::on_pushButton_clicked()
 {
     this->hide();

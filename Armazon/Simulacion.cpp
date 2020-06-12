@@ -140,4 +140,5 @@ void Simulacion::iniciarSimulacion(){
  * ESTA ES LA FUNCION ENCARGADA DE INICIAR TODOS LOS HILOS DE LA SIMULACION
  */
     this->tColaPedidos->start();
+    this->tBalanceador->start();
 }
