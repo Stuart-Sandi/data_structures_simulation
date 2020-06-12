@@ -1,0 +1,7 @@
+1
+001
+A01	10
+A03	30
+C50	10
+B00	10
+ERROR: El numero de pedido es se encuentra repetido.

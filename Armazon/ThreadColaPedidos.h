@@ -34,6 +34,9 @@ public:
 
     ThreadColaPedidos(ColaPedidos*,ColaPedidos*,QStringList *,ListaClientes*,ListaArticulos*,QMutex*);
     void run() override;
+
+signals:
+    void datosCola(QString,QString);
 };
 
 #endif // THREADCOLAPEDIDOS_H

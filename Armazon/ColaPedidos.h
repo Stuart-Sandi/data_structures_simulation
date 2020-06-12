@@ -12,6 +12,7 @@ struct ColaPedidos{
    // encabezados de funcion
    void encolar (Pedido*);
    NodoPedido * desencolar ();
+   int cantidadEnCola();
    bool estaVacia();
 };
 

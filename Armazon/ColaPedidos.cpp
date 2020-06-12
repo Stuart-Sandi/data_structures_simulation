@@ -25,3 +25,13 @@ bool ColaPedidos::estaVacia(){
     }
     return false;
 }
+
+int ColaPedidos::cantidadEnCola(){
+    NodoPedido * tmp = frente;
+    int contador = 0;
+    while (tmp != NULL) {
+        contador++;
+        tmp = tmp->next;
+    }
+    return  contador;
+}

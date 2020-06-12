@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/Imagenes">
         <file>amazon.es_.jpg</file>
+        <file>cajas-logistica.png</file>
+        <file>IMG_Ojito_2.png</file>
+        <file>IMG_Pedidos.png</file>
     </qresource>
 </RCC>

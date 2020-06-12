@@ -61,6 +61,8 @@ void ThreadColaPedidos::run(){
                 if (error == ""){
                     nuevo = new Pedido();
                     nuevo->prioridad = this->clientes->buscarCliente(codigoCliente)->prioridad;
+                    nuevo->numeroPedido = numPedido;
+                    nuevo->codigoCliente = codigoCliente;
                 }
 
                 QString codigoProducto = "";
@@ -121,12 +123,17 @@ void ThreadColaPedidos::run(){
                         if(nuevo->prioridad == 10){
 
                             this->colaPedidosPrioridad->encolar(nuevo);
+                            int cantidadCola = this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
+                            emit datosCola(nuevo->numeroPedido,QString::number(cantidadCola));
 
                         } else {
 
                             this->colaPedidos->encolar(nuevo);
+                            int cantidadCola = this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
+                            emit datosCola(nuevo->numeroPedido,QString::number(cantidadCola));
 
                         }
+                        qDebug()<<"Cantidad en cola: "<<this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
 
                         this->mutex->unlock();
                         listaCodigosPedidos->append(numPedido);

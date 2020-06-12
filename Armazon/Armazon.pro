@@ -21,6 +21,7 @@ SOURCES += \
     ListaClientes.cpp \
     Simulacion.cpp \
     ThreadColaPedidos.cpp \
+    Ventana_Pedidos.cpp \
     funcionesArchivos.cpp \
     main.cpp \
     mainwindow.cpp
@@ -33,12 +34,14 @@ HEADERS += \
     NodoColaPedido.h \
     Simulacion.h \
     ThreadColaPedidos.h \
+    Ventana_Pedidos.h \
     articulo.h \
     funcionesArchivos.h \
     mainwindow.h \
     pedido.h
 
 FORMS += \
+    Ventana_Pedidos.ui \
     mainwindow.ui
 
 # Default rules for deployment.

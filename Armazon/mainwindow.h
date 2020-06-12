@@ -21,7 +21,10 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_iniciar_Button_clicked();
+
+    void on_ojo_Cola_Pedidos_clicked();
 
 private:
     Ui::MainWindow *ui;
