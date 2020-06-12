@@ -54,7 +54,7 @@ void ThreadColaPedidos::run(){
 
                 QString codigoCliente = data[1];
                 //VALIDA QUE EL CLIENTE EXISTA EN MEMORIA
-                if (this->clientes->buscarCliente(codigoCliente) == 0){
+                if (this->clientes->buscarCliente(codigoCliente) == NULL){
                     error += this->errorCliente;
                 }
                 if (error == ""){
@@ -109,6 +109,7 @@ void ThreadColaPedidos::run(){
                 QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Pedidos/";
                 QString absolute2 = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Completados/";
                 fA->moverArchivo(absolute+name, absolute2+name);
+                //nuevo->archivoFacturador = "En cola: " + fecha; //AGREGAR FECHA Y HORA CUANDO SE ENCOLA
 
                 //TRATA DE BLOQUEAR EL RECURSO PARA ENCOLAR
                 while (true){

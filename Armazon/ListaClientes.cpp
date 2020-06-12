@@ -7,8 +7,8 @@ int ListaClientes::insertarCliente(Cliente * nuevo){
  */
 
     //VALIDA SI EXISTE EL CLIENTE YA EN LISTA
-    int validarE = this->buscarCliente(nuevo->codigo);
-    if (validarE == 0){
+    Cliente * validarE = this->buscarCliente(nuevo->codigo);
+    if (validarE == NULL){
 
         //INSERTA AL FINAL DE LA LISTA
         if (this->primerNodo == NULL){
@@ -24,18 +24,18 @@ int ListaClientes::insertarCliente(Cliente * nuevo){
     }
 }
 
-int ListaClientes::buscarCliente(QString codigo){
+Cliente * ListaClientes::buscarCliente(QString codigo){
 /*
  * PROCEDIMIENTO ENCARGADO DE VERIFICAR LA EXISTENCIA DEL CLIENTE EN LISTA
  */
     Cliente * tmp = this->primerNodo;
     while (tmp != NULL) {
         if (tmp->codigo == codigo){
-            return 1;
+            return tmp;
         }
         tmp = tmp->next;
     }
-    return 0;
+    return NULL;
 }
 
 void ListaClientes::imprimir(){

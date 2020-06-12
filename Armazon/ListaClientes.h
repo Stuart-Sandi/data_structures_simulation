@@ -10,7 +10,7 @@ struct ListaClientes{
     }
     //DECLARACION DE FUNCIONES
     int insertarCliente(Cliente*);
-    int buscarCliente(QString);
+    Cliente * buscarCliente(QString);
     void imprimir();
 };
 
