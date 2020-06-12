@@ -114,7 +114,7 @@ void ThreadColaPedidos::run(){
                 QString absolute2 = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Completados/";
                 fA->moverArchivo(absolute+name, absolute2+name);
                 nuevo->archivoFacturador += "Pedido:" + nuevo->numeroPedido + "\n" + "Cliente: " + nuevo->codigoCliente +"\n";
-                //nuevo->archivoFacturador += "En cola: " + fecha; //AGREGAR FECHA Y HORA CUANDO SE ENCOLA
+                nuevo->archivoFacturador += "En cola:\t" + fA->obtenerFechaHoraActual() + "\n"; //AGREGA FECHA Y HORA CUANDO SE ENCOLA
 
                 //TRATA DE BLOQUEAR EL RECURSO PARA ENCOLAR
                 while (true){

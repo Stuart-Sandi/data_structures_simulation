@@ -1,6 +1,7 @@
 #include "funcionesArchivos.h"
 #include <QTextStream>
 #include <QFile>
+#include <QDateTime>
 
 QStringList funcionesArchivos::obtenerListaDeArchivos(QString pCarpeta){
 
@@ -32,5 +33,12 @@ void funcionesArchivos::moverArchivo(QString pDireccionAntigua, QString pDirecci
         QFile::remove(pDireccionNueva);
         QFile::rename(pDireccionAntigua, pDireccionNueva);
     }
+
+}
+
+QString funcionesArchivos::obtenerFechaHoraActual(){
+
+    QString fechaHoraExacta = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ap");
+    return fechaHoraExacta;
 
 }
