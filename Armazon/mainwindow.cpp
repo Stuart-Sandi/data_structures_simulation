@@ -54,3 +54,10 @@ void MainWindow::on_pausar_Balanceador_clicked()
         this->ui->pausar_Balanceador->setText("Continuar");
     }
 }
+
+void MainWindow::on_ojo_Balanceador_clicked()
+{
+    qDebug()<<"A:"<<this->simulacion->colasArticulos[0]->cantidadEnCola();
+    qDebug()<<"B:"<<this->simulacion->colasArticulos[1]->cantidadEnCola();
+    qDebug()<<"C:"<<this->simulacion->colasArticulos[2]->cantidadEnCola();
+}

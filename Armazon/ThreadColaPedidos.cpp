@@ -124,13 +124,13 @@ void ThreadColaPedidos::run(){
 
                             this->colaPedidosPrioridad->encolar(nuevo);
                             int cantidadCola = this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
-                            emit datosCola(nuevo->numeroPedido,QString::number(cantidadCola));
+                            emit datosCola(nuevo->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
 
                         } else {
 
                             this->colaPedidos->encolar(nuevo);
                             int cantidadCola = this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
-                            emit datosCola(nuevo->numeroPedido,QString::number(cantidadCola));
+                            emit datosCola(nuevo->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
 
                         }
                         qDebug()<<"Cantidad en cola: "<<this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();

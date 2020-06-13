@@ -33,7 +33,8 @@ struct Simulacion{
     QStringList listaCodigosPedidos;
     ColaPedidos * colaPedidos;
     ColaPedidos * colaPedidosPrioriodad;
-    ColaArticulos * colaArticulos;
+    ColaArticulos * colaA, *colaB, *colaC;
+    QList <ColaArticulos*> colasArticulos;
     ColaPedidos *colaAlisto;
     funcionesArchivos * fA;
     //VENTANAS
@@ -55,7 +56,12 @@ struct Simulacion{
         this->colaPedidos = new ColaPedidos();
         this->colaPedidosPrioriodad = new ColaPedidos();
         this->colaAlisto = new ColaPedidos();
-        this->colaArticulos = new ColaArticulos();
+        this->colaA = new ColaArticulos();
+        this->colaB = new ColaArticulos();
+        this->colaC = new ColaArticulos();
+        this->colasArticulos.append(this->colaA);
+        this->colasArticulos.append(this->colaB);
+        this->colasArticulos.append(this->colaC);
         this->fA = new funcionesArchivos();
 
         //VENTANAS
@@ -63,7 +69,7 @@ struct Simulacion{
 
         //THREADS
         this->tColaPedidos = new ThreadColaPedidos(this->colaPedidos,this->colaPedidosPrioriodad, &this->listaCodigosPedidos,this->clientes,this->articulos, &this->mutex1);
-        this->tBalanceador = new ThreadBalanceador(this->colaPedidos,this->colaPedidosPrioriodad,this->colaAlisto,this->pedidos,this->articulos,this->colaArticulos,&this->mutex1,&this->mutex2);
+        this->tBalanceador = new ThreadBalanceador(this->colaPedidos,this->colaPedidosPrioriodad,this->colaAlisto,this->pedidos,this->articulos,this->colasArticulos,&this->mutex1,&this->mutex2);
     }
     int cargarListas();
     void iniciarSimulacion();

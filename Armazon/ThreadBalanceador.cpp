@@ -1,13 +1,13 @@
 #include "ThreadBalanceador.h"
 
-ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pColaPrioridad,ColaPedidos * pColaAlisto,ListaPedidos * pPedidos,ListaArticulos * pArticulos,ColaArticulos*pColaArticulos, QMutex* pMutex1, QMutex* pMutex2)
+ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pColaPrioridad,ColaPedidos * pColaAlisto,ListaPedidos * pPedidos,ListaArticulos * pArticulos,QList<ColaArticulos*> pColasArticulos, QMutex* pMutex1, QMutex* pMutex2)
 {
     this->cantidadDesencolado = 0;
     this->pausa = false;
     this->colaPedidos = pColaNormal;
     this->colaPedidosPrioridad = pColaPrioridad;
     this->colaAlisto = pColaAlisto;
-    this->colaArticulos = pColaArticulos;
+    this->colasArticulos = pColasArticulos;
     this->listaPedidos = pPedidos;
     this->articulos = pArticulos;
     this->mutex1 = pMutex1;
@@ -69,11 +69,21 @@ void ThreadBalanceador::run(){
                             tmp->articulos[i]->estado = true;
                             this->articulos->buscarArticulo(tmp->articulos[i]->codigo)->cantidad -= cantidadArticulo;
                         }else{
-                            this->colaArticulos->encolar(tmp->articulos[i]);
+                            //INGRESA EN LA COLA A
+                            if (tmp->articulos[i]->categoria == "A" || tmp->articulos[i]->categoria == "a"){
+                                this->colasArticulos[0]->encolar(tmp->articulos[i]);
+                            }
+                            //INGRESA EN LA COLA B
+                            else if (tmp->articulos[i]->categoria == "B" || tmp->articulos[i]->categoria == "b"){
+                                this->colasArticulos[1]->encolar(tmp->articulos[i]);
+                            }
+                            //INGRESA EN LA COLA C
+                            else{
+                                this->colasArticulos[2]->encolar(tmp->articulos[i]);
+                            }
                         }
                     }
                     //INSERTA EN LA LISTA DE LOS PEDIDOS
-                    qDebug()<<"Cantidad en Cola"<<this->colaArticulos->cantidadEnCola();
                     this->listaPedidos->insertarCliente(tmp);
                     this->listaPedidos->cantidadEnLista();
                     this->mutex2->unlock();

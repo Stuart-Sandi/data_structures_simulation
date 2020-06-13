@@ -28,6 +28,8 @@ private slots:
 
     void on_pausar_Balanceador_clicked();
 
+    void on_ojo_Balanceador_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
