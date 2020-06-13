@@ -24,6 +24,7 @@ SOURCES += \
     Simulacion.cpp \
     ThreadBalanceador.cpp \
     ThreadColaPedidos.cpp \
+    ThreadFabrica.cpp \
     Ventana_Pedidos.cpp \
     funcionesArchivos.cpp \
     main.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     Simulacion.h \
     ThreadBalanceador.h \
     ThreadColaPedidos.h \
+    ThreadFabrica.h \
     Ventana_Pedidos.h \
     articulo.h \
     funcionesArchivos.h \
