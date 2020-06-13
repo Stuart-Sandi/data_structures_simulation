@@ -26,6 +26,8 @@ private slots:
 
     void on_ojo_Cola_Pedidos_clicked();
 
+    void on_pausar_Balanceador_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

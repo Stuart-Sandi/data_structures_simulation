@@ -16,9 +16,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ColaArticulos.cpp \
     ColaPedidos.cpp \
     ListaArticulos.cpp \
     ListaClientes.cpp \
+    ListaPedidos.cpp \
     Simulacion.cpp \
     ThreadBalanceador.cpp \
     ThreadColaPedidos.cpp \
@@ -29,9 +31,11 @@ SOURCES += \
 
 HEADERS += \
     Cliente.h \
+    ColaArticulos.h \
     ColaPedidos.h \
     ListaArticulos.h \
     ListaClientes.h \
+    ListaPedidos.h \
     Simulacion.h \
     ThreadBalanceador.h \
     ThreadColaPedidos.h \

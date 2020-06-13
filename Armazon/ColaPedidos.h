@@ -1,6 +1,6 @@
 #ifndef COLAPEDIDOS_H
 #define COLAPEDIDOS_H
-#include <NodoColaPedido.h>
+#include <pedido.h>
 
 struct ColaPedidos{
    Pedido * frente, *final;

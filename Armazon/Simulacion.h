@@ -11,7 +11,9 @@
 //STRUCTS
 #include <ListaClientes.h>
 #include <ListaArticulos.h>
+#include <ListaPedidos.h>
 #include <ColaPedidos.h>
+#include <ColaArticulos.h>
 #include <funcionesArchivos.h>
 
 //VENTANAS
@@ -27,9 +29,12 @@ struct Simulacion{
     //STRUCTS
     ListaClientes * clientes;
     ListaArticulos * articulos;
+    ListaPedidos * pedidos;
     QStringList listaCodigosPedidos;
     ColaPedidos * colaPedidos;
     ColaPedidos * colaPedidosPrioriodad;
+    ColaArticulos * colaArticulos;
+    ColaPedidos *colaAlisto;
     funcionesArchivos * fA;
     //VENTANAS
     Ventana_Pedidos * ventanaPedidos;
@@ -46,8 +51,11 @@ struct Simulacion{
         //STRUCTS
         this->clientes = new ListaClientes();
         this->articulos = new ListaArticulos();
+        this->pedidos = new ListaPedidos();
         this->colaPedidos = new ColaPedidos();
         this->colaPedidosPrioriodad = new ColaPedidos();
+        this->colaAlisto = new ColaPedidos();
+        this->colaArticulos = new ColaArticulos();
         this->fA = new funcionesArchivos();
 
         //VENTANAS
@@ -55,7 +63,7 @@ struct Simulacion{
 
         //THREADS
         this->tColaPedidos = new ThreadColaPedidos(this->colaPedidos,this->colaPedidosPrioriodad, &this->listaCodigosPedidos,this->clientes,this->articulos, &this->mutex1);
-        this->tBalanceador = new ThreadBalanceador(this->colaPedidos,this->colaPedidosPrioriodad,&this->mutex1,&this->mutex2);
+        this->tBalanceador = new ThreadBalanceador(this->colaPedidos,this->colaPedidosPrioriodad,this->colaAlisto,this->pedidos,this->articulos,this->colaArticulos,&this->mutex1,&this->mutex2);
     }
     int cargarListas();
     void iniciarSimulacion();

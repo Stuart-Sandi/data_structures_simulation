@@ -11,6 +11,7 @@ struct Articulo{
     QString categoria;
     QString ubicacion;
     Articulo * next, * before;
+    bool estado;
 
     Articulo(){
         this->codigo = "";
@@ -19,6 +20,7 @@ struct Articulo{
         this->categoria = "";
         this->ubicacion = "";
         this->next = this->before = NULL;
+        this->estado = false;
     }
 
     Articulo(QString pCodigo, int pCantidad, int pTiempo, QString pCategoria, QString pUbicacion){

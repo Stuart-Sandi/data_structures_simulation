@@ -1,11 +1,15 @@
 #include "ThreadBalanceador.h"
 
-ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pColaPrioridad, QMutex* pMutex1, QMutex* pMutex2)
+ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pColaPrioridad,ColaPedidos * pColaAlisto,ListaPedidos * pPedidos,ListaArticulos * pArticulos,ColaArticulos*pColaArticulos, QMutex* pMutex1, QMutex* pMutex2)
 {
     this->cantidadDesencolado = 0;
     this->pausa = false;
     this->colaPedidos = pColaNormal;
     this->colaPedidosPrioridad = pColaPrioridad;
+    this->colaAlisto = pColaAlisto;
+    this->colaArticulos = pColaArticulos;
+    this->listaPedidos = pPedidos;
+    this->articulos = pArticulos;
     this->mutex1 = pMutex1;
     this->mutex2 = pMutex2;
 }
@@ -16,10 +20,10 @@ void ThreadBalanceador::run(){
 
         //WHILE ENCARGADO DE PAUSAR EL THREAD DEPENDIENDO
         while (this->pausa){
-            msleep(500);
+            sleep(1);
         }
 
-        Pedido * tmp;
+        Pedido * tmp = NULL;
         //WHILE ENCARGADO DE DESENCOLAR
         while (true){
             if (this->mutex1->try_lock()){
@@ -45,11 +49,42 @@ void ThreadBalanceador::run(){
                 break;
 
             }else{
-                qDebug()<<"No obtuvo el recurso"<<endl;
                 msleep(100);
             }
         }
 
+        //VALIDA SI EL PEDIDO SE DESENCOLO
+        if (tmp != NULL){
+            while (true) {
+                if (this->mutex2->try_lock()){
+                    //RECORRE TODOS LOS ARTICULOS DEL PEDIDO
+                    for (int i = 0; i<tmp->articulos.size();i++){
+                        int cantidadArticulo = tmp->articulos[i]->cantidad;
+                        int cantidadAlmacen = this->articulos->buscarArticulo(tmp->articulos[i]->codigo)->cantidad;
+                        qDebug()<<"Cantidad almacen: "<<cantidadAlmacen;
+                        qDebug()<<"Cantidad requerida: "<<cantidadArticulo<<endl;
+
+                        //PREGUNTA SI LA CANTIDAD DEL ALAMACEN ES MAYOR O IGUAL QUE LA CANTIDAD NECESITADA
+                        if (cantidadAlmacen >= cantidadArticulo){
+                            tmp->articulos[i]->estado = true;
+                            this->articulos->buscarArticulo(tmp->articulos[i]->codigo)->cantidad -= cantidadArticulo;
+                        }else{
+                            this->colaArticulos->encolar(tmp->articulos[i]);
+                        }
+                    }
+                    //INSERTA EN LA LISTA DE LOS PEDIDOS
+                    qDebug()<<"Cantidad en Cola"<<this->colaArticulos->cantidadEnCola();
+                    this->listaPedidos->insertarCliente(tmp);
+                    this->listaPedidos->cantidadEnLista();
+                    this->mutex2->unlock();
+                    break;
+                }else{
+                    msleep(100);
+                }
+
+            }
+
+        }
 
         sleep(1);
     }

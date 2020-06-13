@@ -44,3 +44,13 @@ void MainWindow::on_ojo_Cola_Pedidos_clicked()
 {
     this->simulacion->ventanaPedidos->show();
 }
+
+void MainWindow::on_pausar_Balanceador_clicked()
+{
+    this->simulacion->tBalanceador->pausa = !this->simulacion->tBalanceador->pausa;
+    if (this->simulacion->tBalanceador->pausa == false){
+        this->ui->pausar_Balanceador->setText("Pausar");
+    }else{
+        this->ui->pausar_Balanceador->setText("Continuar");
+    }
+}
