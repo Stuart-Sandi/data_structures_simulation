@@ -85,6 +85,7 @@ void ThreadBalanceador::run(){
                     }
                     //INSERTA EN LA LISTA DE LOS PEDIDOS
                     this->listaPedidos->insertarCliente(tmp);
+                    emit datosBalanceador1(tmp->numeroPedido, QString::number(this->listaPedidos->cantidadEnLista()));
                     this->listaPedidos->cantidadEnLista();
                     this->mutex2->unlock();
                     break;

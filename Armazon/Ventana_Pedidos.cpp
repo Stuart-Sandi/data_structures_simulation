@@ -11,6 +11,8 @@ Ventana_Pedidos::Ventana_Pedidos(QWidget *parent) :
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(390,390);
+
+    this->contador = 1;
 }
 
 Ventana_Pedidos::~Ventana_Pedidos()
@@ -20,7 +22,8 @@ Ventana_Pedidos::~Ventana_Pedidos()
 
 //ESTA ES LA FUNCION QUE CAMBIA LOS VALORES DE LA VENTANA DE PEDIDOS
 void Ventana_Pedidos::agregarDatos(QString data,QString cantidad){
-    this->ui->textBrowser->append("Atendiendo pedido #"+data);
+    this->ui->textBrowser->append(QString::number(this->contador)+"/"+" Pedido atendido#"+data);
+    this->contador++;
     this->ui->encolar_Label->setText("En Cola: "+cantidad);
 }
 

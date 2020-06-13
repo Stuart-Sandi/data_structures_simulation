@@ -12,6 +12,7 @@ class Ventana_Pedidos : public QMainWindow
     Q_OBJECT
 
 public:
+    int contador;
     explicit Ventana_Pedidos(QWidget *parent = nullptr);
     ~Ventana_Pedidos();
 

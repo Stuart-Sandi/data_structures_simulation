@@ -34,7 +34,7 @@ Pedido * ListaPedidos::sacarCliente(QString codigo){
     return tmp;
 }
 
-void ListaPedidos::cantidadEnLista(){
+int ListaPedidos::cantidadEnLista(){
     Pedido * tmp = this->primerNodo;
     int cont = 0;
     while(tmp != NULL){
@@ -42,4 +42,5 @@ void ListaPedidos::cantidadEnLista(){
         tmp = tmp->next;
     }
     qDebug()<<"Cantidad actual en la lista pedidos: "<<cont;
+    return cont;
 }

@@ -18,6 +18,7 @@
 
 //VENTANAS
 #include <Ventana_Pedidos.h>
+#include <Ventana_Balanceador.h>
 
 //THREADS
 #include <ThreadColaPedidos.h>
@@ -39,6 +40,7 @@ struct Simulacion{
     funcionesArchivos * fA;
     //VENTANAS
     Ventana_Pedidos * ventanaPedidos;
+    Ventana_Balanceador * ventanaBalanceador;
 
     //THREADS
     ThreadColaPedidos * tColaPedidos;
@@ -66,6 +68,7 @@ struct Simulacion{
 
         //VENTANAS
         this->ventanaPedidos = new Ventana_Pedidos();
+        this->ventanaBalanceador = new Ventana_Balanceador();
 
         //THREADS
         this->tColaPedidos = new ThreadColaPedidos(this->colaPedidos,this->colaPedidosPrioriodad, &this->listaCodigosPedidos,this->clientes,this->articulos, &this->mutex1);

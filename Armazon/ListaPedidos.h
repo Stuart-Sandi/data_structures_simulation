@@ -10,7 +10,7 @@ struct ListaPedidos{
     }
     void insertarCliente(Pedido*);
     Pedido * sacarCliente(QString);
-    void cantidadEnLista();
+    int cantidadEnLista();
     void imprimir();
 };
 

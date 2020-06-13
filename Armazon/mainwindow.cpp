@@ -37,6 +37,9 @@ void MainWindow::on_iniciar_Button_clicked()
     connect(this->simulacion->tColaPedidos,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaPedidos,SLOT(agregarDatos(QString,QString)));
     connect(this->simulacion->tBalanceador,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaPedidos,SLOT(agregarDatos2(QString,QString)));
 
+    //VENTANA BALANCEADOR
+    connect(this->simulacion->tBalanceador,SIGNAL(datosBalanceador1(QString,QString)),this->simulacion->ventanaBalanceador,SLOT(agregarDatos(QString,QString)));
+
     this->simulacion->iniciarSimulacion();//INICIA LA SIMULACION
 }
 
@@ -57,6 +60,7 @@ void MainWindow::on_pausar_Balanceador_clicked()
 
 void MainWindow::on_ojo_Balanceador_clicked()
 {
+    this->simulacion->ventanaBalanceador->show();
     qDebug()<<"A:"<<this->simulacion->colasArticulos[0]->cantidadEnCola();
     qDebug()<<"B:"<<this->simulacion->colasArticulos[1]->cantidadEnCola();
     qDebug()<<"C:"<<this->simulacion->colasArticulos[2]->cantidadEnCola();

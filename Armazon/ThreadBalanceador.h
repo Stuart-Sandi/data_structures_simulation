@@ -30,7 +30,10 @@ public:
     void run() override;
 
 signals:
-    void datosCola(QString,QString);
+    void datosCola(QString,QString);//ASIGNA LOS DATOS DE PEDIDOS ATENDIDOS Y CANTIDAD EN COLA PEDIDOS//VENTANA COLA PEDIDOS
+
+    void datosBalanceador1(QString,QString);//ASIGNA LOS DATOS DE PEDIDOS ATENDIDOS Y CANTIDAD EN BALANCEADOR
+    void datosBalanceador2(QString, QString);//ASIGNA LOS DATOS DE CANTIDAD EN BALANCEADOR Y CANTIDAD FINALIZADOS
 
 };
 
