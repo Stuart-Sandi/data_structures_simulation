@@ -1,6 +1,6 @@
 #include "ListaPedidos.h"
 
-void ListaPedidos::insertarCliente(Pedido * nuevo){
+void ListaPedidos::insertarPedido(Pedido * nuevo){
     if (this->primerNodo == NULL){
         this->primerNodo = this->ultimoNodo = nuevo;
     }else{
@@ -10,7 +10,7 @@ void ListaPedidos::insertarCliente(Pedido * nuevo){
     }
 }
 
-Pedido * ListaPedidos::sacarCliente(QString codigo){
+Pedido * ListaPedidos::sacarPedido(QString codigo){
     Pedido * tmp = this->primerNodo;
     while (tmp != NULL){
         if (tmp->numeroPedido == codigo){

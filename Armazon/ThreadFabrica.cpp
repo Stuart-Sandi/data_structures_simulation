@@ -62,6 +62,8 @@ void ThreadFabrica :: run(){
                     mutex1->unlock();
                     break;
 
+                }else{
+                    msleep(100);
                 }
             }
         }

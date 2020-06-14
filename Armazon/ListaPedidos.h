@@ -8,8 +8,8 @@ struct ListaPedidos{
     ListaPedidos(){
         this->primerNodo = this->ultimoNodo = NULL;
     }
-    void insertarCliente(Pedido*);
-    Pedido * sacarCliente(QString);
+    void insertarPedido(Pedido*);
+    Pedido * sacarPedido(QString);
     int cantidadEnLista();
     void imprimir();
 };

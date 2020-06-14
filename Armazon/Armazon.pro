@@ -23,6 +23,7 @@ SOURCES += \
     ListaPedidos.cpp \
     Simulacion.cpp \
     ThreadBalanceador.cpp \
+    ThreadColaAlisto.cpp \
     ThreadColaPedidos.cpp \
     ThreadFabrica.cpp \
     ThreadFabricaEspecial.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     ListaPedidos.h \
     Simulacion.h \
     ThreadBalanceador.h \
+    ThreadColaAlisto.h \
     ThreadColaPedidos.h \
     ThreadFabrica.h \
     ThreadFabricaEspecial.h \
