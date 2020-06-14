@@ -25,6 +25,7 @@ SOURCES += \
     ThreadBalanceador.cpp \
     ThreadColaPedidos.cpp \
     ThreadFabrica.cpp \
+    ThreadFabricaEspecial.cpp \
     Ventana_Balanceador.cpp \
     Ventana_Pedidos.cpp \
     funcionesArchivos.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     ThreadBalanceador.h \
     ThreadColaPedidos.h \
     ThreadFabrica.h \
+    ThreadFabricaEspecial.h \
     Ventana_Balanceador.h \
     Ventana_Pedidos.h \
     articulo.h \
