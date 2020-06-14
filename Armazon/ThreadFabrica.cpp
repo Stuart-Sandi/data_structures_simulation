@@ -12,6 +12,8 @@ ThreadFabrica::ThreadFabrica(ColaArticulos * pColaArticulos, ListaArticulos * pL
 
 void ThreadFabrica :: run(){
 
+    funcionesArchivos * fA = new funcionesArchivos();
+
     while(true){
 
         //WHILE ENCARGADO DE PAUSAR EL THREAD DEPENDIENDO
@@ -21,6 +23,7 @@ void ThreadFabrica :: run(){
 
         Articulo * tmp = NULL;
         int cantidadFaltante;
+        QString fechaHorainicio = "";
         //WHILE ENCARGADO DE DESENCOLAR
         while(true){
 
@@ -29,8 +32,12 @@ void ThreadFabrica :: run(){
                tmp = colaArticulos->desencolar();
 
                if(tmp != NULL){ //Si desencola
+
                    //Obtiene los artículos que faltan por fabricar
                    cantidadFaltante = tmp->cantidad - articulos->buscarArticulo(tmp->codigo)->cantidad;
+
+                   fechaHorainicio = fA->obtenerFechaHoraActual();
+                   tmp->aFabrica += "\t\t\t" + fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo;
 
                    /*SE OBTIENE LA CANTIDAD DE ARTÍCULOS FALTANTE EN EL PEDIDO Y SE MULTIPLICA POR EL TIEMPO DE CREACIÓN
                    PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/
@@ -53,6 +60,8 @@ void ThreadFabrica :: run(){
 
             //CREANDO ARTÍCULO
             sleep(this->tiempo);
+            tmp->totalFabrica += tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + QString::number(cantidadFaltante) + " unidades"
+                    + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual();
 
             while (true) {
 

@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QList>
 #include <pedido.h>
+#include <funcionesArchivos.h>
 
 
 class ThreadBalanceador : public QThread

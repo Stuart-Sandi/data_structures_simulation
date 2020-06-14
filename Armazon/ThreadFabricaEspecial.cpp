@@ -5,7 +5,7 @@ ThreadFabricaEspecial::ThreadFabricaEspecial(ColaArticulos * pColaArticulosA, Co
     this->colaArticulosA = pColaArticulosA;
     this->colaArticulosB = pColaArticulosB;
     this->articulos = pListaArticulos;
-    this->categoria = "AB";
+    this->categoria = "Comodin";
     this->mutex1 = pMutex1;
     this->pausa = false;
 
@@ -13,6 +13,8 @@ ThreadFabricaEspecial::ThreadFabricaEspecial(ColaArticulos * pColaArticulosA, Co
 
 void ThreadFabricaEspecial::run()
 {
+    funcionesArchivos * fA = new funcionesArchivos();
+
     while (true) {
 
         //WHILE ENCARGADO DE PAUSAR EL THREAD DEPENDIENDO
@@ -22,6 +24,7 @@ void ThreadFabricaEspecial::run()
 
         Articulo * tmp = NULL;
         int cantidadFaltante;
+        QString fechaHorainicio = "";
 
         while (true) {
             if(this->mutex1->try_lock()){
@@ -52,6 +55,9 @@ void ThreadFabricaEspecial::run()
                     //Obtiene los artículos que faltan por fabricar
                     cantidadFaltante = tmp->cantidad - articulos->buscarArticulo(tmp->codigo)->cantidad;
 
+                    fechaHorainicio = fA->obtenerFechaHoraActual();
+                    tmp->aFabrica += "\t\t\t" + fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo;
+
                     /*SE MULTIPLICA LA CANTIDAD A CREAR POR EL TIEMPO DE CREACIÓN PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/
                     this->tiempo = cantidadFaltante * tmp->tiempoCreacion;
 
@@ -74,6 +80,8 @@ void ThreadFabricaEspecial::run()
 
             //CREANDO ARTÍCULO
             sleep(this->tiempo);
+            tmp->totalFabrica += tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + QString::number(cantidadFaltante) + " unidades"
+                    + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual();
 
             while (true) {
 

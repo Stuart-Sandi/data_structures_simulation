@@ -16,6 +16,8 @@ ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pCo
 
 void ThreadBalanceador::run(){
 
+    funcionesArchivos * fA = new funcionesArchivos();
+
     while (true){
 
         //WHILE ENCARGADO DE PAUSAR EL THREAD DEPENDIENDO
@@ -31,6 +33,7 @@ void ThreadBalanceador::run(){
                 //PREGUNTA SI LA COLA DE PRIORIDAD NO ESTA VACIA
                 if (this->colaPedidosPrioridad->cantidadEnCola() != 0){
                     tmp = this->colaPedidosPrioridad->desencolar();
+                    tmp->archivoFacturador += "Balanceador: " + fA->obtenerFechaHoraActual() + "\n";
                     int cantA = this->colaPedidos->cantidadEnCola()+this->colaPedidosPrioridad->cantidadEnCola();
                     this->cantidadDesencolado++;
                     emit datosCola(QString::number(cantA),QString::number(this->cantidadDesencolado));
@@ -39,6 +42,7 @@ void ThreadBalanceador::run(){
                 //PREGUNTA SI LA COLA NORMAL NO ESTA VACIA
                 }else if (this->colaPedidos->cantidadEnCola() != 0){
                     tmp = this->colaPedidos->desencolar();
+                    tmp->archivoFacturador += "Balanceador: " + fA->obtenerFechaHoraActual() + "\n";
                     int cantA = this->colaPedidos->cantidadEnCola()+this->colaPedidosPrioridad->cantidadEnCola();
                     this->cantidadDesencolado++;
                     emit datosCola(QString::number(cantA),QString::number(this->cantidadDesencolado));
@@ -85,7 +89,7 @@ void ThreadBalanceador::run(){
                     }
                     //INSERTA EN LA LISTA DE LOS PEDIDOS
                     this->listaPedidos->insertarPedido(tmp);
-                    emit datosBalanceador1(tmp->numeroPedido, QString::number(this->listaPedidos->cantidadEnLista()));
+                    emit datosBalanceador1(tmp->numeroPedido, QString::number(this->listaPedidos->cantidadEnLista()) + " " + fA->obtenerFechaHoraActual());
                     this->listaPedidos->cantidadEnLista();
                     this->mutex2->unlock();
                     break;
