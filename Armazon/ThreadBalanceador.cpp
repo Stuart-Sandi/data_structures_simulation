@@ -76,14 +76,19 @@ void ThreadBalanceador::run(){
                             //INGRESA EN LA COLA A
                             if (tmp->articulos[i]->categoria == "A" || tmp->articulos[i]->categoria == "a"){
                                 this->colasArticulos[0]->encolar(tmp->articulos[i]);
+                                emit datosColaA(QString::number(this->colasArticulos[0]->cantidadEnCola()));
+                                emit datosColaAB(QString::number(this->colasArticulos[0]->cantidadEnCola()+this->colasArticulos[1]->cantidadEnCola()));
                             }
                             //INGRESA EN LA COLA B
                             else if (tmp->articulos[i]->categoria == "B" || tmp->articulos[i]->categoria == "b"){
                                 this->colasArticulos[1]->encolar(tmp->articulos[i]);
+                                emit datosColaB(QString::number(this->colasArticulos[0]->cantidadEnCola()));
+                                emit datosColaAB(QString::number(this->colasArticulos[0]->cantidadEnCola()+this->colasArticulos[1]->cantidadEnCola()));
                             }
                             //INGRESA EN LA COLA C
                             else{
                                 this->colasArticulos[2]->encolar(tmp->articulos[i]);
+                                emit datosColaC(QString::number(this->colasArticulos[0]->cantidadEnCola()));
                             }
                         }
                     }

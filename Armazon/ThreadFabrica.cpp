@@ -4,6 +4,7 @@ ThreadFabrica::ThreadFabrica(ColaArticulos * pColaArticulos, ListaArticulos * pL
 
     this->colaArticulos = pColaArticulos;
     this->articulos = pListaArticulos;
+    this->contador = 0;
     this->categoria = pCategoria;
     this->tiempo = 0;
     this->mutex1 = pMutex1;
@@ -14,6 +15,7 @@ ThreadFabrica::ThreadFabrica(ColaArticulos * pColaArticulos, ListaArticulos * pL
 void ThreadFabrica :: run(){
 
     funcionesArchivos * fA = new funcionesArchivos();
+    QString datoVentana = "";
 
     while(true){
 
@@ -62,12 +64,15 @@ void ThreadFabrica :: run(){
         if (tmp != NULL){
 
             //CREANDO ARTÍCULO
-            qDebug()<<"Trabajando en el pedido: "+fA->obtenerFechaHoraActual();
-            qDebug()<<this->tiempo;
+            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual();
+            emit asignarPreparando(datoVentana,0);
             sleep(this->tiempo);
+            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual()+"\n";
+            emit asignarPreparando(datoVentana,1);
             tmp->totalFabrica += tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + QString::number(cantidadFaltante) + " unidades"
                     + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual();
-            qDebug()<<"Se termino el pedido: "+fA->obtenerFechaHoraActual();
+            this->contador++;
+            emit datosCola(QString::number(this->colaArticulos->cantidadEnCola()),QString::number(this->contador));
 
             while (true) {
 

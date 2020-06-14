@@ -5,6 +5,7 @@
 
 struct Articulo{
 
+    QString numeroPedido;
     QString codigo;
     int cantidad;
     int tiempoCreacion;
@@ -16,6 +17,7 @@ struct Articulo{
     QString totalFabrica;
 
     Articulo(){
+        this->numeroPedido = "";
         this->codigo = "";
         this->cantidad = 0;
         this->tiempoCreacion = 0;

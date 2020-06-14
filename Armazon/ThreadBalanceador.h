@@ -36,6 +36,12 @@ signals:
     void datosBalanceador1(QString,QString);//ASIGNA LOS DATOS DE PEDIDOS ATENDIDOS Y CANTIDAD EN BALANCEADOR
     void datosBalanceador2(QString, QString);//ASIGNA LOS DATOS DE CANTIDAD EN BALANCEADOR Y CANTIDAD FINALIZADOS
 
+    void datosColaA(QString);
+    void datosColaB(QString);
+    void datosColaC(QString);
+    void datosColaAB(QString);
+
+
 };
 
 #endif // THREADBALANCEADOR_H

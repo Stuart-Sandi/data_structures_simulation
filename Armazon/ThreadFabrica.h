@@ -21,12 +21,18 @@ public:
     ColaArticulos * colaArticulos;
     ListaArticulos * articulos;
     int tiempo;
+    int contador;
     bool pausa;
     QString categoria;
     QMutex * mutex1;
 
     ThreadFabrica(ColaArticulos*, ListaArticulos*, QString, QMutex*);
     void run() override;
+
+signals:
+    void asignarPreparando(QString, int);
+    void datosCola(QString,QString);//ASIGNA LOS DATOS DE PEDIDOS ATENDIDOS Y CANTIDAD EN COLA PEDIDOS//VENTANA COLA PEDIDOS
+
 };
 
 #endif // THREADFABRICA_H

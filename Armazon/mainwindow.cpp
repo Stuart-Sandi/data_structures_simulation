@@ -42,16 +42,30 @@ void MainWindow::on_iniciar_Button_clicked()
     //VENTANA BALANCEADOR
     connect(this->simulacion->tBalanceador,SIGNAL(datosBalanceador1(QString,QString)),this->simulacion->ventanaBalanceador,SLOT(agregarDatos(QString,QString)));
     connect(this->simulacion->tColaAlisto,SIGNAL(datosBalanceador(QString,QString)),this->simulacion->ventanaBalanceador,SLOT(agregarDatos2(QString,QString)));
+    connect(this->simulacion->tBalanceador,SIGNAL(datosColaA(QString)),this->simulacion->ventanaFabricaA,SLOT(agregarDatosCola(QString)));
+    connect(this->simulacion->tBalanceador,SIGNAL(datosColaB(QString)),this->simulacion->ventanaFabricaB,SLOT(agregarDatosCola(QString)));
+    connect(this->simulacion->tBalanceador,SIGNAL(datosColaC(QString)),this->simulacion->ventanaFabricaC,SLOT(agregarDatosCola(QString)));
+    connect(this->simulacion->tBalanceador,SIGNAL(datosColaAB(QString)),this->simulacion->ventanaFabricaComodin,SLOT(agregarDatosCola(QString)));
+
 
     //VENTANA FABRICA A
+    connect(this->simulacion->tFabricaA,SIGNAL(asignarPreparando(QString, int)),this->simulacion->ventanaFabricaA,SLOT(agregarDatosArticuloPreparando(QString, int)));
+    connect(this->simulacion->tFabricaA,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaFabricaA, SLOT(agregarDatosCola(QString,QString)));
 
     //VENTANA FABRICA B
+    connect(this->simulacion->tFabricaB,SIGNAL(asignarPreparando(QString, int)),this->simulacion->ventanaFabricaB,SLOT(agregarDatosArticuloPreparando(QString, int)));
+    connect(this->simulacion->tFabricaB,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaFabricaB, SLOT(agregarDatosCola(QString,QString)));
 
     //VENTANA FABRICA C
+    connect(this->simulacion->tFabricaC,SIGNAL(asignarPreparando(QString, int)),this->simulacion->ventanaFabricaC,SLOT(agregarDatosArticuloPreparando(QString, int)));
+    connect(this->simulacion->tFabricaC,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaFabricaC, SLOT(agregarDatosCola(QString,QString)));
 
     //VENTANA FABRICA ESPECIAL
+    connect(this->simulacion->tFabricaComodin,SIGNAL(asignarPreparando(QString, int)),this->simulacion->ventanaFabricaComodin,SLOT(agregarDatosArticuloPreparando(QString, int)));
+    connect(this->simulacion->tFabricaComodin,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaFabricaComodin, SLOT(agregarDatosCola(QString,QString)));
 
     //VENTANA COLA ALISTO
+    connect(this->simulacion->tColaAlisto,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaColaAlisto,SLOT(agregarDatos(QString,QString)));
 
 
     //############INICIA LA SIMULACION############
@@ -108,20 +122,40 @@ void MainWindow::on_ojo_Cola_Alisto_clicked()
 
 void MainWindow::on_pausar_FabricaA_clicked()
 {
-
+    this->simulacion->tFabricaA->pausa = !this->simulacion->tFabricaA->pausa;
+    if (this->simulacion->tFabricaA->pausa == false){
+        this->ui->pausar_FabricaA->setText("Pausar");
+    }else{
+        this->ui->pausar_FabricaA->setText("Continuar");
+    }
 }
 
 void MainWindow::on_pausar_FabricaB_clicked()
 {
-
+    this->simulacion->tFabricaB->pausa = !this->simulacion->tFabricaB->pausa;
+    if (this->simulacion->tFabricaB->pausa == false){
+        this->ui->pausar_FabricaB->setText("Pausar");
+    }else{
+        this->ui->pausar_FabricaB->setText("Continuar");
+    }
 }
 
 void MainWindow::on_pausar_FabricaC_clicked()
 {
-
+    this->simulacion->tFabricaC->pausa = !this->simulacion->tFabricaC->pausa;
+    if (this->simulacion->tFabricaC->pausa == false){
+        this->ui->pausar_FabricaC->setText("Pausar");
+    }else{
+        this->ui->pausar_FabricaC->setText("Continuar");
+    }
 }
 
 void MainWindow::on_pausar_FabricaComo_clicked()
 {
-
+    this->simulacion->tFabricaComodin->pausa = !this->simulacion->tFabricaComodin->pausa;
+    if (this->simulacion->tFabricaComodin->pausa == false){
+        this->ui->pausar_FabricaComo->setText("Pausar");
+    }else{
+        this->ui->pausar_FabricaComo->setText("Continuar");
+    }
 }

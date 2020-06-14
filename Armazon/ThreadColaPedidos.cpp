@@ -86,6 +86,7 @@ void ThreadColaPedidos::run(){
                         if (error == ""){
                             Articulo * nuevo2 = new Articulo();
                             Articulo * tmp = this->articulos->buscarArticulo(codigoProducto);
+                            nuevo2->numeroPedido = numPedido;
                             nuevo2->codigo = tmp->codigo;
                             nuevo2->cantidad = cantidadSolicitada;
                             nuevo2->categoria = tmp->categoria;

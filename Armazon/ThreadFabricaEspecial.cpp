@@ -6,6 +6,7 @@ ThreadFabricaEspecial::ThreadFabricaEspecial(ColaArticulos * pColaArticulosA, Co
     this->colaArticulosB = pColaArticulosB;
     this->articulos = pListaArticulos;
     this->categoria = "Comodin";
+    this->contador = 0;
     this->mutex1 = pMutex1;
     this->pausa = false;
 
@@ -14,6 +15,7 @@ ThreadFabricaEspecial::ThreadFabricaEspecial(ColaArticulos * pColaArticulosA, Co
 void ThreadFabricaEspecial::run()
 {
     funcionesArchivos * fA = new funcionesArchivos();
+    QString datoVentana;
 
     while (true) {
 
@@ -24,6 +26,7 @@ void ThreadFabricaEspecial::run()
 
         Articulo * tmp = NULL;
         int cantidadFaltante;
+        int tiempoDeCreacion;
         QString fechaHorainicio = "";
 
         while (true) {
@@ -54,12 +57,13 @@ void ThreadFabricaEspecial::run()
                 if(tmp != NULL){ //Si desencola
                     //Obtiene los artículos que faltan por fabricar
                     cantidadFaltante = tmp->cantidad - articulos->buscarArticulo(tmp->codigo)->cantidad;
+                    tiempoDeCreacion = articulos->buscarArticulo(tmp->codigo)->tiempoCreacion;
 
                     fechaHorainicio = fA->obtenerFechaHoraActual();
                     tmp->aFabrica += "\t\t\t" + fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo;
 
                     /*SE MULTIPLICA LA CANTIDAD A CREAR POR EL TIEMPO DE CREACIÓN PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/
-                    this->tiempo = cantidadFaltante * tmp->tiempoCreacion;
+                    this->tiempo = cantidadFaltante * tiempoDeCreacion;
 
                     //RESTA EN EL ALMACÉN
                     this->articulos->buscarArticulo(tmp->codigo)->cantidad = 0;
@@ -75,13 +79,19 @@ void ThreadFabricaEspecial::run()
             }
         }
 
-
+        emit datosCola(QString::number(this->colaArticulosA->cantidadEnCola()+this->colaArticulosB->cantidadEnCola()),QString::number(this->contador));
         if (tmp != NULL){
 
             //CREANDO ARTÍCULO
+            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual();
+            emit asignarPreparando(datoVentana,0);
             sleep(this->tiempo);
+            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual()+"\n";
+            emit asignarPreparando(datoVentana,1);
             tmp->totalFabrica += tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + QString::number(cantidadFaltante) + " unidades"
                     + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual();
+
+            this->contador++;
 
             while (true) {
 

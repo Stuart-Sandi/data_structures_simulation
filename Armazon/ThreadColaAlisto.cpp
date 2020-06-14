@@ -37,10 +37,11 @@ void ThreadColaAlisto::run(){
                     //EL PEDIDO ESTA COMPLETO
                     if (validador == 0){
                         QList <int> w;
-                        this->colaAlisto->encolar(this->pedidos->sacarPedido(tmp->numeroPedido));
+                        Pedido * pedidoTmp = this->pedidos->sacarPedido(tmp->numeroPedido);
+                        this->colaAlisto->encolar(pedidoTmp);
                         emit datosBalanceador(QString::number(this->pedidos->cantidadEnLista()),QString::number(this->colaAlisto->cantidadEnCola()));//muestra el proceseo de la cantidad de finalizados del balanceador
-                        qDebug()<<"ENCOLO EN COLA DE ALISTO";
-                        qDebug()<<"Tamaño de cola de alisto: "+QString::number(this->colaAlisto->cantidadEnCola());
+                        int cantidadCola = this->colaAlisto->cantidadEnCola();
+                        emit datosCola(pedidoTmp->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
                         break;
                     }
                     tmp = tmp->next;
