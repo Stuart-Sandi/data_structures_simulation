@@ -28,6 +28,11 @@ SOURCES += \
     ThreadFabrica.cpp \
     ThreadFabricaEspecial.cpp \
     Ventana_Balanceador.cpp \
+    Ventana_Cola_Alisto.cpp \
+    Ventana_FabricaA.cpp \
+    Ventana_FabricaB.cpp \
+    Ventana_FabricaC.cpp \
+    Ventana_Fabrica_Comodin.cpp \
     Ventana_Pedidos.cpp \
     funcionesArchivos.cpp \
     main.cpp \
@@ -47,6 +52,11 @@ HEADERS += \
     ThreadFabrica.h \
     ThreadFabricaEspecial.h \
     Ventana_Balanceador.h \
+    Ventana_Cola_Alisto.h \
+    Ventana_FabricaA.h \
+    Ventana_FabricaB.h \
+    Ventana_FabricaC.h \
+    Ventana_Fabrica_Comodin.h \
     Ventana_Pedidos.h \
     articulo.h \
     funcionesArchivos.h \
@@ -55,6 +65,11 @@ HEADERS += \
 
 FORMS += \
     Ventana_Balanceador.ui \
+    Ventana_Cola_Alisto.ui \
+    Ventana_FabricaA.ui \
+    Ventana_FabricaB.ui \
+    Ventana_FabricaC.ui \
+    Ventana_Fabrica_Comodin.ui \
     Ventana_Pedidos.ui \
     mainwindow.ui
 

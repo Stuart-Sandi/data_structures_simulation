@@ -12,7 +12,6 @@ ThreadColaAlisto::ThreadColaAlisto(ListaPedidos * pPedidos,ColaPedidos *pColaAli
 void ThreadColaAlisto::run(){
 
     while (true){
-
         //WHILE QUE PAUSA EL THREAD
         while(this->pausa){
             sleep(1);
@@ -37,9 +36,11 @@ void ThreadColaAlisto::run(){
 
                     //EL PEDIDO ESTA COMPLETO
                     if (validador == 0){
-                        //SOLO DESENCOLA UNO
-                        Pedido * pedido = this->pedidos->sacarPedido(tmp->numeroPedido);
-                        this->colaAlisto->encolar(pedido);
+                        QList <int> w;
+                        this->colaAlisto->encolar(this->pedidos->sacarPedido(tmp->numeroPedido));
+                        emit datosBalanceador(QString::number(this->pedidos->cantidadEnLista()),QString::number(this->colaAlisto->cantidadEnCola()));//muestra el proceseo de la cantidad de finalizados del balanceador
+                        qDebug()<<"ENCOLO EN COLA DE ALISTO";
+                        qDebug()<<"Tamaño de cola de alisto: "+QString::number(this->colaAlisto->cantidadEnCola());
                         break;
                     }
                     tmp = tmp->next;
@@ -50,6 +51,7 @@ void ThreadColaAlisto::run(){
                 break;
 
             }else{
+                qDebug()<<"NO OBTUVO EL RECURSO";
                 msleep(100);
             }
         }

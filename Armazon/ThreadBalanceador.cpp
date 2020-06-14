@@ -6,7 +6,7 @@ ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pCo
     this->pausa = false;
     this->colaPedidos = pColaNormal;
     this->colaPedidosPrioridad = pColaPrioridad;
-    this->colaAlisto = pColaAlisto;
+    this->colaAlisto = pColaAlisto;//NO LA UTILIZA PARA NADA
     this->colasArticulos = pColasArticulos;
     this->listaPedidos = pPedidos;
     this->articulos = pArticulos;
@@ -89,7 +89,7 @@ void ThreadBalanceador::run(){
                     }
                     //INSERTA EN LA LISTA DE LOS PEDIDOS
                     this->listaPedidos->insertarPedido(tmp);
-                    emit datosBalanceador1(tmp->numeroPedido, QString::number(this->listaPedidos->cantidadEnLista()) + " " + fA->obtenerFechaHoraActual());
+                    emit datosBalanceador1(tmp->numeroPedido+ "  " + fA->obtenerFechaHoraActual(), QString::number(this->listaPedidos->cantidadEnLista()));
                     this->listaPedidos->cantidadEnLista();
                     this->mutex2->unlock();
                     break;

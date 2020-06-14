@@ -33,14 +33,29 @@ void MainWindow::on_iniciar_Button_clicked()
 
     //HACE LOS CONNECTS ENTRE HILOS Y VENTANAS
 
+
+    //################CONNECTS##################
     //VENTANA COLA DE PEDIDOS
     connect(this->simulacion->tColaPedidos,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaPedidos,SLOT(agregarDatos(QString,QString)));
     connect(this->simulacion->tBalanceador,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaPedidos,SLOT(agregarDatos2(QString,QString)));
 
     //VENTANA BALANCEADOR
     connect(this->simulacion->tBalanceador,SIGNAL(datosBalanceador1(QString,QString)),this->simulacion->ventanaBalanceador,SLOT(agregarDatos(QString,QString)));
+    connect(this->simulacion->tColaAlisto,SIGNAL(datosBalanceador(QString,QString)),this->simulacion->ventanaBalanceador,SLOT(agregarDatos2(QString,QString)));
 
-    this->simulacion->iniciarSimulacion();//INICIA LA SIMULACION
+    //VENTANA FABRICA A
+
+    //VENTANA FABRICA B
+
+    //VENTANA FABRICA C
+
+    //VENTANA FABRICA ESPECIAL
+
+    //VENTANA COLA ALISTO
+
+
+    //############INICIA LA SIMULACION############
+    this->simulacion->iniciarSimulacion();
 }
 
 void MainWindow::on_ojo_Cola_Pedidos_clicked()
@@ -64,4 +79,49 @@ void MainWindow::on_ojo_Balanceador_clicked()
     qDebug()<<"A:"<<this->simulacion->colasArticulos[0]->cantidadEnCola();
     qDebug()<<"B:"<<this->simulacion->colasArticulos[1]->cantidadEnCola();
     qDebug()<<"C:"<<this->simulacion->colasArticulos[2]->cantidadEnCola();
+}
+
+void MainWindow::on_ojo_FabricaA_clicked()
+{
+    this->simulacion->ventanaFabricaA->show();
+}
+
+void MainWindow::on_ojo_FabricaB_clicked()
+{
+    this->simulacion->ventanaFabricaB->show();
+}
+
+void MainWindow::on_ojo_FabricaC_clicked()
+{
+    this->simulacion->ventanaFabricaC->show();
+}
+
+void MainWindow::on_ojo_FabricaComo_clicked()
+{
+    this->simulacion->ventanaFabricaComodin->show();
+}
+
+void MainWindow::on_ojo_Cola_Alisto_clicked()
+{
+    this->simulacion->ventanaColaAlisto->show();
+}
+
+void MainWindow::on_pausar_FabricaA_clicked()
+{
+
+}
+
+void MainWindow::on_pausar_FabricaB_clicked()
+{
+
+}
+
+void MainWindow::on_pausar_FabricaC_clicked()
+{
+
+}
+
+void MainWindow::on_pausar_FabricaComo_clicked()
+{
+
 }

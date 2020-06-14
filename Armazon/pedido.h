@@ -13,14 +13,19 @@ struct Pedido
     int prioridad;
     QList <Articulo*> articulos;
     QString archivoFacturador = "";
-    Pedido * next = NULL, * before = NULL;;
-    Pedido(){}
+    Pedido * next, *before;
+    Pedido(){
+        this->next = NULL;
+        this->before = NULL;
+    }
 
     Pedido(QString pNumeroPedido, QString pCodigoCliente, QList<Articulo*> pArticulos){
 
         this->numeroPedido = pNumeroPedido;
         this->codigoCliente = pCodigoCliente;
         this->articulos = pArticulos;
+        this->next = NULL;
+        this->before = NULL;
 
     }
 

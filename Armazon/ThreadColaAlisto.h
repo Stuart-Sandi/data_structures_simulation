@@ -18,6 +18,7 @@ public:
     void run() override;
 
 signals:
+    void datosBalanceador(QString,QString);
 
 };
 

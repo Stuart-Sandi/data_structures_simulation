@@ -141,4 +141,11 @@ void Simulacion::iniciarSimulacion(){
  */
     this->tColaPedidos->start();
     this->tBalanceador->start();
+    this->tFabricaA->start();
+    /*
+    this->tFabricaB->start();
+    this->tFabricaC->start();
+    this->tFabricaComodin->start();
+    */
+    this->tColaAlisto->start();
 }

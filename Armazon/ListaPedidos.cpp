@@ -15,10 +15,9 @@ Pedido * ListaPedidos::sacarPedido(QString codigo){
     while (tmp != NULL){
         if (tmp->numeroPedido == codigo){
             if (tmp == this->primerNodo){
-                this->primerNodo = tmp->next;
-                this->primerNodo->before = NULL;
+                this->primerNodo = this->primerNodo->next;
             }else if (tmp == this->ultimoNodo){
-                this->ultimoNodo = tmp->before;
+                this->ultimoNodo = this->ultimoNodo->before;
                 this->ultimoNodo->next = NULL;
             }
             else{
@@ -41,6 +40,5 @@ int ListaPedidos::cantidadEnLista(){
         cont++;
         tmp = tmp->next;
     }
-    qDebug()<<"Cantidad actual en la lista pedidos: "<<cont;
     return cont;
 }

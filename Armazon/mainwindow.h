@@ -30,6 +30,24 @@ private slots:
 
     void on_ojo_Balanceador_clicked();
 
+    void on_ojo_FabricaA_clicked();
+
+    void on_ojo_FabricaB_clicked();
+
+    void on_ojo_FabricaC_clicked();
+
+    void on_ojo_FabricaComo_clicked();
+
+    void on_ojo_Cola_Alisto_clicked();
+
+    void on_pausar_FabricaA_clicked();
+
+    void on_pausar_FabricaB_clicked();
+
+    void on_pausar_FabricaC_clicked();
+
+    void on_pausar_FabricaComo_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

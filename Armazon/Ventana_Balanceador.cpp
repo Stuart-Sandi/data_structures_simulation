@@ -26,8 +26,9 @@ void Ventana_Balanceador::agregarDatos(QString data,QString cantidad){
     this->ui->espera_Label->setText("En Espera: "+cantidad);
 }
 
-void Ventana_Balanceador::agregarDatos2(QString, QString){
-
+void Ventana_Balanceador::agregarDatos2(QString espera, QString finalizado){
+    this->ui->espera_Label->setText("En Espera: "+espera);
+    this->ui->final_Label->setText("Finalizados: "+finalizado);
 }
 void Ventana_Balanceador::on_pushButton_clicked()
 {

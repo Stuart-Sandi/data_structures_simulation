@@ -25,7 +25,7 @@ public:
     QString categoria;
     QMutex * mutex1;
 
-    ThreadFabrica(ColaArticulos*, ListaArticulos*, QString,QMutex*);
+    ThreadFabrica(ColaArticulos*, ListaArticulos*, QString, QMutex*);
     void run() override;
 };
 
