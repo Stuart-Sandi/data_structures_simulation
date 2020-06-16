@@ -17,6 +17,7 @@ struct funcionesArchivos{
 
     QStringList obtenerListaDeArchivos(QString);
     void escribirArchivo(QString, QString);
+    void escribirArchivoNuevo(QString,QString);
     void moverArchivo(QString, QString);
     QString obtenerFechaHoraActual(void);
     int translatorLetras(QString);

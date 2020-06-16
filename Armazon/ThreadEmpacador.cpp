@@ -13,10 +13,10 @@ ThreadEmpacador::ThreadEmpacador(ColaPedidos * pColaAlistados, ColaPedidos * pCo
 void ThreadEmpacador::run()
 {
     funcionesArchivos * fA = new funcionesArchivos();
-    Pedido * tmp = NULL;
     int cantidadArticulos = 0;
 
     while (true) {
+        Pedido * tmp = NULL;
 
         //WHILE ENCARGADO DE PAUSAR EL THREAD DEPENDIENDO
         while (this->pausa) {
@@ -44,7 +44,7 @@ void ThreadEmpacador::run()
         }
 
         if (tmp != NULL){
-
+            qDebug()<<"Nombre temporal empacado: "<<tmp->numeroPedido;
             for (int w = 0; w< cantidadArticulos; w++){
                 //PAUSA EN CASO DE QUE SE PAUSE EL ALISTADOR MIENTRAS TRABAJA
                 while (pausa){
@@ -59,7 +59,8 @@ void ThreadEmpacador::run()
 
                     if(tmp != NULL){
                         tmp->archivoFacturador += "A empaque:\t" + fA->obtenerFechaHoraActual() + "\n";
-                        colaFacturacion->encolar(tmp); //ENCOLA EN COLA DE FACTURACION
+                        this->colaFacturacion->encolar(tmp); //ENCOLA EN COLA DE FACTURACION
+                        qDebug()<<"Cantidad en la cola de facturacion: "<<this->colaFacturacion->cantidadEnCola();
                     }
 
                     mutex4->unlock();

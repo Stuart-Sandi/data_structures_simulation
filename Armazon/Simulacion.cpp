@@ -160,6 +160,8 @@ void Simulacion::iniciarSimulacion(){
     this->tAlistador5->start();
     this->tAlistador6->start();
     this->tBodega->start();
+    this->tEmpacador->start();
+    this->tRobot->start();
 }
 
 void Simulacion::detenerSimulacion(){
@@ -178,4 +180,6 @@ void Simulacion::detenerSimulacion(){
     this->tAlistador5->quit();
     this->tAlistador6->quit();
     this->tBodega->quit();
+    this->tEmpacador->quit();
+    this->tRobot->quit();
 }

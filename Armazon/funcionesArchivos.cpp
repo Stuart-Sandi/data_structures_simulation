@@ -17,6 +17,22 @@ void funcionesArchivos::escribirArchivo(QString pDireccionArchivo, QString pText
         QTextStream datosArchivo(&archivo);
         datosArchivo << pTexto <<endl;
 
+    }else{
+        qDebug()<<"NO CREO EL ARCHIVO";
+    }
+    archivo.close();
+
+}
+
+void funcionesArchivos::escribirArchivoNuevo(QString pDireccionArchivo, QString pTexto){
+
+    QFile archivo(pDireccionArchivo);
+    if(archivo.open(QIODevice::WriteOnly | QIODevice::Text)){
+        QTextStream datosArchivo(&archivo);
+        datosArchivo << pTexto <<endl;
+
+    }else{
+        qDebug()<<"NO CREO EL ARCHIVO";
     }
     archivo.close();
 

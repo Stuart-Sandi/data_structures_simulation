@@ -11,12 +11,12 @@ ThreadRobotFacturador::ThreadRobotFacturador(ColaPedidos * pColaPedidos, QMutex 
 void ThreadRobotFacturador::run(){
 
     funcionesArchivos * fA = new funcionesArchivos();
-    Pedido * tmp = NULL;
     QString ARTICULO = "";
     QString facturacionFinal = "";
     QString nombreArchivo = "";
 
     while (true) {
+        Pedido * tmp = NULL;
 
         while (true) {
 
@@ -36,7 +36,7 @@ void ThreadRobotFacturador::run(){
         }
 
         if(tmp != NULL){
-
+            qDebug()<<"Nombre tmp en hilo robot: "<<tmp->numeroPedido;
             for (int i = 0; i<tmp->articulos.size(); i++) {
 
                 if(tmp->articulos[i]->totalFabrica != ""){
@@ -57,9 +57,8 @@ void ThreadRobotFacturador::run(){
             facturacionFinal += tmp->alisto;
 
             QString absolutePath = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Facturados/";
-            absolutePath += tmp->numeroPedido + "_" + tmp->codigoCliente + fA->obtenerFechaHoraActual()+ ".txt";
-
-            fA->escribirArchivo(absolutePath, facturacionFinal);
+            absolutePath += tmp->numeroPedido + "_" + tmp->codigoCliente +"_"+ fA->obtenerFechaHoraActual()+ ".txt";
+            fA->escribirArchivoNuevo(absolutePath, facturacionFinal);
 
         }
 

@@ -40,6 +40,8 @@
 #include <ThreadColaAlisto.h>
 #include <ThreadAlistador.h>
 #include <ThreadBodega.h>
+#include <ThreadEmpacador.h>
+#include <ThreadRobotFacturador.h>
 
 
 struct Simulacion{
@@ -51,6 +53,7 @@ struct Simulacion{
     ColaPedidos * colaPedidos;
     ColaPedidos * colaPedidosPrioriodad;
     ColaPedidos * colaAlistados;
+    ColaPedidos * colaFacturacion;
     ColaArticulos * colaA, *colaB, *colaC;
     QList <ColaArticulos*> colasArticulos;
     QList <ThreadAlistador*> listaAlistadores;
@@ -90,12 +93,15 @@ struct Simulacion{
     ThreadAlistador * tAlistador5;
     ThreadAlistador * tAlistador6;
     ThreadBodega * tBodega;
+    ThreadEmpacador * tEmpacador;
+    ThreadRobotFacturador * tRobot;
 
 
     //MUTEX
     QMutex mutex1;//MUTEX ENCARGADO DE LA COLA DE PEDIDOS
     QMutex mutex2;//MUTEX ENCARGADO DE LAS FABRICAS
     QMutex mutex3;//MUTEX ENCARGADO DE LOS PROCESOS DE ALISTO
+    QMutex mutex4;//MUTEX ENCARGADO DE LOS PROCESOS DE FACTURACION
 
     Simulacion(){
         //STRUCTS
@@ -112,6 +118,7 @@ struct Simulacion{
         this->colasArticulos.append(this->colaB);
         this->colasArticulos.append(this->colaC);
         this->fA = new funcionesArchivos();
+        this->colaFacturacion = new ColaPedidos();
 
         //VENTANAS
         this->ventanaPedidos = new Ventana_Pedidos();
@@ -166,6 +173,9 @@ struct Simulacion{
 
         //THREAD BODEGA
         this->tBodega = new ThreadBodega(this->colaAlisto,this->listaAlistadores,this->colaAlistadores,&this->mutex2);
+
+        this->tRobot = new ThreadRobotFacturador(this->colaFacturacion,&this->mutex4);
+        this->tEmpacador = new ThreadEmpacador(this->colaAlistados,this->colaFacturacion, &this->mutex3, &this->mutex4);
 
     }
     int cargarListas();

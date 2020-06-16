@@ -1,0 +1,8 @@
+Pedido:5
+Cliente: 005
+En cola:	2020-06-16 04:13:23 pm
+Balanceador: 2020-06-16 04:13:24 pm
+A fabrica:A empaque:	2020-06-16 04:13:36 pm
+Finalizado:	2020-06-16 04:13:37 pm
+
+
