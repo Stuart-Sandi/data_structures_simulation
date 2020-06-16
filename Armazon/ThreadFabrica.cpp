@@ -70,7 +70,7 @@ void ThreadFabrica :: run(){
             datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual()+"\n";
             emit asignarPreparando(datoVentana,1);
             tmp->totalFabrica += tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + QString::number(cantidadFaltante) + " unidades"
-                    + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual();
+                    + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual() + "\n";
             this->contador++;
             emit datosCola(QString::number(this->colaArticulos->cantidadEnCola()),QString::number(this->contador));
 

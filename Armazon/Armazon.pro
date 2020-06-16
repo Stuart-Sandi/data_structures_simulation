@@ -26,6 +26,7 @@ SOURCES += \
     ThreadBodega.cpp \
     ThreadColaAlisto.cpp \
     ThreadColaPedidos.cpp \
+    ThreadEmpacador.cpp \
     ThreadFabrica.cpp \
     ThreadFabricaEspecial.cpp \
     Ventana_Alistador_1.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
     Ventana_Alistador_4.cpp \
     Ventana_Alistador_5.cpp \
     Ventana_Alistador_6.cpp \
+    ThreadRobotFacturador.cpp \
     Ventana_Balanceador.cpp \
     Ventana_Bodega.cpp \
     Ventana_Cola_Alisto.cpp \
@@ -58,8 +60,10 @@ HEADERS += \
     ThreadBodega.h \
     ThreadColaAlisto.h \
     ThreadColaPedidos.h \
+    ThreadEmpacador.h \
     ThreadFabrica.h \
     ThreadFabricaEspecial.h \
+    ThreadRobotFacturador.h \
     Ventana_Alistador_1.h \
     Ventana_Alistador_2.h \
     Ventana_Alistador_3.h \

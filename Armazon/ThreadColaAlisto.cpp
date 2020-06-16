@@ -40,7 +40,20 @@ void ThreadColaAlisto::run(){
 
                     //EL PEDIDO ESTA COMPLETO
                     if (validador == 0){
+
+                        tmp->archivoFacturador += "A fabrica:";
+                        for (int i = 0; i<tmp->articulos.size(); i++) {
+
+                            if (tmp->articulos[i]->aFabrica != "") { //AGREGA EL VALOR DE "A FABRICA" AL archivoFacturador
+                                tmp->archivoFacturador += tmp->articulos[i]->aFabrica;
+                            }
+
+                        }
+
                         this->colaAlisto->encolar(tmp);
+
+                        qDebug() << colaAlisto->cantidadEnCola();
+
                         pedidosEliminar.append(w);
                         finalizados++;
                         int cantidadCola = this->colaAlisto->cantidadEnCola();
