@@ -38,7 +38,7 @@ void ThreadFabrica :: run(){
                if(tmp != NULL){ //Si desencola
 
                    //Obtiene los artículos que faltan por fabricar
-                   cantidadFaltante = tmp->cantidad - articulos->buscarArticulo(tmp->codigo)->cantidad;
+                   cantidadFaltante = tmp->cantidad;
                    tiempoDeCreacion = articulos->buscarArticulo(tmp->codigo)->tiempoCreacion;
 
                    fechaHorainicio = fA->obtenerFechaHoraActual();
@@ -49,7 +49,7 @@ void ThreadFabrica :: run(){
                    this->tiempo = cantidadFaltante * tiempoDeCreacion;
 
                    //RESTA EN EL ALMACÉN
-                   this->articulos->buscarArticulo(tmp->codigo)->cantidad = 0;
+                   //this->articulos->buscarArticulo(tmp->codigo)->cantidad = 0;
                }
                mutex1->unlock();
                break;
@@ -87,5 +87,6 @@ void ThreadFabrica :: run(){
                 }
             }
         }
+        sleep(1);
     }
 }

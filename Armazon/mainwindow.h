@@ -48,6 +48,18 @@ private slots:
 
     void on_pausar_FabricaComo_clicked();
 
+    void on_ojo_Bodega_clicked();
+
+    void on_ojo_alistador_clicked();
+
+    void on_comboBox_activated(int index);
+
+    void on_pausar_Alistadores_clicked();
+
+    void on_detener_Button_clicked();
+
+    void on_pausar_Bodega_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

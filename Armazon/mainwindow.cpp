@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,8 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setFixedSize(1300,687);
 
     simulacion = new Simulacion();
-    //simulacion->clientes->imprimir();//IMPRIME LISTA DE CLIENTES
-    //simulacion->articulos->imprimir();//IMPRIME LISTA DE ARTICULOS
+
 }
 
 MainWindow::~MainWindow()
@@ -66,6 +66,18 @@ void MainWindow::on_iniciar_Button_clicked()
 
     //VENTANA COLA ALISTO
     connect(this->simulacion->tColaAlisto,SIGNAL(datosCola(QString,QString)),this->simulacion->ventanaColaAlisto,SLOT(agregarDatos(QString,QString)));
+    connect(this->simulacion->tBodega,SIGNAL(datosAlisto(QString,QString)),this->simulacion->ventanaColaAlisto,SLOT(agregarDatos2(QString,QString)));
+
+    //VENTANA BODEGA
+    connect(this->simulacion->tBodega,SIGNAL(datosBodega(QString,QString,QString)),this->simulacion->ventanaBodega,SLOT(asignarDatos(QString,QString,QString)));
+
+    //VENTANA ALISTADORES
+    connect(this->simulacion->tAlistador1,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador1,SLOT(agregarDatos(QString,QString,QString)));
+    connect(this->simulacion->tAlistador2,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador2,SLOT(agregarDatos(QString,QString,QString)));
+    connect(this->simulacion->tAlistador3,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador3,SLOT(agregarDatos(QString,QString,QString)));
+    connect(this->simulacion->tAlistador4,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador4,SLOT(agregarDatos(QString,QString,QString)));
+    connect(this->simulacion->tAlistador5,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador5,SLOT(agregarDatos(QString,QString,QString)));
+    connect(this->simulacion->tAlistador6,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador6,SLOT(agregarDatos(QString,QString,QString)));
 
 
     //############INICIA LA SIMULACION############
@@ -157,5 +169,156 @@ void MainWindow::on_pausar_FabricaComo_clicked()
         this->ui->pausar_FabricaComo->setText("Pausar");
     }else{
         this->ui->pausar_FabricaComo->setText("Continuar");
+    }
+}
+
+void MainWindow::on_ojo_Bodega_clicked()
+{
+    this->simulacion->ventanaBodega->show();
+}
+
+void MainWindow::on_ojo_alistador_clicked()
+{
+    int i = this->ui->comboBox->currentIndex();
+    switch (i) {
+        case 0:
+            QMessageBox::critical(this,"Error","Debe seleccionar un alistador del ComboBox");
+            break;
+
+        case 1:
+            this->simulacion->ventanaAlistador1->show();
+            break;
+
+        case 2:
+            this->simulacion->ventanaAlistador2->show();
+            break;
+
+        case 3:
+            this->simulacion->ventanaAlistador3->show();
+            break;
+
+        case 4:
+            this->simulacion->ventanaAlistador4->show();
+            break;
+
+        case 5:
+            this->simulacion->ventanaAlistador5->show();
+            break;
+
+        case 6:
+            this->simulacion->ventanaAlistador6->show();
+            break;
+    }
+
+}
+
+void MainWindow::on_comboBox_activated(int index)
+{
+    bool validar = false;
+    switch (index) {
+        case 0:
+            this->ui->pausar_Alistadores->setEnabled(false);
+            break;
+
+        case 1:
+            this->ui->pausar_Alistadores->setEnabled(true);
+            validar = this->simulacion->tAlistador1->pausa;
+            break;
+
+        case 2:
+            this->ui->pausar_Alistadores->setEnabled(true);
+            validar = this->simulacion->tAlistador2->pausa;
+            break;
+
+        case 3:
+            this->ui->pausar_Alistadores->setEnabled(true);
+            validar = this->simulacion->tAlistador3->pausa;
+            break;
+
+        case 4:
+            this->ui->pausar_Alistadores->setEnabled(true);
+            validar = this->simulacion->tAlistador4->pausa;
+            break;
+
+        case 5:
+            this->ui->pausar_Alistadores->setEnabled(true);
+            validar = this->simulacion->tAlistador5->pausa;
+            break;
+
+        case 6:
+            this->ui->pausar_Alistadores->setEnabled(true);
+            validar = this->simulacion->tAlistador6->pausa;
+            break;
+    }
+    if (validar){
+        this->ui->pausar_Alistadores->setText("Continuar");
+    }
+    else{
+        this->ui->pausar_Alistadores->setText("Pausar");
+    }
+}
+
+void MainWindow::on_pausar_Alistadores_clicked()
+{
+    int i = this->ui->comboBox->currentIndex();
+    bool validar = false;
+    switch (i) {
+        case 0:
+            QMessageBox::critical(this,"Error","Debe seleccionar un alistador del ComboBox");
+            break;
+
+        case 1:
+            this->simulacion->tAlistador1->pausa = !this->simulacion->tAlistador1->pausa;
+            validar = this->simulacion->tAlistador1->pausa;
+            break;
+
+        case 2:
+            this->simulacion->tAlistador2->pausa = !this->simulacion->tAlistador2->pausa;
+            validar = this->simulacion->tAlistador2->pausa;
+            break;
+
+        case 3:
+            this->simulacion->tAlistador3->pausa = !this->simulacion->tAlistador3->pausa;
+            validar = this->simulacion->tAlistador3->pausa;
+            break;
+
+        case 4:
+            this->simulacion->ventanaAlistador4->show();
+            this->simulacion->tAlistador4->pausa = !this->simulacion->tAlistador4->pausa;
+            validar = this->simulacion->tAlistador4->pausa;
+            break;
+
+        case 5:
+            this->simulacion->tAlistador5->pausa = !this->simulacion->tAlistador5->pausa;
+            validar = this->simulacion->tAlistador5->pausa;
+            break;
+
+        case 6:
+            this->simulacion->tAlistador6->pausa = !this->simulacion->tAlistador6->pausa;
+            validar = this->simulacion->tAlistador6->pausa;
+            break;
+    }
+    if (validar){
+        this->ui->pausar_Alistadores->setText("Continuar");
+    }
+    else{
+        this->ui->pausar_Alistadores->setText("Pausar");
+    }
+}
+
+void MainWindow::on_detener_Button_clicked()
+{
+    QMessageBox::information(0,"¡¡GRACIAS!!","Gracias por utilizar nuestro software.\n ¡¡Vuelva pronto!!");
+    this->simulacion->detenerSimulacion();
+    this->close();
+}
+
+void MainWindow::on_pausar_Bodega_clicked()
+{
+    this->simulacion->tBodega->pausa = !this->simulacion->tBodega->pausa;
+    if (this->simulacion->tBodega->pausa == false){
+        this->ui->pausar_Bodega->setText("Pausar");
+    }else{
+        this->ui->pausar_Bodega->setText("Continuar");
     }
 }

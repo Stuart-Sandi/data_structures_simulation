@@ -1,12 +1,12 @@
 #include "ThreadColaAlisto.h"
 
-ThreadColaAlisto::ThreadColaAlisto(ListaPedidos * pPedidos,ColaPedidos *pColaAlisto,QMutex * pMutex1, QMutex * pMutex2)
+ThreadColaAlisto::ThreadColaAlisto(QList<Pedido*> * pPedidos,ColaPedidos *pColaAlisto,QMutex * pMutex1)
 {
     this->pausa = false;
     this->pedidos = pPedidos;
     this->colaAlisto = pColaAlisto;
     this->mutex1 = pMutex1;
-    this->mutex2 = pMutex2;
+    this->finalizados = 0;
 }
 
 void ThreadColaAlisto::run(){
@@ -17,15 +17,19 @@ void ThreadColaAlisto::run(){
             sleep(1);
         }
 
-        int validador = 0; // 0 SI TODO ESTA COMPLETO, 1 SI ESTA INCOMPLETO
-
         while (true){
 
             if(this->mutex1->try_lock()){
 
+                Pedido * tmp = NULL;
+                QList <int> pedidosEliminar;
+
                 //RECORRE LA LISTA PARA BUSCAR LOS PEDIDOS COMPLETOS
-                Pedido * tmp = this->pedidos->primerNodo;
-                while (tmp != NULL){
+                for (int w = 0; w<this->pedidos->size(); w++){
+                    int validador = 0; // 0 SI TODO ESTA COMPLETO, 1 SI ESTA INCOMPLETO
+
+                    tmp = this->pedidos->at(w);
+                    tmp->next = tmp->before = NULL;
 
                     //VALIDA SI TODOS ESTAN BIEN
                     for (int i = 0; i<tmp->articulos.size(); i++){
@@ -36,23 +40,27 @@ void ThreadColaAlisto::run(){
 
                     //EL PEDIDO ESTA COMPLETO
                     if (validador == 0){
-                        QList <int> w;
-                        Pedido * pedidoTmp = this->pedidos->sacarPedido(tmp->numeroPedido);
-                        this->colaAlisto->encolar(pedidoTmp);
-                        emit datosBalanceador(QString::number(this->pedidos->cantidadEnLista()),QString::number(this->colaAlisto->cantidadEnCola()));//muestra el proceseo de la cantidad de finalizados del balanceador
+                        this->colaAlisto->encolar(tmp);
+                        pedidosEliminar.append(w);
+                        finalizados++;
                         int cantidadCola = this->colaAlisto->cantidadEnCola();
-                        emit datosCola(pedidoTmp->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
+                        emit datosCola(tmp->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
                         break;
                     }
-                    tmp = tmp->next;
-
                 }
+
+                //ELIMINA LOS FINALIZADOS
+                for (int i = 0; i< pedidosEliminar.size(); i++){
+                    this->pedidos->removeAt(pedidosEliminar[i]);
+                }
+                pedidosEliminar.clear();
+
+                emit datosBalanceador(QString::number(this->pedidos->size()),QString::number(this->finalizados));//muestra el proceseo de la cantidad de finalizados del balanceador
 
                 mutex1->unlock();
                 break;
 
             }else{
-                qDebug()<<"NO OBTUVO EL RECURSO";
                 msleep(100);
             }
         }

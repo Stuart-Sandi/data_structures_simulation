@@ -4,7 +4,6 @@
 #include <QThread>
 #include <ColaPedidos.h>
 #include <ColaArticulos.h>
-#include <ListaPedidos.h>
 #include <ListaArticulos.h>
 #include <QMutex>
 #include <QDebug>

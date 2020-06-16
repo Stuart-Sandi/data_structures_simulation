@@ -1,0 +1,5 @@
+001	fernando	10
+002	CONTREARAS	2
+003	ARMANDO LA PLANCHETA	3
+004	fernando	4
+005	Stuart	10

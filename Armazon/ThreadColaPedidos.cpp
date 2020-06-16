@@ -34,7 +34,7 @@ void ThreadColaPedidos::run(){
             }
             QTextStream in(&datoPedido);
             QString text = in.readAll();//LEE EL ARCHIVO POR LINEAS
-            data = text.split("\n");//SEPARA LOS DATOS POR TABULADORES
+            data = text.split("\n");//SEPARA LOS DATOS POR enters
 
             QString numPedido;
 
@@ -72,6 +72,7 @@ void ThreadColaPedidos::run(){
                 for (int i = 2; i<data.size();i++){
 
                     articulo = data[i].split("\t");
+                    qDebug()<<(articulo);
 
                     //VALIDA QUE CADA ARTICULO ESTE COMPLETO
                     if (articulo.size() > 1){

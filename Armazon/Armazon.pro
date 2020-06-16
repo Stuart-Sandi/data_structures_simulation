@@ -20,14 +20,22 @@ SOURCES += \
     ColaPedidos.cpp \
     ListaArticulos.cpp \
     ListaClientes.cpp \
-    ListaPedidos.cpp \
     Simulacion.cpp \
+    ThreadAlistador.cpp \
     ThreadBalanceador.cpp \
+    ThreadBodega.cpp \
     ThreadColaAlisto.cpp \
     ThreadColaPedidos.cpp \
     ThreadFabrica.cpp \
     ThreadFabricaEspecial.cpp \
+    Ventana_Alistador_1.cpp \
+    Ventana_Alistador_2.cpp \
+    Ventana_Alistador_3.cpp \
+    Ventana_Alistador_4.cpp \
+    Ventana_Alistador_5.cpp \
+    Ventana_Alistador_6.cpp \
     Ventana_Balanceador.cpp \
+    Ventana_Bodega.cpp \
     Ventana_Cola_Alisto.cpp \
     Ventana_FabricaA.cpp \
     Ventana_FabricaB.cpp \
@@ -44,14 +52,22 @@ HEADERS += \
     ColaPedidos.h \
     ListaArticulos.h \
     ListaClientes.h \
-    ListaPedidos.h \
     Simulacion.h \
+    ThreadAlistador.h \
     ThreadBalanceador.h \
+    ThreadBodega.h \
     ThreadColaAlisto.h \
     ThreadColaPedidos.h \
     ThreadFabrica.h \
     ThreadFabricaEspecial.h \
+    Ventana_Alistador_1.h \
+    Ventana_Alistador_2.h \
+    Ventana_Alistador_3.h \
+    Ventana_Alistador_4.h \
+    Ventana_Alistador_5.h \
+    Ventana_Alistador_6.h \
     Ventana_Balanceador.h \
+    Ventana_Bodega.h \
     Ventana_Cola_Alisto.h \
     Ventana_FabricaA.h \
     Ventana_FabricaB.h \
@@ -64,7 +80,14 @@ HEADERS += \
     pedido.h
 
 FORMS += \
+    Ventana_Alistador_1.ui \
+    Ventana_Alistador_2.ui \
+    Ventana_Alistador_3.ui \
+    Ventana_Alistador_4.ui \
+    Ventana_Alistador_5.ui \
+    Ventana_Alistador_6.ui \
     Ventana_Balanceador.ui \
+    Ventana_Bodega.ui \
     Ventana_Cola_Alisto.ui \
     Ventana_FabricaA.ui \
     Ventana_FabricaB.ui \

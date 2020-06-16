@@ -108,5 +108,6 @@ void ThreadFabricaEspecial::run()
                 }
             }
         }
+        sleep(1);
     }
 }

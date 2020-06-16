@@ -1,6 +1,6 @@
 #include "ThreadBalanceador.h"
 
-ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pColaPrioridad,ColaPedidos * pColaAlisto,ListaPedidos * pPedidos,ListaArticulos * pArticulos,QList<ColaArticulos*> pColasArticulos, QMutex* pMutex1, QMutex* pMutex2)
+ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pColaPrioridad,ColaPedidos * pColaAlisto,QList<Pedido*> * pPedidos,ListaArticulos * pArticulos,QList<ColaArticulos*> pColasArticulos, QMutex* pMutex1, QMutex* pMutex2)
 {
     this->cantidadDesencolado = 0;
     this->pausa = false;
@@ -8,7 +8,7 @@ ThreadBalanceador::ThreadBalanceador(ColaPedidos * pColaNormal,ColaPedidos * pCo
     this->colaPedidosPrioridad = pColaPrioridad;
     this->colaAlisto = pColaAlisto;//NO LA UTILIZA PARA NADA
     this->colasArticulos = pColasArticulos;
-    this->listaPedidos = pPedidos;
+    this->pedidos = pPedidos;
     this->articulos = pArticulos;
     this->mutex1 = pMutex1;
     this->mutex2 = pMutex2;
@@ -37,7 +37,6 @@ void ThreadBalanceador::run(){
                     int cantA = this->colaPedidos->cantidadEnCola()+this->colaPedidosPrioridad->cantidadEnCola();
                     this->cantidadDesencolado++;
                     emit datosCola(QString::number(cantA),QString::number(this->cantidadDesencolado));
-                    qDebug()<<"DESENCOLO EN EL BALANCEADOR";
 
                 //PREGUNTA SI LA COLA NORMAL NO ESTA VACIA
                 }else if (this->colaPedidos->cantidadEnCola() != 0){
@@ -46,7 +45,6 @@ void ThreadBalanceador::run(){
                     int cantA = this->colaPedidos->cantidadEnCola()+this->colaPedidosPrioridad->cantidadEnCola();
                     this->cantidadDesencolado++;
                     emit datosCola(QString::number(cantA),QString::number(this->cantidadDesencolado));
-                    qDebug()<<"DESENCOLO EN EL BALANCEADOR";
 
                 }
                 this->mutex1->unlock();
@@ -61,19 +59,23 @@ void ThreadBalanceador::run(){
         if (tmp != NULL){
             while (true) {
                 if (this->mutex2->try_lock()){
+
                     //RECORRE TODOS LOS ARTICULOS DEL PEDIDO
                     for (int i = 0; i<tmp->articulos.size();i++){
                         int cantidadArticulo = tmp->articulos[i]->cantidad;
                         int cantidadAlmacen = this->articulos->buscarArticulo(tmp->articulos[i]->codigo)->cantidad;
-                        qDebug()<<"Cantidad almacen: "<<cantidadAlmacen;
-                        qDebug()<<"Cantidad requerida: "<<cantidadArticulo<<endl;
 
                         //PREGUNTA SI LA CANTIDAD DEL ALAMACEN ES MAYOR O IGUAL QUE LA CANTIDAD NECESITADA
                         if (cantidadAlmacen >= cantidadArticulo){
-                            tmp->articulos[i]->estado = true;
                             this->articulos->buscarArticulo(tmp->articulos[i]->codigo)->cantidad -= cantidadArticulo;
+                            tmp->articulos[i]->estado = true;
                         }else{
                             //INGRESA EN LA COLA A
+
+                            //Convierte la cantidad para que vaya bien a la cola
+                            tmp->articulos[i]->cantidad -= this->articulos->buscarArticulo(tmp->articulos[i]->codigo)->cantidad;
+                            this->articulos->buscarArticulo(tmp->articulos[i]->codigo)->cantidad = 0;
+
                             if (tmp->articulos[i]->categoria == "A" || tmp->articulos[i]->categoria == "a"){
                                 this->colasArticulos[0]->encolar(tmp->articulos[i]);
                                 emit datosColaA(QString::number(this->colasArticulos[0]->cantidadEnCola()));
@@ -82,20 +84,19 @@ void ThreadBalanceador::run(){
                             //INGRESA EN LA COLA B
                             else if (tmp->articulos[i]->categoria == "B" || tmp->articulos[i]->categoria == "b"){
                                 this->colasArticulos[1]->encolar(tmp->articulos[i]);
-                                emit datosColaB(QString::number(this->colasArticulos[0]->cantidadEnCola()));
+                                emit datosColaB(QString::number(this->colasArticulos[1]->cantidadEnCola()));
                                 emit datosColaAB(QString::number(this->colasArticulos[0]->cantidadEnCola()+this->colasArticulos[1]->cantidadEnCola()));
                             }
                             //INGRESA EN LA COLA C
                             else{
                                 this->colasArticulos[2]->encolar(tmp->articulos[i]);
-                                emit datosColaC(QString::number(this->colasArticulos[0]->cantidadEnCola()));
+                                emit datosColaC(QString::number(this->colasArticulos[2]->cantidadEnCola()));
                             }
                         }
                     }
                     //INSERTA EN LA LISTA DE LOS PEDIDOS
-                    this->listaPedidos->insertarPedido(tmp);
-                    emit datosBalanceador1(tmp->numeroPedido+ "  " + fA->obtenerFechaHoraActual(), QString::number(this->listaPedidos->cantidadEnLista()));
-                    this->listaPedidos->cantidadEnLista();
+                    this->pedidos->append(tmp);
+                    emit datosBalanceador1(tmp->numeroPedido+ "  " + fA->obtenerFechaHoraActual(), QString::number(this->pedidos->size()));
                     this->mutex2->unlock();
                     break;
                 }else{

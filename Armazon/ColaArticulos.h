@@ -5,9 +5,10 @@
 
 struct ColaArticulos{
     Articulo * frente, *final;
-
-    ColaArticulos(){
+    QString nombre;
+    ColaArticulos(QString n){
         this->frente = this->final = NULL;
+        this->nombre = n;
     }
     // encabezados de funcion
     void encolar (Articulo*);

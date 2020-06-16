@@ -1,7 +1,7 @@
 #ifndef THREADCOLAALISTO_H
 #define THREADCOLAALISTO_H
 #include <QtCore>
-#include <ListaPedidos.h>
+#include <QList>
 #include <ColaPedidos.h>
 #include <funcionesArchivos.h>
 #include <QMutex>
@@ -12,11 +12,12 @@ class ThreadColaAlisto : public QThread
     Q_OBJECT
 public:
     bool pausa;
-    ListaPedidos * pedidos;
+    QList <Pedido*> * pedidos;
     ColaPedidos * colaAlisto;
-    QMutex * mutex1,* mutex2;
+    int finalizados;
+    QMutex * mutex1;
     funcionesArchivos * fA;
-    ThreadColaAlisto(ListaPedidos*,ColaPedidos*,QMutex*,QMutex*);
+    ThreadColaAlisto(QList <Pedido*>*,ColaPedidos*,QMutex*);
     void run() override;
 
 signals:

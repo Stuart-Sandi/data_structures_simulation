@@ -3,7 +3,6 @@
 #include <QThread>
 #include <ColaPedidos.h>
 #include <ColaArticulos.h>
-#include <ListaPedidos.h>
 #include <ListaArticulos.h>
 #include <QMutex>
 #include <QDebug>
@@ -22,12 +21,12 @@ public:
     ColaPedidos * colaPedidosPrioridad;
     ColaPedidos * colaAlisto;
     QList <ColaArticulos*> colasArticulos;
-    ListaPedidos * listaPedidos;
+    QList <Pedido*> * pedidos;
     ListaArticulos * articulos;
     QMutex * mutexColaPedidos;
     QMutex * mutex1;//GUARDA EL MUTEX QUE DESENCOLA EN LA COLA DE PEDIDOS
     QMutex * mutex2;//GUARDA EL MUTEX QUE TRABAJARA CON LAS FABRICAS
-    ThreadBalanceador(ColaPedidos*,ColaPedidos*,ColaPedidos*,ListaPedidos*,ListaArticulos*,QList<ColaArticulos*>,QMutex*,QMutex*);
+    ThreadBalanceador(ColaPedidos*,ColaPedidos*,ColaPedidos*,QList <Pedido*>*,ListaArticulos*,QList<ColaArticulos*>,QMutex*,QMutex*);
     void run() override;
 
 signals:

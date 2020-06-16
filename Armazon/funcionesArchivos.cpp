@@ -42,3 +42,14 @@ QString funcionesArchivos::obtenerFechaHoraActual(){
     return fechaHoraExacta;
 
 }
+
+int funcionesArchivos::translatorLetras(QString letra){
+    int contador = 1;
+    for (int i = 0; i<this->palabrasMayu.size(); i++){
+        if (letra == this->palabrasMayu[i] || letra == this->palabrasMinu[i]){
+            return contador;
+        }
+        contador++;
+    }
+    return contador;
+}

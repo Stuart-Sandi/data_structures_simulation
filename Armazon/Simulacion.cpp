@@ -41,29 +41,36 @@ int Simulacion::cargarListas(){
          QString line = in.readLine();//LEE EL ARCHIVO POR LINEAS
          words = line.split("\t");//SEPARA LOS DATOS POR TABULADORES
 
-         //ASIGNA LOS DATOS A LAS VARIABLES TMPS QUE SERAN USADAS PARA CREAR EL CLIENTE
-         tmpCodigo = words[0];
-         tmpNombre = words[1];
-         tmpPrioridad = words[2].toInt();
+         if (words.size() == 3){
+             //ASIGNA LOS DATOS A LAS VARIABLES TMPS QUE SERAN USADAS PARA CREAR EL CLIENTE
+             tmpCodigo = words[0];
+             tmpNombre = words[1];
+             tmpPrioridad = words[2].toInt();
 
-         //VALIDA SI LOS DATOS DE CODIGO Y PRIORIDAD ESTEN CORRECTOS
-         //NOTA(AL UTILIZAR LA FUNCION .TOINT SI EL DATO NO SE LOGRA CONVERTIR SE LE ASIGNA 0 POR ESO VALIDO
-         //QUE EL TMPCODIGO SEA MAYOR QUE 0)
-         if (tmpPrioridad >0 && tmpPrioridad<=10 && words[0].toInt() > 0){
-             int validar = 0;
-             Cliente * nuevo = new Cliente(tmpCodigo,tmpNombre,tmpPrioridad);
+             //VALIDA SI LOS DATOS DE CODIGO Y PRIORIDAD ESTEN CORRECTOS
+             //NOTA(AL UTILIZAR LA FUNCION .TOINT SI EL DATO NO SE LOGRA CONVERTIR SE LE ASIGNA 0 POR ESO VALIDO
+             //QUE EL TMPCODIGO SEA MAYOR QUE 0)
+             if (tmpPrioridad >0 && tmpPrioridad<=10 && words[0].toInt() > 0 && tmpNombre != ""){
+                 int validar = 0;
+                 Cliente * nuevo = new Cliente(tmpCodigo,tmpNombre,tmpPrioridad);
 
-             //VALIDA SI EL CLIENTE YA EXISTE EN MEMORIA
-             validar = this->clientes->insertarCliente(nuevo);
-             if (validar == 0){
-                 qDebug()<<"ERROR: EL CLIENTE YA EXISTE";
+                 //VALIDA SI EL CLIENTE YA EXISTE EN MEMORIA
+                 validar = this->clientes->insertarCliente(nuevo);
+                 if (validar == 0){
+                     qDebug()<<"ERROR: EL CLIENTE YA EXISTE";
+                     return 1;
+                 }
+                 qDebug()<<"Se inserto el cliente: "+tmpNombre+"\n";
+             }else{
+                 qDebug()<<"ERROR AL TRANSFORMAR A ENTERO";
                  return 1;
              }
-             qDebug()<<"Se inserto el cliente: "+tmpNombre+"\n";
-         }else{
-             qDebug()<<"ERROR AL TRANSFORMAR A ENTERO";
+         }
+         else{
              return 1;
          }
+
+
 
     }
     datoCliente.close();
@@ -109,10 +116,11 @@ int Simulacion::cargarListas(){
          tmpTiempo = words[2].toInt();
          tmpCategoria = words[3];
          tmpUbicacion = words[4];
+         qDebug()<<"Codigo: "+words[0]+" Cantidad: "+words[1]+" Tiempo: "+words[2]+" Categoria: "+words[3]+" Ubicacion: "+words[4];
          QList<QString> letrasArticulo = {"A", "B", "C", "a", "b", "c"}; //CATEOGRIAS DE LOS ARTICULOS
 
          //VALIDA SI LOS DATOS DEl TXT ESTAN COMPLETOS Y CORRECTOS
-         if (tmpTiempo >0 && tmpCantidad >= 0 && letrasArticulo.contains(words[3])){
+         if (tmpTiempo >0 && tmpCantidad >= 0 && letrasArticulo.contains(words[3]) && tmpCodigo != "" && tmpUbicacion != ""){
              int validar = 0;
              Articulo * nuevo = new Articulo(tmpCodigo,tmpCantidad,tmpTiempo,tmpCategoria,tmpUbicacion);
 
@@ -122,9 +130,7 @@ int Simulacion::cargarListas(){
                  qDebug()<<"ERROR: EL ARTICULO YA EXISTE";
                  return 2;
              }
-             qDebug()<<"Se inserto el articulo: "+tmpCodigo+"\n";
          }else{
-             qDebug()<<"ERROR AL TRANSFORMAR A ENTERO";
              return 2;
          }
 
@@ -146,4 +152,30 @@ void Simulacion::iniciarSimulacion(){
     this->tFabricaC->start();
     this->tFabricaComodin->start();
     this->tColaAlisto->start();
+    //HILOS DE LOS ALISTADORES
+    this->tAlistador1->start();
+    this->tAlistador2->start();
+    this->tAlistador3->start();
+    this->tAlistador4->start();
+    this->tAlistador5->start();
+    this->tAlistador6->start();
+    this->tBodega->start();
+}
+
+void Simulacion::detenerSimulacion(){
+    this->tColaPedidos->quit();
+    this->tBalanceador->quit();
+    this->tFabricaA->quit();
+    this->tFabricaB->quit();
+    this->tFabricaC->quit();
+    this->tFabricaComodin->quit();
+    this->tColaAlisto->quit();
+    //HILOS DE LOS ALISTADORES
+    this->tAlistador1->quit();
+    this->tAlistador2->quit();
+    this->tAlistador3->quit();
+    this->tAlistador4->quit();
+    this->tAlistador5->quit();
+    this->tAlistador6->quit();
+    this->tBodega->quit();
 }
