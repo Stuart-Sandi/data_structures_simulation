@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Ventana_FabricaA</class>
- <widget class="QMainWindow" name="Ventana_FabricaA">
+ <class>Ventana_Alistados</class>
+ <widget class="QMainWindow" name="Ventana_Alistados">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTextBrowser" name="textBrowser">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>391</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -37,18 +27,28 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Imagenes.qrc">:/Imagenes/fabricaA.png</pixmap>
+     <pixmap resource="Imagenes.qrc">:/Imagenes/IMG_alistados.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>331</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
    <widget class="QLabel" name="espera_Label">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>240</y>
-      <width>111</width>
+      <x>30</x>
+      <y>230</y>
+      <width>161</width>
       <height>41</height>
      </rect>
     </property>
@@ -65,15 +65,15 @@
      <number>4</number>
     </property>
     <property name="text">
-     <string>EN COLA A:</string>
+     <string>EN COLA ALISTADOS:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="finalizado_label">
+   <widget class="QLabel" name="espera_Label_2">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>240</y>
-      <width>111</width>
+      <x>230</x>
+      <y>230</y>
+      <width>131</width>
       <height>41</height>
      </rect>
     </property>
@@ -90,15 +90,15 @@
      <number>4</number>
     </property>
     <property name="text">
-     <string>FINALIZADOS:</string>
+     <string>PROCESADO:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>300</y>
-      <width>251</width>
+      <x>30</x>
+      <y>290</y>
+      <width>331</width>
       <height>41</height>
      </rect>
     </property>
@@ -112,11 +112,6 @@ color: rgb(0, 0, 0);</string>
      <string>VOLVER</string>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>textBrowser</zorder>
-   <zorder>espera_Label</zorder>
-   <zorder>finalizado_label</zorder>
-   <zorder>pushButton</zorder>
   </widget>
  </widget>
  <resources>

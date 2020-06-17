@@ -64,10 +64,10 @@ void ThreadFabrica :: run(){
         if (tmp != NULL){
 
             //CREANDO ARTÍCULO
-            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual();
+            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  Tiempo: "+QString::number(tiempo)+" segundos\n"+fA->obtenerFechaHoraActual();
             emit asignarPreparando(datoVentana,0);
             sleep(this->tiempo);
-            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual()+"\n";
+            datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"\n"+fA->obtenerFechaHoraActual()+"\n";
             emit asignarPreparando(datoVentana,1);
             tmp->totalFabrica += tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + QString::number(cantidadFaltante) + " unidades"
                     + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual() + "\n";

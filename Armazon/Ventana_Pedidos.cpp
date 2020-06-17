@@ -24,11 +24,11 @@ Ventana_Pedidos::~Ventana_Pedidos()
 void Ventana_Pedidos::agregarDatos(QString data,QString cantidad){
     this->ui->textBrowser->append(QString::number(this->contador)+"/"+" Pedido atendido#"+data);
     this->contador++;
-    this->ui->encolar_Label->setText("EN COLA: "+cantidad);
+    this->ui->encolar_Label->setText("EN COLA PEDIDOS: "+cantidad);
 }
 
 void Ventana_Pedidos::agregarDatos2(QString cant1,QString cant2){
-    this->ui->encolar_Label->setText("EN COLA: "+cant1);
+    this->ui->encolar_Label->setText("EN COLA PEDIDOS: "+cant1);
     this->ui->desencolar_Labe->setText("DESENCOLADO: "+cant2);
 }
 

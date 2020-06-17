@@ -48,7 +48,7 @@
      <rect>
       <x>70</x>
       <y>250</y>
-      <width>111</width>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
@@ -65,7 +65,7 @@
      <number>4</number>
     </property>
     <property name="text">
-     <string>EN ESPERA:</string>
+     <string>EN COLA A+ B:</string>
     </property>
    </widget>
    <widget class="QLabel" name="finalizados_label">

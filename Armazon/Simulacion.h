@@ -31,6 +31,8 @@
 #include <Ventana_Alistador_4.h>
 #include <Ventana_Alistador_5.h>
 #include <Ventana_Alistador_6.h>
+#include <Ventana_Alistados.h>
+#include <Ventana_Facturador.h>
 
 //THREADS
 #include <ThreadColaPedidos.h>
@@ -77,6 +79,9 @@ struct Simulacion{
     Ventana_Alistador_4 * ventanaAlistador4;
     Ventana_Alistador_5 * ventanaAlistador5;
     Ventana_Alistador_6 * ventanaAlistador6;
+    Ventana_Alistados * ventanaAlistados;
+    Ventana_Facturador * ventanaFacturador;
+
 
     //THREADS
     ThreadColaPedidos * tColaPedidos;
@@ -135,8 +140,8 @@ struct Simulacion{
         this->ventanaAlistador4 = new Ventana_Alistador_4();
         this->ventanaAlistador5 = new Ventana_Alistador_5();
         this->ventanaAlistador6 = new Ventana_Alistador_6();
-
-
+        this->ventanaAlistados = new Ventana_Alistados();
+        this->ventanaFacturador = new Ventana_Facturador();
 
         //THREADS
         this->tColaPedidos = new ThreadColaPedidos(this->colaPedidos,this->colaPedidosPrioriodad, &this->listaCodigosPedidos,this->clientes,this->articulos, &this->mutex1);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Ventana_FabricaA</class>
- <widget class="QMainWindow" name="Ventana_FabricaA">
+ <class>Ventana_Facturador</class>
+ <widget class="QMainWindow" name="Ventana_Facturador">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTextBrowser" name="textBrowser">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>391</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -37,18 +27,28 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Imagenes.qrc">:/Imagenes/fabricaA.png</pixmap>
+     <pixmap resource="Imagenes.qrc">:/Imagenes/IMG_facturados.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="espera_Label">
+   <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>50</x>
+      <y>30</y>
+      <width>291</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="activos_label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
       <y>240</y>
-      <width>111</width>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>
@@ -65,13 +65,13 @@
      <number>4</number>
     </property>
     <property name="text">
-     <string>EN COLA A:</string>
+     <string>EN COLA FACTURADOS:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="finalizado_label">
+   <widget class="QLabel" name="activos_label_2">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>230</x>
       <y>240</y>
       <width>111</width>
       <height>41</height>
@@ -96,9 +96,9 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>50</x>
       <y>300</y>
-      <width>251</width>
+      <width>291</width>
       <height>41</height>
      </rect>
     </property>
@@ -112,11 +112,6 @@ color: rgb(0, 0, 0);</string>
      <string>VOLVER</string>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>textBrowser</zorder>
-   <zorder>espera_Label</zorder>
-   <zorder>finalizado_label</zorder>
-   <zorder>pushButton</zorder>
   </widget>
  </widget>
  <resources>

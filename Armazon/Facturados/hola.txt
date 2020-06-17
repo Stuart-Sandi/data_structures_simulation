@@ -1,8 +1,11 @@
-Pedido:5
-Cliente: 005
-En cola:	2020-06-16 04:13:23 pm
-Balanceador: 2020-06-16 04:13:24 pm
-A fabrica:A empaque:	2020-06-16 04:13:36 pm
-Finalizado:	2020-06-16 04:13:37 pm
+#include <QDate>
+#include <QTime>
 
-
+QString mensaje2 = "";
+            int dia = QDate::currentDate().day();
+            int anno = QDate::currentDate().year();
+            int mes = QDate::currentDate().month();
+            int hora = QTime::currentTime().hour();
+            int segundo = QTime::currentTime().second();
+            int min = QTime::currentTime().minute();
+            mensaje2 += QString::number(anno)+QString::number(mes)+QString::number(dia)+"_"+QString::number(hora)+QString::number(min)+QString::number(segundo);

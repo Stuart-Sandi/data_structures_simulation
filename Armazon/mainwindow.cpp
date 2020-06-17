@@ -79,6 +79,11 @@ void MainWindow::on_iniciar_Button_clicked()
     connect(this->simulacion->tAlistador5,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador5,SLOT(agregarDatos(QString,QString,QString)));
     connect(this->simulacion->tAlistador6,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador6,SLOT(agregarDatos(QString,QString,QString)));
 
+    //VENTANA ALISTADOS
+    connect(this->simulacion->tEmpacador,SIGNAL(datosCola(QString,QString,QString,int)),this->simulacion->ventanaAlistados,SLOT(agregarDatosCola(QString,QString,QString,int)));
+
+    //VENTANA FACTURACION
+    connect(this->simulacion->tRobot,SIGNAL(datosCola(QString,QString,QString,int)),this->simulacion->ventanaFacturador,SLOT(agregarDatosCola(QString,QString,QString,int)));
 
     //############INICIA LA SIMULACION############
     this->simulacion->iniciarSimulacion();
@@ -102,9 +107,6 @@ void MainWindow::on_pausar_Balanceador_clicked()
 void MainWindow::on_ojo_Balanceador_clicked()
 {
     this->simulacion->ventanaBalanceador->show();
-    qDebug()<<"A:"<<this->simulacion->colasArticulos[0]->cantidadEnCola();
-    qDebug()<<"B:"<<this->simulacion->colasArticulos[1]->cantidadEnCola();
-    qDebug()<<"C:"<<this->simulacion->colasArticulos[2]->cantidadEnCola();
 }
 
 void MainWindow::on_ojo_FabricaA_clicked()
@@ -321,4 +323,34 @@ void MainWindow::on_pausar_Bodega_clicked()
     }else{
         this->ui->pausar_Bodega->setText("Continuar");
     }
+}
+
+void MainWindow::on_pausar_Alistados_clicked()
+{
+    this->simulacion->tEmpacador->pausa = !this->simulacion->tEmpacador->pausa;
+    if (this->simulacion->tEmpacador->pausa == false){
+        this->ui->pausar_Alistados->setText("Pausar");
+    }else{
+        this->ui->pausar_Alistados->setText("Continuar");
+    }
+}
+
+void MainWindow::on_ojo_Alistados_clicked()
+{
+    this->simulacion->ventanaAlistados->show();
+}
+
+void MainWindow::on_pausar_Facturador_clicked()
+{
+    this->simulacion->tRobot->pausa = !this->simulacion->tRobot->pausa;
+    if (this->simulacion->tRobot->pausa == false){
+        this->ui->pausar_Facturador->setText("Pausar");
+    }else{
+        this->ui->pausar_Facturador->setText("Continuar");
+    }
+}
+
+void MainWindow::on_ojo_Facturador_clicked()
+{
+    this->simulacion->ventanaFacturador->show();
 }

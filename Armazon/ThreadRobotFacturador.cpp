@@ -4,6 +4,7 @@ ThreadRobotFacturador::ThreadRobotFacturador(ColaPedidos * pColaPedidos, QMutex 
 
     this->colaEmpacados = pColaPedidos;
     this->mutex4 = pMutex4;
+    this->finalizados = 0;
     this->pausa = false;
 
 }
@@ -16,27 +17,36 @@ void ThreadRobotFacturador::run(){
     QString nombreArchivo = "";
 
     while (true) {
-        Pedido * tmp = NULL;
 
+        //WHILE DE LA PAUSA
+        while (this->pausa){
+            sleep(1);
+        }
+
+        Pedido * tmp = NULL;
+        QString datos = "";
+        emit datosCola(QString::number(this->colaEmpacados->cantidadEnCola()),QString::number(this->finalizados),"",2);
         while (true) {
 
             if(this->mutex4->try_lock()){
-
+                qDebug()<<"CANTIDADDADDDDDD: "<<this->colaEmpacados->cantidadEnCola();
                 tmp = colaEmpacados->desencolar();
                 this->mutex4->unlock();
                 break;
 
-
             } else {
-
                 msleep(100);
-
             }
 
         }
 
         if(tmp != NULL){
-            qDebug()<<"Nombre tmp en hilo robot: "<<tmp->numeroPedido;
+
+            datos += tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual();
+            emit datosCola(QString::number(this->colaEmpacados->cantidadEnCola()),QString::number(this->finalizados),datos,0);
+            sleep(1);
+            this->finalizados++;
+            emit datosCola(QString::number(this->colaEmpacados->cantidadEnCola()),QString::number(this->finalizados),datos,1);
             for (int i = 0; i<tmp->articulos.size(); i++) {
 
                 if(tmp->articulos[i]->totalFabrica != ""){
@@ -63,5 +73,6 @@ void ThreadRobotFacturador::run(){
         }
 
         sleep(1);
+
     }
 }

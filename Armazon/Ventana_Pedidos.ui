@@ -46,9 +46,9 @@
    <widget class="QLabel" name="encolar_Label">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>60</x>
       <y>220</y>
-      <width>111</width>
+      <width>131</width>
       <height>41</height>
      </rect>
     </property>
@@ -65,7 +65,7 @@
      <number>4</number>
     </property>
     <property name="text">
-     <string>EN COLA:</string>
+     <string>EN COLA PEDIDOS:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">

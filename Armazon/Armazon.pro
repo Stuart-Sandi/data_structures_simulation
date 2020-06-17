@@ -36,6 +36,7 @@ SOURCES += \
     Ventana_Alistador_5.cpp \
     Ventana_Alistador_6.cpp \
     ThreadRobotFacturador.cpp \
+    Ventana_Alistados.cpp \
     Ventana_Balanceador.cpp \
     Ventana_Bodega.cpp \
     Ventana_Cola_Alisto.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
     Ventana_FabricaB.cpp \
     Ventana_FabricaC.cpp \
     Ventana_Fabrica_Comodin.cpp \
+    Ventana_Facturador.cpp \
     Ventana_Pedidos.cpp \
     funcionesArchivos.cpp \
     main.cpp \
@@ -70,6 +72,7 @@ HEADERS += \
     Ventana_Alistador_4.h \
     Ventana_Alistador_5.h \
     Ventana_Alistador_6.h \
+    Ventana_Alistados.h \
     Ventana_Balanceador.h \
     Ventana_Bodega.h \
     Ventana_Cola_Alisto.h \
@@ -77,6 +80,7 @@ HEADERS += \
     Ventana_FabricaB.h \
     Ventana_FabricaC.h \
     Ventana_Fabrica_Comodin.h \
+    Ventana_Facturador.h \
     Ventana_Pedidos.h \
     articulo.h \
     funcionesArchivos.h \
@@ -90,6 +94,7 @@ FORMS += \
     Ventana_Alistador_4.ui \
     Ventana_Alistador_5.ui \
     Ventana_Alistador_6.ui \
+    Ventana_Alistados.ui \
     Ventana_Balanceador.ui \
     Ventana_Bodega.ui \
     Ventana_Cola_Alisto.ui \
@@ -97,6 +102,7 @@ FORMS += \
     Ventana_FabricaB.ui \
     Ventana_FabricaC.ui \
     Ventana_Fabrica_Comodin.ui \
+    Ventana_Facturador.ui \
     Ventana_Pedidos.ui \
     mainwindow.ui
 

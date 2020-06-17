@@ -20,7 +20,7 @@ Ventana_FabricaA::~Ventana_FabricaA()
 }
 
 void Ventana_FabricaA::agregarDatosCola(QString data){
-    this->ui->espera_Label->setText("EN ESPERA: "+data);
+    this->ui->espera_Label->setText("EN COLA A: "+data);
 }
 
 void Ventana_FabricaA::agregarDatosArticuloPreparando(QString dato,int dato2){
@@ -33,7 +33,7 @@ void Ventana_FabricaA::agregarDatosArticuloPreparando(QString dato,int dato2){
 }
 
 void Ventana_FabricaA::agregarDatosCola(QString data,QString data2){
-    this->ui->espera_Label->setText("EN ESPERA: "+data);
+    this->ui->espera_Label->setText("EN COLA A: "+data);
     this->ui->finalizado_label->setText("FINALIZADO: "+data2);
 }
 

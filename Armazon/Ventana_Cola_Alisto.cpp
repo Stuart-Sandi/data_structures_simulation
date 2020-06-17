@@ -23,11 +23,11 @@ Ventana_Cola_Alisto::~Ventana_Cola_Alisto()
 void Ventana_Cola_Alisto::agregarDatos(QString data,QString cantidad){
     this->ui->textBrowser->append(QString::number(this->contador)+"/"+" Pedido atendido#"+data);
     this->contador++;
-    this->ui->encola_label->setText("EN COLA: "+cantidad);
+    this->ui->encola_label->setText("EN COLA ALISTO: "+cantidad);
 }
 
 void Ventana_Cola_Alisto::agregarDatos2(QString cant1,QString cant2){
-    this->ui->encola_label->setText("EN COLA: "+cant1);
+    this->ui->encola_label->setText("EN COLA ALISTO: "+cant1);
     this->ui->desencola_label->setText("DESENCOLADO: "+cant2);
 }
 

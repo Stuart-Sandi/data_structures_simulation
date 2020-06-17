@@ -60,6 +60,14 @@ private slots:
 
     void on_pausar_Bodega_clicked();
 
+    void on_pausar_Alistados_clicked();
+
+    void on_ojo_Alistados_clicked();
+
+    void on_pausar_Facturador_clicked();
+
+    void on_ojo_Facturador_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
