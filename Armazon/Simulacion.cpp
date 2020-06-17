@@ -110,28 +110,54 @@ int Simulacion::cargarListas(){
 
          //ASIGNA LOS DATOS A LAS VARIABLES TMPS QUE SERAN USADAS PARA CREAR EL CLIENTE
 
-         tmpCodigo = words[0];
-         tmpCantidad = words[1].toInt();
-         tmpTiempo = words[2].toInt();
-         tmpCategoria = words[3];
-         tmpUbicacion = words[4];
-         qDebug()<<"Codigo: "+words[0]+" Cantidad: "+words[1]+" Tiempo: "+words[2]+" Categoria: "+words[3]+" Ubicacion: "+words[4];
-         QList<QString> letrasArticulo = {"A", "B", "C", "a", "b", "c"}; //CATEOGRIAS DE LOS ARTICULOS
+         if (words.size() == 5){
+             tmpCodigo = words[0];
+             tmpCantidad = words[1].toInt();
+             tmpTiempo = words[2].toInt();
+             tmpCategoria = words[3];
+             tmpUbicacion = words[4];
 
-         //VALIDA SI LOS DATOS DEl TXT ESTAN COMPLETOS Y CORRECTOS
-         if (tmpTiempo >0 && tmpCantidad >= 0 && letrasArticulo.contains(words[3]) && tmpCodigo != "" && tmpUbicacion != ""){
-             int validar = 0;
-             Articulo * nuevo = new Articulo(tmpCodigo,tmpCantidad,tmpTiempo,tmpCategoria,tmpUbicacion);
+             //CUALQUIER VARA ELIMINAR EL IF SIGUIENTE Y ESTAS VARIABLES RARAS
+             if (tmpUbicacion.size()==3){
+                 QString letra = "";
+                 letra = tmpUbicacion[0];
+                 QString num1 = "";
+                 num1 = tmpUbicacion[1];
+                 QString num2 = "";
+                 num2 = tmpUbicacion[2];
+                 QList <QString>palabrasMayu = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+                 QList <QString>palabrasMinu = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+                 QString numFinal = num1+num2;
 
-             //VALIDA SI EL ARTICULO YA EXISTE EN MEMORIA
-             validar = this->articulos->insertarArticulo(nuevo);
-             if (validar == 0){
-                 qDebug()<<"ERROR: EL ARTICULO YA EXISTE";
+                 if ( (palabrasMayu.contains(letra)||palabrasMinu.contains(letra)) && (numFinal.toInt()>0 && numFinal.toInt()<=10)){
+                     qDebug()<<"Codigo: "+words[0]+" Cantidad: "+words[1]+" Tiempo: "+words[2]+" Categoria: "+words[3]+" Ubicacion: "+words[4];
+                     QList<QString> letrasArticulo = {"A", "B", "C", "a", "b", "c"}; //CATEOGRIAS DE LOS ARTICULOS
+
+                     //VALIDA SI LOS DATOS DEl TXT ESTAN COMPLETOS Y CORRECTOS
+                     if (tmpTiempo >0 && tmpCantidad >= 0 && letrasArticulo.contains(words[3]) && tmpCodigo != "" && tmpUbicacion != ""){
+                         int validar = 0;
+                         Articulo * nuevo = new Articulo(tmpCodigo,tmpCantidad,tmpTiempo,tmpCategoria,tmpUbicacion);
+
+                         //VALIDA SI EL ARTICULO YA EXISTE EN MEMORIA
+                         validar = this->articulos->insertarArticulo(nuevo);
+                         if (validar == 0){
+                             qDebug()<<"ERROR: EL ARTICULO YA EXISTE";
+                             return 2;
+                         }
+                     }else{
+                         return 2;
+                     }
+                 }else{
+                     return 2;
+                 }
+             }else{
                  return 2;
              }
+
          }else{
-             return 2;
+            return 2;
          }
+
 
     }
     datoArticulo.close();

@@ -61,7 +61,6 @@ void ThreadFabricaEspecial::run()
 
                     fechaHorainicio = fA->obtenerFechaHoraActual();
                    tmp->aFabrica += fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo + "\n";
-                    qDebug() << tmp->aFabrica;
 
                     /*SE MULTIPLICA LA CANTIDAD A CREAR POR EL TIEMPO DE CREACIÓN PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/
                     this->tiempo = cantidadFaltante * tiempoDeCreacion;

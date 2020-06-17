@@ -17,7 +17,7 @@ public:
     ~Ventana_Alistador_6();
 
 public slots:
-    void agregarDatos(QString,QString,QString);
+    void agregarDatos(QString,QString,QString,int);
 
 private slots:
     void on_pushButton_clicked();

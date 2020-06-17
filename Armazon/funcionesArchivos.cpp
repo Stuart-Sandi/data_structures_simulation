@@ -103,7 +103,6 @@ void funcionesArchivos::sobreEscribirAlmacen(ListaArticulos * pListaArticulos){
 
     QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Articulos/" + nombreArchivo;
 
-    qDebug()<<absolute;
     escribirArchivoNuevo(absolute, almacen);
 
 }

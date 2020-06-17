@@ -43,7 +43,6 @@ void ThreadFabrica :: run(){
 
                    fechaHorainicio = fA->obtenerFechaHoraActual();
                    tmp->aFabrica += fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo + "\n";
-                   qDebug() << tmp->aFabrica;
 
                    /*SE OBTIENE LA CANTIDAD DE ARTÍCULOS FALTANTE EN EL PEDIDO Y SE MULTIPLICA POR EL TIEMPO DE CREACIÓN
                    PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/

@@ -72,7 +72,6 @@ void ThreadColaPedidos::run(){
                 for (int i = 2; i<data.size();i++){
 
                     articulo = data[i].split("\t");
-                    qDebug()<<(articulo);
 
                     //VALIDA QUE CADA ARTICULO ESTE COMPLETO
                     if (articulo.size() > 1){
@@ -127,6 +126,7 @@ void ThreadColaPedidos::run(){
                             this->colaPedidosPrioridad->encolar(nuevo);
                             int cantidadCola = this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
                             emit datosCola(nuevo->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
+                            this->colaPedidosPrioridad->imprimir();
 
                         } else {
 
@@ -135,7 +135,6 @@ void ThreadColaPedidos::run(){
                             emit datosCola(nuevo->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
 
                         }
-                        qDebug()<<"Cantidad en cola: "<<this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
 
                         this->mutex->unlock();
                         listaCodigosPedidos->append(numPedido);

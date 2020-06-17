@@ -73,12 +73,12 @@ void MainWindow::on_iniciar_Button_clicked()
     connect(this->simulacion->tBodega,SIGNAL(datosBodega(QString,QString,QString)),this->simulacion->ventanaBodega,SLOT(asignarDatos(QString,QString,QString)));
 
     //VENTANA ALISTADORES
-    connect(this->simulacion->tAlistador1,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador1,SLOT(agregarDatos(QString,QString,QString)));
-    connect(this->simulacion->tAlistador2,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador2,SLOT(agregarDatos(QString,QString,QString)));
-    connect(this->simulacion->tAlistador3,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador3,SLOT(agregarDatos(QString,QString,QString)));
-    connect(this->simulacion->tAlistador4,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador4,SLOT(agregarDatos(QString,QString,QString)));
-    connect(this->simulacion->tAlistador5,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador5,SLOT(agregarDatos(QString,QString,QString)));
-    connect(this->simulacion->tAlistador6,SIGNAL(datosAlistador(QString,QString,QString)),this->simulacion->ventanaAlistador6,SLOT(agregarDatos(QString,QString,QString)));
+    connect(this->simulacion->tAlistador1,SIGNAL(datosAlistador(QString,QString,QString,int)),this->simulacion->ventanaAlistador1,SLOT(agregarDatos(QString,QString,QString,int)));
+    connect(this->simulacion->tAlistador2,SIGNAL(datosAlistador(QString,QString,QString,int)),this->simulacion->ventanaAlistador2,SLOT(agregarDatos(QString,QString,QString,int)));
+    connect(this->simulacion->tAlistador3,SIGNAL(datosAlistador(QString,QString,QString,int)),this->simulacion->ventanaAlistador3,SLOT(agregarDatos(QString,QString,QString,int)));
+    connect(this->simulacion->tAlistador4,SIGNAL(datosAlistador(QString,QString,QString,int)),this->simulacion->ventanaAlistador4,SLOT(agregarDatos(QString,QString,QString,int)));
+    connect(this->simulacion->tAlistador5,SIGNAL(datosAlistador(QString,QString,QString,int)),this->simulacion->ventanaAlistador5,SLOT(agregarDatos(QString,QString,QString,int)));
+    connect(this->simulacion->tAlistador6,SIGNAL(datosAlistador(QString,QString,QString,int)),this->simulacion->ventanaAlistador6,SLOT(agregarDatos(QString,QString,QString,int)));
 
     //VENTANA ALISTADOS
     connect(this->simulacion->tEmpacador,SIGNAL(datosCola(QString,QString,QString,int)),this->simulacion->ventanaAlistados,SLOT(agregarDatosCola(QString,QString,QString,int)));

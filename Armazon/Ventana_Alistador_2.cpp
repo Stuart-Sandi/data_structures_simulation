@@ -25,14 +25,14 @@ void Ventana_Alistador_2::on_pushButton_clicked()
     this->hide();
 }
 
-void Ventana_Alistador_2::agregarDatos(QString label1, QString data, QString label2){
+void Ventana_Alistador_2::agregarDatos(QString label1, QString data, QString label2, int val){
     if (data != ""){
-        if (data.size()> 60){
+        if (val == 0){
             this->ui->textBrowser->append(QString::number(this->contador)+"/ "+data+"\n");
             this->contador++;
-        }else{
+        }else if (val == 1){
             this->ui->textBrowser->append(data+"\n\n");
-        }
+        }else{}
     }
     this->ui->espera_Label->setText("PROCESANDO: "+label1);
     this->ui->espera_Label_2->setText("TOTAL PROCESADOS: "+label2);

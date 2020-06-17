@@ -24,7 +24,7 @@ public:
     void run() override;
 
 signals:
-    void datosAlistador(QString,QString,QString);
+    void datosAlistador(QString,QString,QString,int);
 
 };
 

@@ -32,7 +32,7 @@ void ThreadAlistador::run(){
             int numero1 = 0;
             int numero2 = 0;
             int cont = this->pedido->articulos.size();
-            emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados));
+            emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados),2);
 
             alisto += "\t\tAlistador " + this->numAlistador + "\n";
 
@@ -60,7 +60,7 @@ void ThreadAlistador::run(){
 
                 alisto += "\t\t" + codigoA + "\t" + "Ubicacion " + posicion + "\t" + QString::number(numero1) + " segundos\n";
 
-                emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados));
+                emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados),0);
                 for (int w = 0; w< numero1; w++){
                     //PAUSA EN CASO DE QUE SE PAUSE EL ALISTADOR MIENTRAS TRABAJA
                     while (pausa){
@@ -71,7 +71,7 @@ void ThreadAlistador::run(){
                 cont--;
                 this->totalElaborados++;
                 data = "El alistador alisto el articulo: "+codigoA+"\n"+fA->obtenerFechaHoraActual();
-                emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados));
+                emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados),1);
             }
             //ENCOLA EL PEDIDO FINALIZADO EN LA COLA DE ALISTADOS
             while (true) {
@@ -87,9 +87,6 @@ void ThreadAlistador::run(){
                 }
             }
             this->disponible = 2;
-            qDebug()<<"ALISTO EL PEDIDO"<<"CANTIDAD EN COLA: "<<this->alistados->cantidadEnCola();
-            //emit
-
         }
 
         sleep(1);

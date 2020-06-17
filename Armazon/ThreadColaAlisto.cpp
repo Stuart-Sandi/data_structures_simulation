@@ -61,8 +61,6 @@ void ThreadColaAlisto::run(){
 
                         this->colaAlisto->encolar(tmp);
 
-                        qDebug() << colaAlisto->cantidadEnCola();
-
                         pedidosEliminar.append(w);
                         finalizados++;
                         int cantidadCola = this->colaAlisto->cantidadEnCola();

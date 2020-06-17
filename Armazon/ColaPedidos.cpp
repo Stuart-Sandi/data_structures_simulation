@@ -34,3 +34,10 @@ int ColaPedidos::cantidadEnCola(){
     }
     return  contador;
 }
+void ColaPedidos::imprimir(){
+    Pedido * tmp = this->frente;
+    while (tmp != NULL){
+        qDebug()<<"ESTAMOS PROBANDO: "<<tmp->numeroPedido;
+        tmp = tmp->next;
+    }
+}
