@@ -1,8 +1,9 @@
 #include "ThreadRobotFacturador.h"
 
-ThreadRobotFacturador::ThreadRobotFacturador(ColaPedidos * pColaPedidos, QMutex * pMutex4){
+ThreadRobotFacturador::ThreadRobotFacturador(ColaPedidos * pColaPedidos, QMutex * pMutex4, QStringList * pListaCodigosPedidos){
 
     this->colaEmpacados = pColaPedidos;
+    this->listaCodigosPedidos = pListaCodigosPedidos;
     this->mutex4 = pMutex4;
     this->finalizados = 0;
     this->pausa = false;
@@ -12,12 +13,17 @@ ThreadRobotFacturador::ThreadRobotFacturador(ColaPedidos * pColaPedidos, QMutex 
 void ThreadRobotFacturador::run(){
 
     funcionesArchivos * fA = new funcionesArchivos();
-    QString ARTICULO = "";
-    QString facturacionFinal = "";
-    QString nombreArchivo = "";
+    QString ARTICULO;
+    QString facturacionFinal;
+    QString nombreArchivo;
     bool primeraVez;
 
     while (true) {
+
+        ARTICULO = "";
+        facturacionFinal = "";
+        nombreArchivo = "";
+        primeraVez = true;
 
         //WHILE DE LA PAUSA
         while (this->pausa){
@@ -25,13 +31,11 @@ void ThreadRobotFacturador::run(){
         }
 
         Pedido * tmp = NULL;
-        primeraVez = true;
         QString datos = "";
         emit datosCola(QString::number(this->colaEmpacados->cantidadEnCola()),QString::number(this->finalizados),"",2);
         while (true) {
 
             if(this->mutex4->try_lock()){
-                qDebug()<<"CANTIDADDADDDDDD: "<<this->colaEmpacados->cantidadEnCola();
                 tmp = colaEmpacados->desencolar();
                 this->mutex4->unlock();
                 break;
@@ -56,9 +60,11 @@ void ThreadRobotFacturador::run(){
                     if (primeraVez) {
                         ARTICULO += tmp->articulos[i]->totalFabrica;
                         primeraVez = false;
-                    }
+                    } else {
 
-                    ARTICULO += "\t" + tmp->articulos[i]->totalFabrica;
+                        ARTICULO += "\t" + tmp->articulos[i]->totalFabrica;
+
+                    }
 
                 }
 
@@ -76,8 +82,9 @@ void ThreadRobotFacturador::run(){
             facturacionFinal += "Alisto" + tmp->alisto;
 
             QString absolutePath = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Facturados/";
-            absolutePath += tmp->numeroPedido + "_" + tmp->codigoCliente + "_" + fA->obtenerFechaHoraActual(true)+ ".txt";
+            absolutePath += tmp->numeroPedido + "_" + tmp->codigoCliente + "_" + fA->obtenerFechaHoraActual2()+ ".txt";
             fA->escribirArchivo(absolutePath, facturacionFinal);
+            this->listaCodigosPedidos->removeAt(this->listaCodigosPedidos->indexOf(tmp->numeroPedido)); //BORRA EL NUMERO DE PEDIDO DE LA LISTA
 
         }
 

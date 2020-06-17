@@ -48,9 +48,6 @@ void ThreadFabrica :: run(){
                    /*SE OBTIENE LA CANTIDAD DE ARTÍCULOS FALTANTE EN EL PEDIDO Y SE MULTIPLICA POR EL TIEMPO DE CREACIÓN
                    PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/
                    this->tiempo = cantidadFaltante * tiempoDeCreacion;
-
-                   //RESTA EN EL ALMACÉN
-                   //this->articulos->buscarArticulo(tmp->codigo)->cantidad = 0;
                }
                mutex1->unlock();
                break;

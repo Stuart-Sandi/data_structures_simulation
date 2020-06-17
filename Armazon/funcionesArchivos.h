@@ -6,6 +6,7 @@
 #include <QList>
 #include <QStringList>
 #include <QDebug>
+#include <ListaArticulos.h>
 
 struct funcionesArchivos{
     QList <QString> palabrasMayu;
@@ -20,8 +21,9 @@ struct funcionesArchivos{
     void escribirArchivoNuevo(QString,QString);
     void moverArchivo(QString, QString);
     QString obtenerFechaHoraActual(void);
-    QString obtenerFechaHoraActual(bool);
+    QString obtenerFechaHoraActual2(void);
     int translatorLetras(QString);
+    void sobreEscribirAlmacen(ListaArticulos*);
 
 };
 

@@ -16,7 +16,6 @@ ThreadAlistador::ThreadAlistador(QString pNombre,ColaPedidos * pColaAlistados, Q
 void ThreadAlistador::run(){
 
     QString alisto = "";
-    bool primeraVez = false;
     while(true){
 
         //WHILE DE LA PAUSA

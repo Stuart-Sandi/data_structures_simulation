@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QMessageBox>
-
+#include <funcionesArchivos.h>
 #include <Simulacion.h>
 
 QT_BEGIN_NAMESPACE
@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 
 public:
     Simulacion * simulacion;
+    funcionesArchivos * fA;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 

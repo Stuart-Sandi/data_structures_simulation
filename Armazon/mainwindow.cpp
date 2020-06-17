@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(1300,687);
+    this->fA = new funcionesArchivos();
 
     simulacion = new Simulacion();
 
@@ -312,6 +313,7 @@ void MainWindow::on_detener_Button_clicked()
 {
     QMessageBox::information(0,"¡¡GRACIAS!!","Gracias por utilizar nuestro software.\n ¡¡Vuelva pronto!!");
     this->simulacion->detenerSimulacion();
+    fA->sobreEscribirAlmacen(this->simulacion->articulos);
     this->close();
 }
 

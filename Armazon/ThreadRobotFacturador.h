@@ -13,10 +13,11 @@ class ThreadRobotFacturador : public QThread
 public:
     int finalizados;
     ColaPedidos * colaEmpacados;
+    QStringList * listaCodigosPedidos;
     QMutex * mutex4;
     bool pausa;
 
-    ThreadRobotFacturador(ColaPedidos*, QMutex*);
+    ThreadRobotFacturador(ColaPedidos*, QMutex*, QStringList*);
     void run() override;
 
 signals:

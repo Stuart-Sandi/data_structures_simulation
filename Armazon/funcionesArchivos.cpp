@@ -59,7 +59,7 @@ QString funcionesArchivos::obtenerFechaHoraActual(){
 
 }
 
-QString funcionesArchivos::obtenerFechaHoraActual(bool pFormatoArchivo){
+QString funcionesArchivos::obtenerFechaHoraActual2(){
 
     QString fechaHoraExacta = QDateTime::currentDateTime().toString("yyyy-MM-dd  hh-mm-ssap");
     return fechaHoraExacta.replace(".","");
@@ -75,4 +75,35 @@ int funcionesArchivos::translatorLetras(QString letra){
         contador++;
     }
     return contador;
+}
+
+void funcionesArchivos::sobreEscribirAlmacen(ListaArticulos * pListaArticulos){
+
+    Articulo * tmp = pListaArticulos->primerNodo;
+    QString almacen = "";
+    while (tmp != NULL) {
+
+        almacen += tmp->codigo + "\t";
+        almacen += QString::number(tmp->cantidad) + "\t";
+        almacen += QString::number(tmp->tiempoCreacion) + "\t";
+        almacen += tmp->categoria + "\t";
+
+        if (tmp->next == NULL) {
+            almacen += tmp->ubicacion;
+        } else {
+            almacen += tmp->ubicacion + "\n";
+        }
+
+        tmp = tmp->next;
+    }
+
+    QStringList lista = obtenerListaDeArchivos("Articulos");
+
+    QString nombreArchivo = lista[2];
+
+    QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Articulos/" + nombreArchivo;
+
+    qDebug()<<absolute;
+    escribirArchivoNuevo(absolute, almacen);
+
 }

@@ -179,7 +179,7 @@ struct Simulacion{
         //THREAD BODEGA
         this->tBodega = new ThreadBodega(this->colaAlisto,this->listaAlistadores,this->colaAlistadores,&this->mutex2);
 
-        this->tRobot = new ThreadRobotFacturador(this->colaFacturacion,&this->mutex4);
+        this->tRobot = new ThreadRobotFacturador(this->colaFacturacion,&this->mutex4, &this->listaCodigosPedidos);
         this->tEmpacador = new ThreadEmpacador(this->colaAlistados,this->colaFacturacion, &this->mutex3, &this->mutex4);
 
     }
