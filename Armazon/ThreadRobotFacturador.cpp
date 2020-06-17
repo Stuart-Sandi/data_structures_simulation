@@ -15,6 +15,7 @@ void ThreadRobotFacturador::run(){
     QString ARTICULO = "";
     QString facturacionFinal = "";
     QString nombreArchivo = "";
+    bool primeraVez;
 
     while (true) {
 
@@ -24,6 +25,7 @@ void ThreadRobotFacturador::run(){
         }
 
         Pedido * tmp = NULL;
+        primeraVez = true;
         QString datos = "";
         emit datosCola(QString::number(this->colaEmpacados->cantidadEnCola()),QString::number(this->finalizados),"",2);
         while (true) {
@@ -50,25 +52,32 @@ void ThreadRobotFacturador::run(){
             for (int i = 0; i<tmp->articulos.size(); i++) {
 
                 if(tmp->articulos[i]->totalFabrica != ""){
-                    ARTICULO += "\t\t" +tmp->articulos[i]->totalFabrica;
+
+                    if (primeraVez) {
+                        ARTICULO += tmp->articulos[i]->totalFabrica;
+                        primeraVez = false;
+                    }
+
+                    ARTICULO += "\t" + tmp->articulos[i]->totalFabrica;
+
                 }
 
             }
 
-            facturacionFinal += tmp->archivoFacturador + "Finalizado:\t" + fA->obtenerFechaHoraActual() + "\n\n";
+            facturacionFinal += tmp->archivoFacturador + "Finalizado:\t\t" + fA->obtenerFechaHoraActual() + "\n\n";
 
             if(ARTICULO != ""){
 
                 facturacionFinal += "Fabrica\n";
-                facturacionFinal += "ARTICULO" + ARTICULO;
+                facturacionFinal += "ARTICULO" + ARTICULO + "\n";
 
             }
 
-            facturacionFinal += tmp->alisto;
+            facturacionFinal += "Alisto" + tmp->alisto;
 
             QString absolutePath = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Facturados/";
-            absolutePath += tmp->numeroPedido + "_" + tmp->codigoCliente +"_"+ fA->obtenerFechaHoraActual()+ ".txt";
-            fA->escribirArchivoNuevo(absolutePath, facturacionFinal);
+            absolutePath += tmp->numeroPedido + "_" + tmp->codigoCliente + "_" + fA->obtenerFechaHoraActual(true)+ ".txt";
+            fA->escribirArchivo(absolutePath, facturacionFinal);
 
         }
 

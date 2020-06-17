@@ -10,7 +10,7 @@ ThreadColaAlisto::ThreadColaAlisto(QList<Pedido*> * pPedidos,ColaPedidos *pColaA
 }
 
 void ThreadColaAlisto::run(){
-
+    bool primeraVez;
     while (true){
         //WHILE QUE PAUSA EL THREAD
         while(this->pausa){
@@ -18,7 +18,7 @@ void ThreadColaAlisto::run(){
         }
 
         while (true){
-
+            primeraVez = true;
             if(this->mutex1->try_lock()){
 
                 Pedido * tmp = NULL;
@@ -41,14 +41,23 @@ void ThreadColaAlisto::run(){
                     //EL PEDIDO ESTA COMPLETO
                     if (validador == 0){
 
-                        tmp->archivoFacturador += "A fabrica:";
+
                         for (int i = 0; i<tmp->articulos.size(); i++) {
 
                             if (tmp->articulos[i]->aFabrica != "") { //AGREGA EL VALOR DE "A FABRICA" AL archivoFacturador
-                                tmp->archivoFacturador += tmp->articulos[i]->aFabrica;
-                            }
 
+                                if (primeraVez){
+                                    tmp->archivoFacturador += "A fabrica:";
+                                    tmp->archivoFacturador += "\t\t\t" + tmp->articulos[i]->aFabrica;
+                                    primeraVez = false;
+                                }else{
+                                    tmp->archivoFacturador += "\t\t\t\t" + tmp->articulos[i]->aFabrica;
+                                }
+
+                            }
                         }
+
+                        tmp->archivoFacturador += "A alisto:\t" + fA->obtenerFechaHoraActual() + "\n";
 
                         this->colaAlisto->encolar(tmp);
 

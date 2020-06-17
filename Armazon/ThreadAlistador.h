@@ -14,12 +14,13 @@ public:
     funcionesArchivos * fA;
     bool pausa;
     QString nombre;
+    QString numAlistador;
     Pedido * pedido;
     int disponible;//0 libre, 1 procesando, 2 procesado
     int totalElaborados;
     QMutex * mutex;
     ColaPedidos * alistados;
-    ThreadAlistador(QString,ColaPedidos*,QMutex*);
+    ThreadAlistador(QString,ColaPedidos*,QMutex*, QString);
     void run() override;
 
 signals:

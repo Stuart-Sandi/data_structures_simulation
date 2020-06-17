@@ -13,7 +13,7 @@ int Simulacion::cargarListas(){
 /*
  * CARGA LA LISTA DE CLIENTES
  */
-
+    qDebug()<<fA->obtenerFechaHoraActual(true);
     QString name = "";//GUARDA EL NOMBRE DEL ARCHIVO CLIENTES
     QList <QString> words;//GUARDA LAS PALABRAS DE CADA LINEA DE TEXTO
 

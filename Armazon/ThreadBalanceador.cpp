@@ -33,7 +33,7 @@ void ThreadBalanceador::run(){
                 //PREGUNTA SI LA COLA DE PRIORIDAD NO ESTA VACIA
                 if (this->colaPedidosPrioridad->cantidadEnCola() != 0){
                     tmp = this->colaPedidosPrioridad->desencolar();
-                    tmp->archivoFacturador += "Balanceador: " + fA->obtenerFechaHoraActual() + "\n";
+                    tmp->archivoFacturador += "Balanceador:\t" + fA->obtenerFechaHoraActual() + "\n";
                     int cantA = this->colaPedidos->cantidadEnCola()+this->colaPedidosPrioridad->cantidadEnCola();
                     this->cantidadDesencolado++;
                     emit datosCola(QString::number(cantA),QString::number(this->cantidadDesencolado));
@@ -41,7 +41,7 @@ void ThreadBalanceador::run(){
                 //PREGUNTA SI LA COLA NORMAL NO ESTA VACIA
                 }else if (this->colaPedidos->cantidadEnCola() != 0){
                     tmp = this->colaPedidos->desencolar();
-                    tmp->archivoFacturador += "Balanceador: " + fA->obtenerFechaHoraActual() + "\n";
+                    tmp->archivoFacturador += "Balanceador:\t" + fA->obtenerFechaHoraActual() + "\n";
                     int cantA = this->colaPedidos->cantidadEnCola()+this->colaPedidosPrioridad->cantidadEnCola();
                     this->cantidadDesencolado++;
                     emit datosCola(QString::number(cantA),QString::number(this->cantidadDesencolado));

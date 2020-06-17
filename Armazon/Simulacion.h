@@ -153,12 +153,12 @@ struct Simulacion{
         this->tColaAlisto = new ThreadColaAlisto(&this->pedidos,this->colaAlisto,&this->mutex2);
 
         //THREAD ALISTADORES
-        this->tAlistador1 = new ThreadAlistador("Alistador 1",this->colaAlistados,&this->mutex3);
-        this->tAlistador2 = new ThreadAlistador("Alistador 2",this->colaAlistados,&this->mutex3);
-        this->tAlistador3 = new ThreadAlistador("Alistador 3",this->colaAlistados,&this->mutex3);
-        this->tAlistador4 = new ThreadAlistador("Alistador 4",this->colaAlistados,&this->mutex3);
-        this->tAlistador5 = new ThreadAlistador("Alistador 5",this->colaAlistados,&this->mutex3);
-        this->tAlistador6 = new ThreadAlistador("Alistador 6",this->colaAlistados,&this->mutex3);
+        this->tAlistador1 = new ThreadAlistador("Alistador 1",this->colaAlistados,&this->mutex3, "1");
+        this->tAlistador2 = new ThreadAlistador("Alistador 2",this->colaAlistados,&this->mutex3, "2");
+        this->tAlistador3 = new ThreadAlistador("Alistador 3",this->colaAlistados,&this->mutex3, "3");
+        this->tAlistador4 = new ThreadAlistador("Alistador 4",this->colaAlistados,&this->mutex3, "4");
+        this->tAlistador5 = new ThreadAlistador("Alistador 5",this->colaAlistados,&this->mutex3, "5");
+        this->tAlistador6 = new ThreadAlistador("Alistador 6",this->colaAlistados,&this->mutex3, "6");
 
         //AGREGA LOS THREADS ALISTADORES A LA LISTA
         this->listaAlistadores.append(this->tAlistador1);

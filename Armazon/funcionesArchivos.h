@@ -20,6 +20,7 @@ struct funcionesArchivos{
     void escribirArchivoNuevo(QString,QString);
     void moverArchivo(QString, QString);
     QString obtenerFechaHoraActual(void);
+    QString obtenerFechaHoraActual(bool);
     int translatorLetras(QString);
 
 };

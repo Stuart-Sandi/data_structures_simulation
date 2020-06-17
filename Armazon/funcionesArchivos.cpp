@@ -59,6 +59,13 @@ QString funcionesArchivos::obtenerFechaHoraActual(){
 
 }
 
+QString funcionesArchivos::obtenerFechaHoraActual(bool pFormatoArchivo){
+
+    QString fechaHoraExacta = QDateTime::currentDateTime().toString("yyyy-MM-dd  hh-mm-ssap");
+    return fechaHoraExacta.replace(".","");
+
+}
+
 int funcionesArchivos::translatorLetras(QString letra){
     int contador = 1;
     for (int i = 0; i<this->palabrasMayu.size(); i++){

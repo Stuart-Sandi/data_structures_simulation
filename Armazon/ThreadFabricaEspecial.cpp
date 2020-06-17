@@ -60,13 +60,14 @@ void ThreadFabricaEspecial::run()
                     tiempoDeCreacion = articulos->buscarArticulo(tmp->codigo)->tiempoCreacion;
 
                     fechaHorainicio = fA->obtenerFechaHoraActual();
-                    tmp->aFabrica += "\t\t\t" + fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo;
+                    tmp->aFabrica += "\t\t\t" + fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo + "\n";
+                    qDebug() << tmp->aFabrica;
 
                     /*SE MULTIPLICA LA CANTIDAD A CREAR POR EL TIEMPO DE CREACIÓN PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/
                     this->tiempo = cantidadFaltante * tiempoDeCreacion;
 
                     //RESTA EN EL ALMACÉN
-                    this->articulos->buscarArticulo(tmp->codigo)->cantidad = 0;
+                    //this->articulos->buscarArticulo(tmp->codigo)->cantidad = 0;
                 }
 
                 mutex1->unlock();

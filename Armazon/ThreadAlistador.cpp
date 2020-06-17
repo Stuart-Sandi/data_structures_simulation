@@ -1,10 +1,11 @@
 #include "ThreadAlistador.h"
 
-ThreadAlistador::ThreadAlistador(QString pNombre,ColaPedidos * pColaAlistados, QMutex * pMutex)
+ThreadAlistador::ThreadAlistador(QString pNombre,ColaPedidos * pColaAlistados, QMutex * pMutex, QString pNumAlistador)
 {
     this->pausa = false;
     this->pedido = NULL;
     this->nombre = pNombre;
+    this->numAlistador = pNumAlistador;
     this->totalElaborados = 0;
     this->disponible = 0;
     this->mutex = pMutex;
@@ -13,6 +14,9 @@ ThreadAlistador::ThreadAlistador(QString pNombre,ColaPedidos * pColaAlistados, Q
 }
 
 void ThreadAlistador::run(){
+
+    QString alisto = "";
+    bool primeraVez = false;
     while(true){
 
         //WHILE DE LA PAUSA
@@ -30,6 +34,9 @@ void ThreadAlistador::run(){
             int numero2 = 0;
             int cont = this->pedido->articulos.size();
             emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados));
+
+            alisto += "\t\tAlistador " + this->numAlistador + "\n";
+
             //RECORRE TODOS LOS ARTICULOS DE LA LISTA
             for (int i = 0; i<this->pedido->articulos.size(); i++){
                 data = "";
@@ -51,6 +58,9 @@ void ThreadAlistador::run(){
                 QString codigoA = this->pedido->articulos[i]->codigo;
                 QString posicion = this->pedido->articulos[i]->ubicacion;
                 data += "El alistador esta buscando el articulo: "+codigoA+"\nUbicacion: "+posicion+"\nTiempo de busqueda: "+QString::number(numero1)+"\n"+fA->obtenerFechaHoraActual();
+
+                alisto += "\t\t" + codigoA + "\t" + "Ubicacion " + posicion + "\t" + QString::number(numero1) + " segundos\n";
+
                 emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados));
                 for (int w = 0; w< numero1; w++){
                     //PAUSA EN CASO DE QUE SE PAUSE EL ALISTADOR MIENTRAS TRABAJA
@@ -68,6 +78,7 @@ void ThreadAlistador::run(){
             while (true) {
 
                 if(this->mutex->try_lock()){
+                    this->pedido->alisto += alisto;
                     this->alistados->encolar(this->pedido);
                     this->mutex->unlock();
                     break;
