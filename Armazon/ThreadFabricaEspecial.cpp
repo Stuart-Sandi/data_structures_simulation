@@ -60,7 +60,7 @@ void ThreadFabricaEspecial::run()
                     tiempoDeCreacion = articulos->buscarArticulo(tmp->codigo)->tiempoCreacion;
 
                     fechaHorainicio = fA->obtenerFechaHoraActual();
-                    tmp->aFabrica += "\t\t\t" + fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo + "\n";
+                   tmp->aFabrica += fechaHorainicio + " Faltaba " + QString::number(cantidadFaltante) + " de " + tmp->codigo + "\n";
                     qDebug() << tmp->aFabrica;
 
                     /*SE MULTIPLICA LA CANTIDAD A CREAR POR EL TIEMPO DE CREACIÓN PARA HALLAR EL TIEMPO QUE DURARÁN HACIÉNDOSE LOS PEDIDOS*/
@@ -87,8 +87,8 @@ void ThreadFabricaEspecial::run()
             sleep(this->tiempo);
             datoVentana = QString::number(cantidadFaltante)+" unidades del "+tmp->codigo+" del pedido #"+tmp->numeroPedido+"  "+fA->obtenerFechaHoraActual()+"\n";
             emit asignarPreparando(datoVentana,1);
-            tmp->totalFabrica += tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + QString::number(cantidadFaltante) + " unidades"
-                    + "\n" + "inicio:\t" + fechaHorainicio + "\n" + "final:\t" + fA->obtenerFechaHoraActual();
+            tmp->totalFabrica += "\t" + tmp->codigo + "\t" + "Fabricado en " + this->categoria + "\n" + "\t\t" + QString::number(cantidadFaltante) + " unidades"
+                    + "\n" + "\t\tinicio:\t" + fechaHorainicio + "\n" + "\t\tfinal:\t" + fA->obtenerFechaHoraActual() + "\n\n";
 
             this->contador++;
 
