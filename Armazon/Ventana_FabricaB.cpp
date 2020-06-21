@@ -7,9 +7,10 @@ Ventana_FabricaB::Ventana_FabricaB(QWidget *parent) :
 {
     ui->setupUi(this);
     //PROPIEDADES DE LA VENTANA PRINCIPAL
-    this->setWindowTitle("VENTANA FABRICA B");
+    this->setWindowTitle("VENTANA FÁBRICA B");
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
+    this->setWindowIcon( QIcon( ":/Imagenes/fabrica_logo.png" ) );
     this->setFixedSize(390,390);
     this->contador = 1;
 }

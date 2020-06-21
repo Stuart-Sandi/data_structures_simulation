@@ -138,12 +138,18 @@ int Simulacion::cargarListas(){
                          int validar = 0;
                          Articulo * nuevo = new Articulo(tmpCodigo,tmpCantidad,tmpTiempo,tmpCategoria,tmpUbicacion);
 
+                         //SI EXISTE UN ARTÍCULO DIFERENTE CON LA MISMA UBICACION
+                         if(this->articulos->buscarUbicacionArticulo(nuevo->ubicacion)){
+                             return 2;
+                         }
+
                          //VALIDA SI EL ARTICULO YA EXISTE EN MEMORIA
                          validar = this->articulos->insertarArticulo(nuevo);
                          if (validar == 0){
                              qDebug()<<"ERROR: EL ARTICULO YA EXISTE";
                              return 2;
                          }
+
                      }else{
                          return 2;
                      }

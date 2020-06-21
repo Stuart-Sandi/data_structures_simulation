@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QIcon>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(1300,687);
     this->fA = new funcionesArchivos();
+    this->setWindowIcon( QIcon( ":/Imagenes/Principal_logo.png" ) );
 
     simulacion = new Simulacion();
 

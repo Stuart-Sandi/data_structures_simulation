@@ -11,6 +11,7 @@ Ventana_Facturador::Ventana_Facturador(QWidget *parent) :
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(390,390);
+    this->setWindowIcon( QIcon( ":/Imagenes/facturacion_logo.png" ) );
     this->contador = 1;
 }
 

@@ -52,3 +52,17 @@ Articulo * ListaArticulos::buscarArticulo(QString codigo){
     }
     return NULL;
 }
+
+bool ListaArticulos::buscarUbicacionArticulo(QString pUbicacion){
+/*
+ * PROCEDIMIENTO ENCARGADO DE VERIFICAR LA EXISTENCIA DE UN ARTÍCULO EN LA MISMA UBICACION
+ */
+    Articulo * tmp = this->primerNodo;
+    while (tmp != NULL) {
+        if (tmp->ubicacion == pUbicacion){
+            return true;
+        }
+        tmp = tmp->next;
+    }
+    return false;
+}

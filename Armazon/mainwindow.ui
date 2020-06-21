@@ -71,7 +71,7 @@
      <string notr="true">font: 75 16pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>INICIAR SIMULACION</string>
+     <string>INICIAR SIMULACIÓN</string>
     </property>
    </widget>
    <widget class="QPushButton" name="detener_Button">
@@ -90,7 +90,7 @@
      <string notr="true">font: 75 16pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>DETENER SIMULACION</string>
+     <string>DETENER SIMULACIÓN</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -520,7 +520,7 @@ font: 75 12pt &quot;Times New Roman&quot;;</string>
      <number>4</number>
     </property>
     <property name="text">
-     <string>                                                                      Fabricas</string>
+     <string>                                                                      Fábricas</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ojo_FabricaA">
@@ -1271,7 +1271,7 @@ font: 75 12pt &quot;Times New Roman&quot;;</string>
      <number>4</number>
     </property>
     <property name="text">
-     <string>    Facturacion</string>
+     <string>    Facturación</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ojo_Alistados">

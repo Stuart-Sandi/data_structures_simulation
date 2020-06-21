@@ -12,6 +12,7 @@ struct ListaArticulos{
     //DECLARACION DE FUNCIONES
     int insertarArticulo(Articulo*);
     Articulo * buscarArticulo(QString);
+    bool buscarUbicacionArticulo(QString);
     void imprimir();
 };
 

@@ -56,9 +56,9 @@ void ThreadAlistador::run(){
                 //ESTABLECE EL TIEMPO DE DURACION
                 QString codigoA = this->pedido->articulos[i]->codigo;
                 QString posicion = this->pedido->articulos[i]->ubicacion;
-                data += "El alistador esta buscando el articulo: "+codigoA+"\nUbicacion: "+posicion+"\nTiempo de busqueda: "+QString::number(numero1)+"\n"+fA->obtenerFechaHoraActual();
+                data += "El alistador esta buscando el articulo: "+codigoA+"\nUbicación: "+posicion+"\nTiempo de búsqueda: "+QString::number(numero1)+"\n"+fA->obtenerFechaHoraActual();
 
-                alisto += "\t\t" + codigoA + "\t" + "Ubicacion " + posicion + "\t" + QString::number(numero1) + " segundos\n";
+                alisto += "\t\t" + codigoA + "\t" + "Ubicación " + posicion + "\t" + QString::number(numero1) + " segundos\n";
 
                 emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados),0);
                 for (int w = 0; w< numero1; w++){
@@ -70,7 +70,7 @@ void ThreadAlistador::run(){
                 }
                 cont--;
                 this->totalElaborados++;
-                data = "El alistador alisto el articulo: "+codigoA+"\n"+fA->obtenerFechaHoraActual();
+                data = "El alistador alisto el artículo: "+codigoA+"\n"+fA->obtenerFechaHoraActual();
                 emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados),1);
             }
             //ENCOLA EL PEDIDO FINALIZADO EN LA COLA DE ALISTADOS

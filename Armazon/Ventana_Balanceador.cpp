@@ -11,6 +11,7 @@ Ventana_Balanceador::Ventana_Balanceador(QWidget *parent) :
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(390,390);
+    this->setWindowIcon( QIcon( ":/Imagenes/IMG_Balanceador.png" ) );
 
     this->contador = 1;
 }

@@ -21,15 +21,15 @@ public:
     funcionesArchivos * fA;
 
     //Variables de errores temporales
-    QString errorNoInformacion = "\nERROR: El archivo txt esta carente de informacion.";
-    QString errorNumPedido = "\nERROR: El numero de pedido es incorrecto.";
-    QString errorNumPedido2 = "\nERROR: El numero de pedido se encuentra repetido.";
+    QString errorNoInformacion = "\nERROR: El archivo txt esta carente de información.";
+    QString errorNumPedido = "\nERROR: El número de pedido es incorrecto.";
+    QString errorNumPedido2 = "\nERROR: El número de pedido se encuentra repetido.";
     QString errorCliente = "\nERROR: El cliente no se encuentra registrado en ARMAZON.";
-    QString errorArticulo = "\nERROR: La informacion del articulo esta inclompleta";
-    QString errorArticulo1 = "\nERROR: El articulo: ";
-    QString errorArticulo2 = " ,no existe en los almacenes de ARMAZON.";
-    QString errorCantArticulo1 = "\nERROR: La cantidad del articulo : ";
-    QString errorCantArticulo2 = " es menor o igual a 0. ";
+    QString errorArticulo = "\nERROR: La información del articulo está inclompleta.";
+    QString errorArticulo1 = "\nERROR: El artículo: ";
+    QString errorArticulo2 = " no existe en los almacenes de ARMAZON.";
+    QString errorCantArticulo1 = "\nERROR: La cantidad del artículo ";
+    QString errorCantArticulo2 = " es menor o igual a 0.";
 
 
     ThreadColaPedidos(ColaPedidos*,ColaPedidos*,QStringList *,ListaClientes*,ListaArticulos*,QMutex*);

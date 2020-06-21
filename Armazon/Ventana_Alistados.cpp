@@ -11,6 +11,7 @@ Ventana_Alistados::Ventana_Alistados(QWidget *parent) :
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(390,390);
+    this->setWindowIcon( QIcon( ":/Imagenes/pedidosAlistados_logo.png" ) );
     this->contador = 1;
 }
 

@@ -7,10 +7,11 @@ Ventana_Bodega::Ventana_Bodega(QWidget *parent) :
 {
     ui->setupUi(this);
     //PROPIEDADES DE LA VENTANA PRINCIPAL
-    this->setWindowTitle("VENTANA BALACEADOR");
+    this->setWindowTitle("VENTANA BODEGA");
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(390,390);
+    this->setWindowIcon( QIcon( ":/Imagenes/bodega_logo.png" ) );
 }
 
 Ventana_Bodega::~Ventana_Bodega()

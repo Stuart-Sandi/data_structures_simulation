@@ -16,5 +16,13 @@
         <file>trabajador.jpg</file>
         <file>IMG_alistados.png</file>
         <file>IMG_facturados.jpg</file>
+	<file>Principal_logo.png</file>
+	<file>fabrica_logo.png</file>
+	<file>facturacion_logo.png</file>
+	<file>pedidosAlistados_logo.png</file>
+	<file>alistador_logo.png</file>
+	<file>bodega_logo.png</file>
+	<file>colaAlisto_logo.png</file>
+	<file>pedidos_logo.png</file>
     </qresource>
 </RCC>

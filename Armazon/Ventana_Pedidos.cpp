@@ -11,6 +11,8 @@ Ventana_Pedidos::Ventana_Pedidos(QWidget *parent) :
     this->setWindowFlags(Qt::WindowMaximizeButtonHint);
     this->setWindowFlags(Qt::WindowCloseButtonHint);
     this->setFixedSize(390,390);
+    this->setWindowIcon( QIcon( ":/Imagenes/pedidos_logo.png" ) );
+
 
     this->contador = 1;
 }
