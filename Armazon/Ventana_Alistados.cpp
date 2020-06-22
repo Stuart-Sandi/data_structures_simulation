@@ -26,7 +26,7 @@ void Ventana_Alistados::agregarDatosCola(QString dato1, QString dato2, QString d
         this->contador++;
     }
     else if (val == 1){
-        this->ui->textBrowser->append("Se atendiendo el pedido: "+dato3+"\n");
+        this->ui->textBrowser->append("Se atendió el pedido: "+dato3+"\n");
     }
     else{}
     if (val != 0){

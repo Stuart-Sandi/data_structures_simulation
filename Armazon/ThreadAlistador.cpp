@@ -70,7 +70,7 @@ void ThreadAlistador::run(){
                 }
                 cont--;
                 this->totalElaborados++;
-                data = "El alistador alisto el artículo: "+codigoA+"\n"+fA->obtenerFechaHoraActual();
+                data = "El alistador alistó el artículo: "+codigoA+"\n"+fA->obtenerFechaHoraActual();
                 emit datosAlistador(QString::number(cont),data,QString::number(this->totalElaborados),1);
             }
             //ENCOLA EL PEDIDO FINALIZADO EN LA COLA DE ALISTADOS
