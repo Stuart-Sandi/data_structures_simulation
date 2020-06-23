@@ -108,7 +108,6 @@ void ThreadColaPedidos::run(){
                 QString absolute2 = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Error/";
                 fA->escribirArchivo(absolute+name, error);
                 fA->moverArchivo(absolute+name, absolute2+name);
-                qDebug()<<"PEDIDO NO ENCOLADO"<<endl;
 
             }else{//SI NO HAY ERRORES, MUEVE EL ARCHIVO A LA CARPETA COMPLETADOS Y ENCOLA
                 QString absolute = QFileInfo("../Armazon").absoluteDir().absolutePath() + "/Armazon/Pedidos/";
@@ -126,7 +125,6 @@ void ThreadColaPedidos::run(){
                             this->colaPedidosPrioridad->encolar(nuevo);
                             int cantidadCola = this->colaPedidosPrioridad->cantidadEnCola()+this->colaPedidos->cantidadEnCola();
                             emit datosCola(nuevo->numeroPedido+" "+fA->obtenerFechaHoraActual(),QString::number(cantidadCola));
-                            this->colaPedidosPrioridad->imprimir();
 
                         } else {
 
@@ -138,8 +136,6 @@ void ThreadColaPedidos::run(){
 
                         this->mutex->unlock();
                         listaCodigosPedidos->append(numPedido);
-                        qDebug()<<"PEDIDO ENCOLADO"<<endl;
-                        qDebug()<<"LISTA ACTUAL DE CÓDIGOS DE PEDIDO: " << *listaCodigosPedidos <<endl;
                         break;
                     }else{
                         qDebug()<<"No obtuvo el recurso"<<endl;

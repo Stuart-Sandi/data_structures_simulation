@@ -56,10 +56,8 @@ int Simulacion::cargarListas(){
                  //VALIDA SI EL CLIENTE YA EXISTE EN MEMORIA
                  validar = this->clientes->insertarCliente(nuevo);
                  if (validar == 0){
-                     qDebug()<<"ERROR: EL CLIENTE YA EXISTE";
                      return 1;
                  }
-                 qDebug()<<"Se inserto el cliente: "+tmpNombre+"\n";
              }else{
                  qDebug()<<"ERROR AL TRANSFORMAR A ENTERO";
                  return 1;
@@ -130,7 +128,6 @@ int Simulacion::cargarListas(){
                  QString numFinal = num1+num2;
 
                  if ( (palabrasMayu.contains(letra)||palabrasMinu.contains(letra)) && (numFinal.toInt()>0 && numFinal.toInt()<=10)){
-                     qDebug()<<"Codigo: "+words[0]+" Cantidad: "+words[1]+" Tiempo: "+words[2]+" Categoria: "+words[3]+" Ubicacion: "+words[4];
                      QList<QString> letrasArticulo = {"A", "B", "C", "a", "b", "c"}; //CATEOGRIAS DE LOS ARTICULOS
 
                      //VALIDA SI LOS DATOS DEl TXT ESTAN COMPLETOS Y CORRECTOS
@@ -146,7 +143,6 @@ int Simulacion::cargarListas(){
                          //VALIDA SI EL ARTICULO YA EXISTE EN MEMORIA
                          validar = this->articulos->insertarArticulo(nuevo);
                          if (validar == 0){
-                             qDebug()<<"ERROR: EL ARTICULO YA EXISTE";
                              return 2;
                          }
 
